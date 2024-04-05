@@ -38,4 +38,6 @@ public class Categoriatranx {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
+
+    a
 }
