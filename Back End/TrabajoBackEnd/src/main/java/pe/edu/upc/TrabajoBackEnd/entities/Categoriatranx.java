@@ -39,5 +39,4 @@ public class Categoriatranx {
         this.descripcion = descripcion;
     }
 
-    a
 }
