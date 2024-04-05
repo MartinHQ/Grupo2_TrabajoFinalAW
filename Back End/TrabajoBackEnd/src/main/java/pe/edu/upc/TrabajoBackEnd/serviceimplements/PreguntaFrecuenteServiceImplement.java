@@ -27,4 +27,12 @@ public class PreguntaFrecuenteServiceImplement implements IPreguntaFrecuenteServ
     public void delete(int id) {
         pfR.deleteById(id);
     }
+    @Override
+    public PreguntaFrecuente findById(int id) {
+        return pfR.findById(id).orElse(new PreguntaFrecuente());
+    }
+    @Override
+    public PreguntaFrecuente findByPreguntaPreguntaFrecuente(String pregunta) {
+        return pfR.findByPreguntaPreguntaFrecuente(pregunta);
+    }
 }

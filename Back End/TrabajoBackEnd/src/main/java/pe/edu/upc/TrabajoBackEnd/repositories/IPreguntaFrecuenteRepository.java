@@ -6,4 +6,5 @@ import pe.edu.upc.TrabajoBackEnd.entities.PreguntaFrecuente;
 
 @Repository
 public interface IPreguntaFrecuenteRepository extends JpaRepository<PreguntaFrecuente,Integer> {
+    public PreguntaFrecuente findByPreguntaPreguntaFrecuente(String pregunta);
 }

@@ -8,4 +8,6 @@ public interface IPreguntaFrecuenteService {
     public void insert(PreguntaFrecuente preguntafrecuente);
     public List<PreguntaFrecuente> list();
     public void delete(int id);
+    public PreguntaFrecuente findById(int id);
+    public PreguntaFrecuente findByPreguntaPreguntaFrecuente(String pregunta);
 }
