@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.TrabajoBackEnd.dtos.PreguntaFrecuenteDTO;
 import pe.edu.upc.TrabajoBackEnd.entities.PreguntaFrecuente;
-import pe.edu.upc.TrabajoBackEnd.serviceinterfaces.IPreguntaFrecuenteService;
+import pe.edu.upc.TrabajoBackEnd.servicesinterfaces.IPreguntaFrecuenteService;
 
 import java.util.List;
 import java.util.stream.Collectors;

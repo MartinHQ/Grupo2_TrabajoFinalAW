@@ -1,4 +1,4 @@
-package pe.edu.upc.TrabajoBackEnd.serviceinterfaces;
+package pe.edu.upc.TrabajoBackEnd.servicesinterfaces;
 
 import pe.edu.upc.TrabajoBackEnd.entities.PreguntaFrecuente;
 

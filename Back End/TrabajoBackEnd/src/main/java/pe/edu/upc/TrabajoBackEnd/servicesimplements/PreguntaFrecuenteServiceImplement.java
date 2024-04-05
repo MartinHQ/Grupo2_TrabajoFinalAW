@@ -1,10 +1,10 @@
-package pe.edu.upc.TrabajoBackEnd.serviceimplements;
+package pe.edu.upc.TrabajoBackEnd.servicesimplements;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pe.edu.upc.TrabajoBackEnd.entities.PreguntaFrecuente;
 import pe.edu.upc.TrabajoBackEnd.repositories.IPreguntaFrecuenteRepository;
-import pe.edu.upc.TrabajoBackEnd.serviceinterfaces.IPreguntaFrecuenteService;
+import pe.edu.upc.TrabajoBackEnd.servicesinterfaces.IPreguntaFrecuenteService;
 
 import java.util.List;
 
