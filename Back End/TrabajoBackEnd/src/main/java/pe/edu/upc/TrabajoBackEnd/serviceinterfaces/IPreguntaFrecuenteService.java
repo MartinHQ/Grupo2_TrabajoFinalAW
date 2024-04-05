@@ -9,5 +9,5 @@ public interface IPreguntaFrecuenteService {
     public List<PreguntaFrecuente> list();
     public void delete(int id);
     public PreguntaFrecuente findById(int id);
-    public PreguntaFrecuente findByPreguntaPreguntaFrecuente(String pregunta);
+    public List<PreguntaFrecuente> findByPreguntaPreguntaFrecuente(String pregunta);
 }

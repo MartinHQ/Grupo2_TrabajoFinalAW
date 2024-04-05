@@ -32,7 +32,7 @@ public class PreguntaFrecuenteServiceImplement implements IPreguntaFrecuenteServ
         return pfR.findById(id).orElse(new PreguntaFrecuente());
     }
     @Override
-    public PreguntaFrecuente findByPreguntaPreguntaFrecuente(String pregunta) {
+    public List<PreguntaFrecuente> findByPreguntaPreguntaFrecuente(String pregunta) {
         return pfR.findByPreguntaPreguntaFrecuente(pregunta);
     }
 }

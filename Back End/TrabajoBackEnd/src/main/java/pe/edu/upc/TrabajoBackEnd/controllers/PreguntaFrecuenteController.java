@@ -37,4 +37,20 @@ public class PreguntaFrecuenteController {
         pfS.delete(id);
     }
 
+    @GetMapping("/buscarId/{id}")
+    public PreguntaFrecuenteDTO buscarPorId(@PathVariable("id") Integer id){
+        ModelMapper m=new ModelMapper();
+        PreguntaFrecuenteDTO dto=m.map(pfS.findById(id),PreguntaFrecuenteDTO.class);
+        return dto;
+    }
+
+    @GetMapping("/buscarPregunta/")
+    public List<PreguntaFrecuenteDTO> buscarPorPregunta(@RequestParam("pregunta")String pregunta){
+        return pfS.findByPreguntaPreguntaFrecuente(pregunta)
+                .stream()
+                .map(pf->{
+                    ModelMapper m =new ModelMapper();
+                    return m.map(pf,PreguntaFrecuenteDTO.class);
+                }).collect(Collectors.toList());
+    }
 }
