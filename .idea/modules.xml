@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+<<<<<<< HEAD
       <module fileurl="file://$PROJECT_DIR$/.idea/Grupo2_TrabajoFinalAW.iml" filepath="$PROJECT_DIR$/.idea/Grupo2_TrabajoFinalAW.iml" />
+=======
+      <module fileurl="file://$PROJECT_DIR$/.idea/Trabajo arq.web.iml" filepath="$PROJECT_DIR$/.idea/Trabajo arq.web.iml" />
+>>>>>>> fiorella
     </modules>
   </component>
 </project>
