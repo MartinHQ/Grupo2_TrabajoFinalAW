@@ -9,27 +9,27 @@ import java.util.List;
 @Service
 public class CategoriaMetaServiceImplement implements ICategoriaMetaService {
 
-        @Autowired
-        private ICategoriaMetaRepository cmR;
-        @Override
-        public void insert(CategoriaMeta categoriameta){
-            cmR.save(categoriameta);
-        }
-
-        public List<CategoriaMeta> list(){
-            return cmR.findAll();
-        }
-
-        public void delete(int id)
-        {
-            cmR.deleteById(id);
-        }
-
-        public CategoriaMeta listId(int id) {
-            return cmR.findById(id).orElse(new CategoriaMeta());
-        }
-
-        public List<CategoriaMeta> findbyNombre(String nombre){
-            return cmR.findByNombre(nombre);
-        }
+    @Autowired
+    private ICategoriaMetaRepository cmR;
+    @Override
+    public void insert(CategoriaMeta categoriameta){
+        cmR.save(categoriameta);
+    }
+    @Override
+    public List<CategoriaMeta> list(){
+        return cmR.findAll();
+    }
+    @Override
+    public void delete(int id)
+    {
+        cmR.deleteById(id);
+    }
+    @Override
+    public CategoriaMeta listId(int id) {
+        return cmR.findById(id).orElse(new CategoriaMeta());
+    }
+    @Override
+    public List<CategoriaMeta> findbyNombre(String nombre){
+        return cmR.findByNombre(nombre);
+    }
 }
