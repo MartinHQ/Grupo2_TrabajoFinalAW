@@ -1,7 +1,7 @@
 package pe.edu.upc.TrabajoBackEnd.entities;
 import jakarta.persistence.*;
 @Entity
-@Table(name= "Categoriatranx")
+@Table(name= "CategoriaTranx")
 public class Categoriatranx {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

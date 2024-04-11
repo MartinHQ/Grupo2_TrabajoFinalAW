@@ -8,7 +8,7 @@ public class Consejo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idConsejo;
-@Column(name = "titulo", length = 25, nullable = false)
+    @Column(name = "titulo", length = 25, nullable = false)
     private String titulo;
     @Column(name = "descripcion", length = 250, nullable = false)
     private String descripcion;

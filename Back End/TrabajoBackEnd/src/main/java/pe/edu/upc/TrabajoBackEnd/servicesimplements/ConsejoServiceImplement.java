@@ -14,9 +14,13 @@ public class ConsejoServiceImplement implements IConsejoService {
     private IConsejoRepository cR;
     @Override
     public void insert(Consejo consejo){ cR.save(consejo);}
+    @Override
     public List<Consejo> list(){return cR.findAll();}
+    @Override
     public void delete(int id){cR.deleteById(id);}
+    @Override
     public Consejo listId(int id){return cR.findById(id).orElse(new Consejo());}
+    @Override
     public List<Consejo> findbyTitulo(String titulo){return cR.findByTitulo(titulo);}
 
 }

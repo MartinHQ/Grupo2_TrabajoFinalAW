@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/preguntafrecuente")
-public class PreguntaFrecuenteController {
+public class    PreguntaFrecuenteController {
     @Autowired
     IPreguntaFrecuenteService pfS;
 
@@ -25,9 +25,7 @@ public class PreguntaFrecuenteController {
 
     @GetMapping
     public List<PreguntaFrecuenteDTO> listar(){
-        return pfS.list()
-                .stream()
-                .map(pf->{
+        return pfS.list().stream().map(pf->{
                     ModelMapper m = new ModelMapper();
                     return m.map(pf,PreguntaFrecuenteDTO.class);
                 }).collect(Collectors.toList());

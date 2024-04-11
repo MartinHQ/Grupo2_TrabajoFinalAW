@@ -17,19 +17,19 @@ public class CategoriatranxServiceImplement implements ICategoriatranxService {
     public void insert(Categoriatranx categoriatranx){
         ctR.save(categoriatranx);
     }
-
+    @Override
     public List<Categoriatranx> list(){
         return ctR.findAll();
     }
-
+    @Override
     public void delete(int id)
     {ctR.deleteById(id);
     }
-
+    @Override
     public Categoriatranx listId(int id) {
         return ctR.findById(id).orElse(new Categoriatranx());
     }
-
+    @Override
     public List<Categoriatranx> findbyNombre(String nombre){
         return ctR.findByNombre(nombre);
     }
