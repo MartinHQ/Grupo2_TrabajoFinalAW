@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 @RequestMapping("/metadeahorro")
 public class MetaDeAhorroController {
     @Autowired
-    IMetaDeAhorroService uS;
+    private IMetaDeAhorroService uS;
     @PostMapping
     public void insertarMetaDeAhroo(@RequestBody MetaDeAhorroDTO metaDeAhorroDTO) {
         ModelMapper model = new ModelMapper();

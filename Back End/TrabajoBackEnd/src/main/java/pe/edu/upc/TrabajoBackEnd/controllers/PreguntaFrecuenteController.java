@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 @RequestMapping("/preguntafrecuente")
 public class    PreguntaFrecuenteController {
     @Autowired
-    IPreguntaFrecuenteService pfS;
+    private IPreguntaFrecuenteService pfS;
 
     @PostMapping
     public void insertar(@RequestBody PreguntaFrecuenteDTO preguntaFrecuenteDTO){
@@ -38,8 +38,7 @@ public class    PreguntaFrecuenteController {
     @GetMapping("/buscarId/{id}")
     public PreguntaFrecuenteDTO buscarPorId(@PathVariable("id") Integer id){
         ModelMapper m=new ModelMapper();
-        PreguntaFrecuenteDTO dto=m.map(pfS.findById(id),PreguntaFrecuenteDTO.class);
-        return dto;
+        return m.map(pfS.findById(id),PreguntaFrecuenteDTO.class);
     }
 
     @GetMapping("/buscarPregunta/")
