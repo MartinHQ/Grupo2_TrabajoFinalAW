@@ -16,7 +16,7 @@ public class ConsejoController {
     @Autowired
     private IConsejoService cS;
     @PostMapping
-    public void insertarConsejo(@RequestBody ConsejoDTO consejoDTO){
+    public void insertarConsejo(@RequestBody ConsejoDTO consejoDTO) {
         ModelMapper m =new ModelMapper();
         Consejo c = m.map(consejoDTO, Consejo.class);
         cS.insert(c);
