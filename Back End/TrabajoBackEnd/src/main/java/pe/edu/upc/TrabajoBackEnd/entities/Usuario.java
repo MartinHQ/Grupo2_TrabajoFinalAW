@@ -1,9 +1,11 @@
 package pe.edu.upc.TrabajoBackEnd.entities;
 import jakarta.persistence.*;
+
+import java.io.Serializable;
 import java.time.LocalDate;
 @Entity
 @Table(name = "Usuario")
-public class Usuario {
+public class Usuario implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int usuario_id;
@@ -15,7 +17,7 @@ public class Usuario {
     private int edad;
     @Column(name = "correo", length = 50, nullable = false)
     private String correo;
-    @Column(name = "contrasenia", length = 50, nullable = false)
+    @Column(name = "contrasenia", length = 100, nullable = false)
     private String contrasenia;
     @Column(name = "fecha_registro", length = 50, nullable = false)
     private LocalDate fecha_registro;
