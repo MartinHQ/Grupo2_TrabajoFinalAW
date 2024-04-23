@@ -17,9 +17,9 @@ public class Transaccion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idTransaccion;
-    @Column(name = "montoTransaccion", nullable = false)
+    @Column(name = "nombreTransaccion", length = 255, nullable = false)
     private String nombreTransaccion;
-    @Column(name = "nombreTransaccion", nullable = false)
+    @Column(name = "montoTransaccion", nullable = false)
     private float montoTransaccion;
     @Column(name = "fechaTransaccion", nullable = false)
     private LocalDate fechaTransaccion;
