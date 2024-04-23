@@ -1,8 +1,14 @@
 package pe.edu.upc.TrabajoBackEnd.entities;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "Usuario")
 public class Usuario implements Serializable {
@@ -21,10 +27,11 @@ public class Usuario implements Serializable {
     private String contrasenia;
     @Column(name = "fecha_registro", length = 50, nullable = false)
     private LocalDate fecha_registro;
+    @Column(name = "ahorro_acumulado", nullable = false)
+    private float ahorro_acumulado;
     @ManyToOne
     @JoinColumn(name = "rol_id")
     private Rol rol_id;
-    public Usuario() { super(); }
     public Usuario(int usuario_id, Rol rol_id, String nombre, String apellido, int edad, String correo, String contrasenia, LocalDate fecha_registro) {
         this.usuario_id = usuario_id;
         this.rol_id = rol_id;
@@ -35,20 +42,4 @@ public class Usuario implements Serializable {
         this.contrasenia = contrasenia;
         this.fecha_registro = fecha_registro;
     }
-    public int getUsuario_id() { return usuario_id; }
-    public void setUsuario_id(int usuario_id) { this.usuario_id = usuario_id; }
-    public Rol getRol_id() { return rol_id; }
-    public void setRol_id(Rol rol_id) { this.rol_id = rol_id; }
-    public String getNombre() { return nombre; }
-    public void setNombre(String nombre) { this.nombre = nombre; }
-    public String getApellido() { return apellido; }
-    public void setApellido(String apellido) { this.apellido = apellido; }
-    public int getEdad() { return edad; }
-    public void setEdad(int edad) { this.edad = edad; }
-    public String getCorreo() { return correo; }
-    public void setCorreo(String correo) { this.correo = correo; }
-    public String getContrasenia() { return contrasenia; }
-    public void setContrasenia(String contrasenia) { this.contrasenia = contrasenia; }
-    public LocalDate getFecha_registro() { return fecha_registro; }
-    public void setFecha_registro(LocalDate fecha_registro) { this.fecha_registro = fecha_registro; }
 }
