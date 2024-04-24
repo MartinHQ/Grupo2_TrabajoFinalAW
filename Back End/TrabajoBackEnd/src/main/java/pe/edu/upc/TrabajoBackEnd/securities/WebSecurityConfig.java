@@ -64,7 +64,7 @@ public class WebSecurityConfig {
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(req -> req
-                        .requestMatchers(antMatcher("/login"))
+                        .requestMatchers("/login", "/usuarios/registrar-cliente")
                         .permitAll()
                         .anyRequest().authenticated()
                 )
