@@ -11,7 +11,7 @@ public class CuentaBancaria {
     @Column(name = "nombre_banco", length = 50, nullable = false)
     private String nombre_banco;
     @Column(name = "numero_cuenta", nullable = false)
-    private int numero_cuenta;
+    private Long numero_cuenta;
     @Column(name = "tipo", nullable = false)
     private boolean tipo;
     @ManyToOne
@@ -21,7 +21,7 @@ public class CuentaBancaria {
     public CuentaBancaria() {
     }
 
-    public CuentaBancaria(int cuentabancaria_id, String nombre_banco, int numero_cuenta, boolean tipo, Usuario usuario_id) {
+    public CuentaBancaria(int cuentabancaria_id, String nombre_banco, Long numero_cuenta, boolean tipo, Usuario usuario_id) {
         this.cuentabancaria_id = cuentabancaria_id;
         this.nombre_banco = nombre_banco;
         this.numero_cuenta = numero_cuenta;
@@ -45,11 +45,11 @@ public class CuentaBancaria {
         this.nombre_banco = nombre_banco;
     }
 
-    public int getNumero_cuenta() {
+    public Long getNumero_cuenta() {
         return numero_cuenta;
     }
 
-    public void setNumero_cuenta(int numero_cuenta) {
+    public void setNumero_cuenta(Long numero_cuenta) {
         this.numero_cuenta = numero_cuenta;
     }
 
