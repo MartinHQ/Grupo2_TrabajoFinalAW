@@ -17,12 +17,16 @@ public class Transaccion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idTransaccion;
+    @Column(name = "nombreTransaccion", length = 255, nullable = false)
+    private String nombreTransaccion;
     @Column(name = "montoTransaccion", nullable = false)
     private float montoTransaccion;
     @Column(name = "fechaTransaccion", nullable = false)
     private LocalDate fechaTransaccion;
     @Column(name = "es_ingresoTransaccion", nullable = false)
     private boolean es_ingresoTransaccion;
+    @Column(name = "es_manual", nullable = false)
+    private boolean es_manual;
 
     @ManyToOne
     @JoinColumn(name = "usuario_id")

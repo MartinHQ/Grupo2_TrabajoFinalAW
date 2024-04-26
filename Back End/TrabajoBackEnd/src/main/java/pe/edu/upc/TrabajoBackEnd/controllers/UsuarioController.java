@@ -17,12 +17,12 @@ public class UsuarioController {
     private IUsuarioService uS;
     @Autowired
     private PasswordEncoder passwordEncoder;
-    @PostMapping
+    @PostMapping("/registrar-cliente")
     public void insertarUsuario(@RequestBody UsuarioDTO usuarioDTO) {
         ModelMapper m = new ModelMapper();
         Usuario usuario = m.map(usuarioDTO, Usuario.class);
 
-        Rol rol = new Rol(2, "user");
+        Rol rol = new Rol(2, "CLIENTE");
         usuario.setRol_id(rol);
 
         String encodedPassword = passwordEncoder.encode(usuario.getContrasenia());

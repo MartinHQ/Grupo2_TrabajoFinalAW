@@ -3,14 +3,14 @@ import pe.edu.upc.TrabajoBackEnd.entities.Usuario;
 public class CuentaBancariaDTO {
     private int cuentabancaria_id;
     private String nombre_banco;
-    private int numero_cuenta;
+    private Long numero_cuenta;
     private boolean tipo;
     private Usuario usuario_id;
 
     public CuentaBancariaDTO() {
     }
 
-    public CuentaBancariaDTO(int cuentabancaria_id, String nombre_banco, int numero_cuenta, boolean tipo, Usuario usuario_id) {
+    public CuentaBancariaDTO(int cuentabancaria_id, String nombre_banco, Long numero_cuenta, boolean tipo, Usuario usuario_id) {
         this.cuentabancaria_id = cuentabancaria_id;
         this.nombre_banco = nombre_banco;
         this.numero_cuenta = numero_cuenta;
@@ -34,11 +34,11 @@ public class CuentaBancariaDTO {
         this.nombre_banco = nombre_banco;
     }
 
-    public int getNumero_cuenta() {
+    public Long getNumero_cuenta() {
         return numero_cuenta;
     }
 
-    public void setNumero_cuenta(int numero_cuenta) {
+    public void setNumero_cuenta(Long numero_cuenta) {
         this.numero_cuenta = numero_cuenta;
     }
 
