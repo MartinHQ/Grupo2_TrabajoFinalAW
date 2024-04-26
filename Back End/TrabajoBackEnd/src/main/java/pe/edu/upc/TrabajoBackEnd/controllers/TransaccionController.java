@@ -13,7 +13,14 @@ public class TransaccionController {
     @Autowired
     private ITransaccionService tS;
     @PostMapping
-    public void insertarUsuario(@RequestBody TransaccionDTO transaccionDTO) {
+    public void insertarTransaccion(@RequestBody TransaccionDTO transaccionDTO) {
+        ModelMapper m = new ModelMapper();
+        Transaccion transaccion = m.map(transaccionDTO, Transaccion.class);
+        tS.insert(transaccion);
+    }
+
+    @PutMapping
+    public void editarTransaccion(@RequestBody TransaccionDTO transaccionDTO) {
         ModelMapper m = new ModelMapper();
         Transaccion transaccion = m.map(transaccionDTO, Transaccion.class);
         tS.insert(transaccion);
