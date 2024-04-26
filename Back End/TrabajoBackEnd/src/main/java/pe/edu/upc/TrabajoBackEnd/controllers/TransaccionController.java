@@ -35,9 +35,10 @@ public class TransaccionController {
     @GetMapping("/max-categoria")
     public List<MaxMontoByCategoriaDTO> maxCategoria(@RequestParam LocalDate date1,
                                              @RequestParam LocalDate date2,
-                                             @RequestParam Integer id_usuario) {
+                                             @RequestParam Integer id_usuario,
+                                                     @RequestParam Boolean es_ingreso) {
         //devolver la lista maxMontoByCategoria con sus parametros
-        List<String[]> filalista = tS.maxMontoByCategoria(date1,date2,id_usuario);
+        List<String[]> filalista = tS.maxMontoByCategoria(date1,date2,id_usuario, es_ingreso);
         //Crear la lista dto en donde se usará para mostrar los resultados
         List<MaxMontoByCategoriaDTO> dtoLista = new ArrayList<>();
 

@@ -27,5 +27,7 @@ public interface IConsejoRepository extends JpaRepository<Consejo, Integer> {
             "GROUP BY ct.nombre \n" +
             "    ) AS subconsulta \n" +
             ");", nativeQuery = true)
-    public List<Consejo> listarConsejoPorMaxMontoCategoria(LocalDate date1, LocalDate date2, int id_usuario);
+    public List<Consejo> listarConsejoPorMaxMontoCategoria(LocalDate date1,
+                                                           LocalDate date2,
+                                                           int id_usuario);
 }

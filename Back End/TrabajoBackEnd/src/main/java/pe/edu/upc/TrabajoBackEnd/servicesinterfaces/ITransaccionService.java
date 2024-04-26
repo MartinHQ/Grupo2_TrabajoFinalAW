@@ -11,5 +11,8 @@ public interface ITransaccionService {
     public void delete(int id);
     public Transaccion listId(int id);
 
-    public List<String[]> maxMontoByCategoria(LocalDate date1, LocalDate date2, int id_usuario);
+    public List<String[]> maxMontoByCategoria(LocalDate date1,
+                                              LocalDate date2,
+                                              int id_usuario,
+                                              Boolean es_ingreso);
 }
