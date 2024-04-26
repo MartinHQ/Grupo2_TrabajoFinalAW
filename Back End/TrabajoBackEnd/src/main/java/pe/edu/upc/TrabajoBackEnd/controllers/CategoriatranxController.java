@@ -23,6 +23,13 @@ public class CategoriatranxController {
         Categoriatranx ct = m.map(categoriatranxDTO, Categoriatranx.class);
         ctS.insert(ct);
     }
+
+    @PutMapping
+    public void editarCategoriatranx(@RequestBody CategoriatranxDTO categoriatranxDTO){
+        ModelMapper m =new ModelMapper();
+        Categoriatranx ct = m.map(categoriatranxDTO, Categoriatranx.class);
+        ctS.insert(ct);
+    }
     @GetMapping
     public List<CategoriatranxDTO> listarCategoriatranx(){
         return ctS.list().stream().map(y->{
