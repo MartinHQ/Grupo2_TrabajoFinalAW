@@ -2,6 +2,7 @@ package pe.edu.upc.TrabajoBackEnd.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.TrabajoBackEnd.dtos.ConsejoDTO;
 import pe.edu.upc.TrabajoBackEnd.entities.Consejo;
@@ -16,7 +17,7 @@ public class ConsejoController {
     @Autowired
     private IConsejoService cS;
     @PostMapping
-    public void insertarConsejo(@RequestBody ConsejoDTO consejoDTO){
+    public void insertarConsejo(@RequestBody ConsejoDTO consejoDTO) {
         ModelMapper m =new ModelMapper();
         Consejo c = m.map(consejoDTO, Consejo.class);
         cS.insert(c);
