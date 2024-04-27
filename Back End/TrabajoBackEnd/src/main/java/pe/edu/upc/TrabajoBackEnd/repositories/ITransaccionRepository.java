@@ -27,4 +27,22 @@ public interface ITransaccionRepository extends JpaRepository<Transaccion, Integ
             "GROUP BY ct.nombre", nativeQuery = true)
     public List<String[]> maxMontoByCategoria(LocalDate date1, LocalDate date2, int id_usuario,
                                               Boolean es_ingreso);
+
+    @Query(value =
+            "SELECT \n" +
+            "u.nombre AS nombre_usuario,\n" +
+            "u.apellido,\n" +
+            "COUNT(CASE WHEN t.es_manual THEN 1 END) AS transacciones_manuales,\n" +
+            "COUNT(CASE WHEN NOT t.es_manual THEN 1 END) AS transacciones_cuenta\n" +
+            "FROM \n" +
+            "usuario u\n" +
+            "JOIN rol r ON u.rol_id = r.id_rol\n" +
+            "JOIN transaccion t ON u.usuario_id = t.usuario_id\n" +
+            "WHERE\n" +
+            "r.nombre = 'CLIENTE'\n" +
+            "GROUP BY\n" +
+            "u.usuario_id, u.nombre, u.apellido;"
+            , nativeQuery = true)
+    public List<String[]>contarTranxManualyCta();
+
 }

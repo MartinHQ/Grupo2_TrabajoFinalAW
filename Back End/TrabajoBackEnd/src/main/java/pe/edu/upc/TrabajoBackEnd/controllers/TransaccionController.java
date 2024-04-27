@@ -5,8 +5,10 @@ import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.TrabajoBackEnd.dtos.SaldosPorUsuarioDTO;
 import pe.edu.upc.TrabajoBackEnd.dtos.MaxMontoByCategoriaDTO;
 import pe.edu.upc.TrabajoBackEnd.dtos.TransaccionDTO;
+import pe.edu.upc.TrabajoBackEnd.dtos.contarTranxManualyCtaDTO;
 import pe.edu.upc.TrabajoBackEnd.entities.Transaccion;
 import pe.edu.upc.TrabajoBackEnd.servicesinterfaces.ITransaccionService;
+
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -64,5 +66,21 @@ public class TransaccionController {
             dtoLista.add(temp);
         }
         return dtoLista;
+    }
+
+    @GetMapping("/cuantasxtipocuenta")
+    public List<contarTranxManualyCtaDTO> cuantastranxmanualcta()
+    {
+        List<String[]> listFila = tS.contarTranxManualyCta();
+        List<contarTranxManualyCtaDTO> dtoList = new ArrayList<>();
+        for (String[] columna : listFila) {
+            contarTranxManualyCtaDTO dto = new contarTranxManualyCtaDTO();
+            dto.setNombre_usuario(columna[0]);
+            dto.setApellido_usuario(columna[1]);
+            dto.setTransacciones_manuales(Integer.parseInt(columna[2]));
+            dto.setTransacciones_cuenta(Integer.parseInt(columna[2]));
+            dtoList.add(dto);
+        }
+        return dtoList;
     }
 }
