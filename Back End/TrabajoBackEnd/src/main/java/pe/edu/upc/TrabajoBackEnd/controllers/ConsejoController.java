@@ -2,6 +2,7 @@ package pe.edu.upc.TrabajoBackEnd.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.TrabajoBackEnd.dtos.ConsejoDTO;
@@ -46,4 +47,11 @@ public class ConsejoController {
             return m.map(y, ConsejoDTO.class);
         }).collect(Collectors.toList());
     }
+    @GetMapping("/buscarstring")
+    public List<ConsejoDTO> buscarKeyword(@Param("keyword") String keyword){
+        return cS.listarporKeyword(keyword).stream().map(y->{
+            ModelMapper m = new ModelMapper();
+            return m.map(y, ConsejoDTO.class);
+        }).collect(Collectors.toList());
+    };
 }
