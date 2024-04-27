@@ -1,6 +1,7 @@
 package pe.edu.upc.TrabajoBackEnd.controllers;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.TrabajoBackEnd.dtos.SaldosPorUsuarioDTO;
 import pe.edu.upc.TrabajoBackEnd.dtos.MaxMontoByCategoriaDTO;
@@ -17,12 +18,16 @@ import java.util.stream.Collectors;
 public class TransaccionController {
     @Autowired
     private ITransaccionService tS;
+
+    @PreAuthorize("hasAuthority('CLIENTE')")
     @PostMapping
     public void insertarTransaccion(@RequestBody TransaccionDTO transaccionDTO) {
         ModelMapper m = new ModelMapper();
         Transaccion transaccion = m.map(transaccionDTO, Transaccion.class);
         tS.insert(transaccion);
     }
+
+    @PreAuthorize("hasAuthority('CLIENTE')")
     @GetMapping
     public List<TransaccionDTO> listarTransaccion() {
         return tS.list().stream().map(y->{
@@ -30,8 +35,11 @@ public class TransaccionController {
             return m.map(y, TransaccionDTO.class);
         }).collect(Collectors.toList());
     }
+
+    @PreAuthorize("hasAuthority('CLIENTE')")
     @DeleteMapping("/{id}")
     public void delete(@PathVariable("id") Integer id) { tS.delete(id); }
+
 
     @GetMapping("/reportesaldos")
     public List<SaldosPorUsuarioDTO> reporteSaldosporrangoTiempo(@RequestParam("fechainicio") LocalDate fechainicio, @RequestParam("fechafin") LocalDate fechafin) {

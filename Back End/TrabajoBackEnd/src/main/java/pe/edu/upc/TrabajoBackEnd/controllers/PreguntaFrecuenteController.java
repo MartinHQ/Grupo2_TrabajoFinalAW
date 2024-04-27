@@ -2,6 +2,7 @@ package pe.edu.upc.TrabajoBackEnd.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.TrabajoBackEnd.dtos.PreguntaFrecuenteDTO;
 import pe.edu.upc.TrabajoBackEnd.entities.PreguntaFrecuente;
@@ -16,6 +17,7 @@ public class    PreguntaFrecuenteController {
     @Autowired
     private IPreguntaFrecuenteService pfS;
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping
     public void insertar(@RequestBody PreguntaFrecuenteDTO preguntaFrecuenteDTO){
         ModelMapper m= new ModelMapper();
@@ -23,6 +25,7 @@ public class    PreguntaFrecuenteController {
         pfS.insert(pf);
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping
     public List<PreguntaFrecuenteDTO> listar(){
         return pfS.list().stream().map(pf->{
@@ -30,17 +33,21 @@ public class    PreguntaFrecuenteController {
                     return m.map(pf,PreguntaFrecuenteDTO.class);
                 }).collect(Collectors.toList());
     }
+
+    @PreAuthorize("hasAuthority('ADMIN')")
     @DeleteMapping("{id}")
     public void eliminar(@PathVariable("id")Integer id){
         pfS.delete(id);
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/buscarId/{id}")
     public PreguntaFrecuenteDTO buscarPorId(@PathVariable("id") Integer id){
         ModelMapper m=new ModelMapper();
         return m.map(pfS.findById(id),PreguntaFrecuenteDTO.class);
     }
 
+    @PreAuthorize("hasAuthority('CLIENTE')")
     @GetMapping("/buscarPregunta/")
     public List<PreguntaFrecuenteDTO> buscarPorPregunta(@RequestParam("pregunta")String pregunta){
         return pfS.findByPreguntaPreguntaFrecuente(pregunta)
