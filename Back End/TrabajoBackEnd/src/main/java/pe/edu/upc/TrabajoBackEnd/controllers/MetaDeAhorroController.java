@@ -18,13 +18,13 @@ public class MetaDeAhorroController {
     @Autowired
     private IMetaDeAhorroService uS;
     @PostMapping
-    public void insertarMetaDeAhroo(@RequestBody MetaDeAhorroDTO metaDeAhorroDTO) {
+    public void insertarMetaDeAhorro(@RequestBody MetaDeAhorroDTO metaDeAhorroDTO) {
         ModelMapper model = new ModelMapper();
         MetaDeAhorro metaDeAhorro = model.map(metaDeAhorroDTO, MetaDeAhorro.class);
         uS.insert(metaDeAhorro);
     }
     @GetMapping
-    public List<MetaDeAhorroDTO> listarUsuario() {
+    public List<MetaDeAhorroDTO> listarMetas() {
         return uS.list().stream().map(y->{
             ModelMapper m = new ModelMapper();
             return m.map(y, MetaDeAhorroDTO.class);

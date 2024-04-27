@@ -1,29 +1,29 @@
 package pe.edu.upc.TrabajoBackEnd.entities;
 import jakarta.persistence.*;
 @Entity
-@Table(name= "CategoriaMeta")
-public class CategoriaMeta {
+@Table(name= "TipoMeta")
+public class TipoMeta {
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
-        private int idCategoriaMeta;
+        private int idTipoMeta;
         @Column(name = "nombre", length = 25, nullable = false)
         private String nombre;
 
-        public CategoriaMeta() {
+        public TipoMeta() {
             super();
         }
-        public CategoriaMeta(int idCategoriaMeta, String nombre) {
+        public TipoMeta(int idTipoMeta, String nombre) {
             super();
-            this.idCategoriaMeta = idCategoriaMeta;
+            this.idTipoMeta = idTipoMeta;
             this.nombre = nombre;
         }
 
-    public int getIdCategoriaMeta() {
-        return idCategoriaMeta;
+    public int getIdTipoMeta() {
+        return idTipoMeta;
     }
 
-    public void setIdCategoriaMeta(int idCategoriaMeta) {
-        this.idCategoriaMeta = idCategoriaMeta;
+    public void setIdTipoMeta(int idTipoMeta) {
+        this.idTipoMeta = idTipoMeta;
     }
 
     public String getNombre() {
