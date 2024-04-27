@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="d354b924-07c1-49c5-978a-c63896719aa8" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/Back End/TrabajoBackEnd/src/main/java/pe/edu/upc/TrabajoBackEnd/controllers/TransaccionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Back End/TrabajoBackEnd/src/main/java/pe/edu/upc/TrabajoBackEnd/controllers/TransaccionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back End/TrabajoBackEnd/src/main/java/pe/edu/upc/TrabajoBackEnd/repositories/ITransaccionRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/Back End/TrabajoBackEnd/src/main/java/pe/edu/upc/TrabajoBackEnd/repositories/ITransaccionRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back End/TrabajoBackEnd/src/main/java/pe/edu/upc/TrabajoBackEnd/servicesimplements/TransaccionServiceImplement.java" beforeDir="false" afterPath="$PROJECT_DIR$/Back End/TrabajoBackEnd/src/main/java/pe/edu/upc/TrabajoBackEnd/servicesimplements/TransaccionServiceImplement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back End/TrabajoBackEnd/src/main/java/pe/edu/upc/TrabajoBackEnd/servicesinterfaces/ITransaccionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Back End/TrabajoBackEnd/src/main/java/pe/edu/upc/TrabajoBackEnd/servicesinterfaces/ITransaccionService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back End/TrabajoBackEnd/target/classes/pe/edu/upc/TrabajoBackEnd/controllers/CategoriaMetaController.class" beforeDir="false" afterPath="$PROJECT_DIR$/Back End/TrabajoBackEnd/target/classes/pe/edu/upc/TrabajoBackEnd/controllers/CategoriaMetaController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back End/TrabajoBackEnd/target/classes/pe/edu/upc/TrabajoBackEnd/controllers/CategoriatranxController.class" beforeDir="false" afterPath="$PROJECT_DIR$/Back End/TrabajoBackEnd/target/classes/pe/edu/upc/TrabajoBackEnd/controllers/CategoriatranxController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back End/TrabajoBackEnd/target/classes/pe/edu/upc/TrabajoBackEnd/controllers/ConsejoController.class" beforeDir="false" afterPath="$PROJECT_DIR$/Back End/TrabajoBackEnd/target/classes/pe/edu/upc/TrabajoBackEnd/controllers/ConsejoController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back End/TrabajoBackEnd/target/classes/pe/edu/upc/TrabajoBackEnd/controllers/CuentaBancariaController.class" beforeDir="false" afterPath="$PROJECT_DIR$/Back End/TrabajoBackEnd/target/classes/pe/edu/upc/TrabajoBackEnd/controllers/CuentaBancariaController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back End/TrabajoBackEnd/target/classes/pe/edu/upc/TrabajoBackEnd/controllers/MetaDeAhorroController.class" beforeDir="false" afterPath="$PROJECT_DIR$/Back End/TrabajoBackEnd/target/classes/pe/edu/upc/TrabajoBackEnd/controllers/MetaDeAhorroController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back End/TrabajoBackEnd/target/classes/pe/edu/upc/TrabajoBackEnd/controllers/PreguntaFrecuenteController.class" beforeDir="false" afterPath="$PROJECT_DIR$/Back End/TrabajoBackEnd/target/classes/pe/edu/upc/TrabajoBackEnd/controllers/PreguntaFrecuenteController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back End/TrabajoBackEnd/target/classes/pe/edu/upc/TrabajoBackEnd/controllers/RolController.class" beforeDir="false" afterPath="$PROJECT_DIR$/Back End/TrabajoBackEnd/target/classes/pe/edu/upc/TrabajoBackEnd/controllers/RolController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back End/TrabajoBackEnd/target/classes/pe/edu/upc/TrabajoBackEnd/controllers/TransaccionController.class" beforeDir="false" afterPath="$PROJECT_DIR$/Back End/TrabajoBackEnd/target/classes/pe/edu/upc/TrabajoBackEnd/controllers/TransaccionController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back End/TrabajoBackEnd/target/classes/pe/edu/upc/TrabajoBackEnd/controllers/UsuarioController.class" beforeDir="false" afterPath="$PROJECT_DIR$/Back End/TrabajoBackEnd/target/classes/pe/edu/upc/TrabajoBackEnd/controllers/UsuarioController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back End/TrabajoBackEnd/target/classes/pe/edu/upc/TrabajoBackEnd/dtos/PreguntaFrecuenteDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/Back End/TrabajoBackEnd/target/classes/pe/edu/upc/TrabajoBackEnd/dtos/PreguntaFrecuenteDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back End/TrabajoBackEnd/target/classes/pe/edu/upc/TrabajoBackEnd/dtos/RolDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/Back End/TrabajoBackEnd/target/classes/pe/edu/upc/TrabajoBackEnd/dtos/RolDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back End/TrabajoBackEnd/target/classes/pe/edu/upc/TrabajoBackEnd/dtos/TransaccionDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/Back End/TrabajoBackEnd/target/classes/pe/edu/upc/TrabajoBackEnd/dtos/TransaccionDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back End/TrabajoBackEnd/target/classes/pe/edu/upc/TrabajoBackEnd/entities/PreguntaFrecuente.class" beforeDir="false" afterPath="$PROJECT_DIR$/Back End/TrabajoBackEnd/target/classes/pe/edu/upc/TrabajoBackEnd/entities/PreguntaFrecuente.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back End/TrabajoBackEnd/target/classes/pe/edu/upc/TrabajoBackEnd/entities/Rol.class" beforeDir="false" afterPath="$PROJECT_DIR$/Back End/TrabajoBackEnd/target/classes/pe/edu/upc/TrabajoBackEnd/entities/Rol.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back End/TrabajoBackEnd/target/classes/pe/edu/upc/TrabajoBackEnd/entities/Transaccion.class" beforeDir="false" afterPath="$PROJECT_DIR$/Back End/TrabajoBackEnd/target/classes/pe/edu/upc/TrabajoBackEnd/entities/Transaccion.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back End/TrabajoBackEnd/target/classes/pe/edu/upc/TrabajoBackEnd/repositories/ITransaccionRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/Back End/TrabajoBackEnd/target/classes/pe/edu/upc/TrabajoBackEnd/repositories/ITransaccionRepository.class" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;CodeChris28&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/MartinHQ/Grupo2_TrabajoFinalAW.git&quot;,
+    &quot;accountId&quot;: &quot;3dd0869e-ded3-4bba-9d8d-255ab63f46f8&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
+  <component name="ProjectId" id="2egSHqNuaiyVJ4aCu6F8AJjYTQX" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "Spring Boot.TrabajoBackEndApplication.executor": "Run",
+    "git-widget-placeholder": "Merging christian",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Lenovo/Desktop/demoSX61",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.general",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration name="TrabajoBackEndApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="TrabajoBackEnd" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="pe.edu.upc.TrabajoBackEnd.TrabajoBackEndApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9f38398b9061-18abd8497189-intellij.indexing.shared.core-IU-241.14494.240" />
+        <option value="bundled-js-predefined-1d06a55b98c1-74d2a5396914-JavaScript-IU-241.14494.240" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d354b924-07c1-49c5-978a-c63896719aa8" name="Changes" comment="" />
+      <created>1712324642713</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1712324642713</updated>
+      <workItem from="1712324643827" duration="6812000" />
+      <workItem from="1712333451007" duration="79000" />
+      <workItem from="1712333562961" duration="2051000" />
+      <workItem from="1712341680575" duration="3898000" />
+      <workItem from="1713812891064" duration="850000" />
+      <workItem from="1713813747693" duration="1873000" />
+      <workItem from="1713818389706" duration="101000" />
+      <workItem from="1713818500399" duration="77000" />
+      <workItem from="1713818635399" duration="4568000" />
+      <workItem from="1713888990511" duration="2600000" />
+      <workItem from="1714149809482" duration="382000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
