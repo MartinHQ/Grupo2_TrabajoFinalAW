@@ -16,4 +16,15 @@ public interface ITransaccionRepository extends JpaRepository<Transaccion, Integ
             "WHERE t.fecha_transaccion BETWEEN :fechainicio AND :fechafin\n" +
             "GROUP BY t.usuario_id, u.nombre, u.apellido", nativeQuery = true)
     public List<String[]> reporteSaldosporrangoTiempo(@Param("fechainicio") LocalDate fechainicio,@Param("fechafin") LocalDate fechafin);
+
+    @Query(value = "SELECT ct.nombre, MAX(t.monto_transaccion) \n" +
+            "FROM Transaccion t \n" +
+            "JOIN categoria_tranx ct ON t.categoria_id = ct.id_categoriatranx \n" +
+            "JOIN usuario u ON u.usuario_id = t.usuario_id \n" +
+            "WHERE t.es_ingreso_transaccion = :es_ingreso \n" +
+            "AND t.usuario_id = :id_usuario \n" +
+            "AND t.fecha_transaccion BETWEEN :date1 AND :date2 \n" +
+            "GROUP BY ct.nombre", nativeQuery = true)
+    public List<String[]> maxMontoByCategoria(LocalDate date1, LocalDate date2, int id_usuario,
+                                              Boolean es_ingreso);
 }

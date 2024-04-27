@@ -9,6 +9,7 @@ import pe.edu.upc.TrabajoBackEnd.dtos.ConsejoDTO;
 import pe.edu.upc.TrabajoBackEnd.entities.Consejo;
 import pe.edu.upc.TrabajoBackEnd.servicesinterfaces.IConsejoService;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -54,4 +55,14 @@ public class ConsejoController {
             return m.map(y, ConsejoDTO.class);
         }).collect(Collectors.toList());
     };
+    @GetMapping("/consejos-por-categoria")
+    public List<ConsejoDTO> listarPorMaxMontoCategoria(@RequestParam LocalDate date1,
+                                                       @RequestParam LocalDate date2,
+                                                       @RequestParam int id_usuario){
+        return cS.listarConsejoPorMaxMontoCategoria(date1, date2, id_usuario)
+                .stream().map(y->{
+                    ModelMapper m = new ModelMapper();
+                    return m.map(y, ConsejoDTO.class);
+                }).collect(Collectors.toList());
+    }
 }
