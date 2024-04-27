@@ -54,7 +54,7 @@ public class ConsejoController {
             ModelMapper m = new ModelMapper();
             return m.map(y, ConsejoDTO.class);
         }).collect(Collectors.toList());
-    };
+    }
     @GetMapping("/consejos-por-categoria")
     public List<ConsejoDTO> listarPorMaxMontoCategoria(@RequestParam LocalDate date1,
                                                        @RequestParam LocalDate date2,
