@@ -45,4 +45,25 @@ public interface ITransaccionRepository extends JpaRepository<Transaccion, Integ
             , nativeQuery = true)
     public List<String[]>contarTranxManualyCta();
 
+    @Query(value =
+            "SELECT\n" +
+            "c.nombre AS categoria,\n" +
+            "EXTRACT(MONTH FROM t.fecha_transaccion) AS mes,\n" +
+            "SUM(CASE WHEN NOT t.es_ingreso_transaccion THEN t.monto_transaccion ELSE 0 END) AS total_egresos,\n" +
+            "AVG(CASE WHEN NOT t.es_ingreso_transaccion THEN t.monto_transaccion ELSE 0 END) AS promedio_egresos\n" +
+            "FROM\n" +
+            "transaccion t\n" +
+            "INNER JOIN\n" +
+            "categoria_tranx c ON t.categoria_id = c.id_categoriatranx\n" +
+            "WHERE\n" +
+            "t.es_ingreso_transaccion = false\n" +
+            "AND EXTRACT(YEAR FROM t.fecha_transaccion) = 2024\n"+
+            "AND EXTRACT(MONTH FROM t.fecha_transaccion) = :mes \n"+
+            "GROUP BY\n" +
+            "c.nombre,\n" +
+            "EXTRACT(MONTH FROM t.fecha_transaccion);", nativeQuery = true)
+    public List<String[]>promedioegresosporcategoria(int mes);
+
+
+
 }

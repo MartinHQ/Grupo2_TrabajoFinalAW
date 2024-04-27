@@ -17,4 +17,5 @@ public interface ITransaccionService {
                                               Boolean es_ingreso);
 
     public List<String[]> contarTranxManualyCta();
+    public List<String[]>promedioegresosporcategoria(int mes);
 }

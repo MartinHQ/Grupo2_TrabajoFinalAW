@@ -2,10 +2,7 @@ package pe.edu.upc.TrabajoBackEnd.controllers;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import pe.edu.upc.TrabajoBackEnd.dtos.SaldosPorUsuarioDTO;
-import pe.edu.upc.TrabajoBackEnd.dtos.MaxMontoByCategoriaDTO;
-import pe.edu.upc.TrabajoBackEnd.dtos.TransaccionDTO;
-import pe.edu.upc.TrabajoBackEnd.dtos.contarTranxManualyCtaDTO;
+import pe.edu.upc.TrabajoBackEnd.dtos.*;
 import pe.edu.upc.TrabajoBackEnd.entities.Transaccion;
 import pe.edu.upc.TrabajoBackEnd.servicesinterfaces.ITransaccionService;
 
@@ -78,7 +75,23 @@ public class TransaccionController {
             dto.setNombre_usuario(columna[0]);
             dto.setApellido_usuario(columna[1]);
             dto.setTransacciones_manuales(Integer.parseInt(columna[2]));
-            dto.setTransacciones_cuenta(Integer.parseInt(columna[2]));
+            dto.setTransacciones_cuenta(Integer.parseInt(columna[3]));
+            dtoList.add(dto);
+        }
+        return dtoList;
+    }
+
+    @GetMapping("/promedioegresosporcategoria")
+    public List<promedioegresosporcategoriaDTO> promedioegresosporcategoria(@RequestParam Integer mes)
+    {
+        List<String[]> listFila = tS.promedioegresosporcategoria(mes);
+        List<promedioegresosporcategoriaDTO> dtoList = new ArrayList<>();
+        for (String[] columna : listFila) {
+            promedioegresosporcategoriaDTO dto = new promedioegresosporcategoriaDTO();
+            dto.setCategoria(columna[0]);
+            dto.setMes(Integer.parseInt(columna[1]));
+            dto.setTotal_egresos(Float.parseFloat(columna[2]));
+            dto.setPromedio_egresos(Float.parseFloat(columna[3]));
             dtoList.add(dto);
         }
         return dtoList;

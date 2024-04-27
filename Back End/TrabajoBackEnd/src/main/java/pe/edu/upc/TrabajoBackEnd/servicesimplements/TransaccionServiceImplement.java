@@ -35,5 +35,10 @@ public class TransaccionServiceImplement implements ITransaccionService {
         return tR.contarTranxManualyCta();
     }
 
+    public List<String[]>promedioegresosporcategoria(int mes)
+    {
+        return tR.promedioegresosporcategoria(mes);
+    }
+
 
 }
