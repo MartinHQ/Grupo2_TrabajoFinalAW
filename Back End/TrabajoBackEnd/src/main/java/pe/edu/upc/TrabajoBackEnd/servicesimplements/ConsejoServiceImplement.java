@@ -25,9 +25,12 @@ public class ConsejoServiceImplement implements IConsejoService {
     public List<Consejo> findbyTitulo(String titulo){return cR.findByTitulo(titulo);}
 
     @Override
+
+    public List<Consejo> listarporKeyword(String keyword) {
+        return cR.listarporKeyword(keyword);
+    }
+
     public List<Consejo> listarConsejoPorMaxMontoCategoria(LocalDate date1, LocalDate date2, int id_usuario) {
         return cR.listarConsejoPorMaxMontoCategoria(date1, date2, id_usuario);
     }
-
-
 }

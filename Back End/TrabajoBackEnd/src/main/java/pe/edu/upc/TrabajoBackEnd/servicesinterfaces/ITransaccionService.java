@@ -10,7 +10,7 @@ public interface ITransaccionService {
     public List<Transaccion> list();
     public void delete(int id);
     public Transaccion listId(int id);
-
+    public List<String[]> reporteSaldosporrangoTiempo(LocalDate fechainicio, LocalDate fechafin);
     public List<String[]> maxMontoByCategoria(LocalDate date1,
                                               LocalDate date2,
                                               int id_usuario,

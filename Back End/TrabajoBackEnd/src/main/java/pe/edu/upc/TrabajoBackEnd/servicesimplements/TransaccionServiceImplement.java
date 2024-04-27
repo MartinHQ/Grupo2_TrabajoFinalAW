@@ -21,6 +21,10 @@ public class TransaccionServiceImplement implements ITransaccionService {
     public Transaccion listId(int id) { return tR.findById(id).orElse(new Transaccion()); }
 
     @Override
+    public List<String[]> reporteSaldosporrangoTiempo(LocalDate fechainicio, LocalDate fechafin) {
+        return tR.reporteSaldosporrangoTiempo(fechainicio, fechafin);
+    }
+    @Override
     public List<String[]> maxMontoByCategoria(LocalDate date1, LocalDate date2, int id_usuario,
                                               Boolean es_ingreso) {
         return tR.maxMontoByCategoria(date1, date2, id_usuario, es_ingreso);
