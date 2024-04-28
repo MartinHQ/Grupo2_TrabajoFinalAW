@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-with,initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Enconomiza</title>
+        <link rel="stylesheet" href="../estilos/styleencuesta_2.css">
+        <link href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap" rel="stylesheet">
+        <meta name="viewport" content="initial-scale=1, width=device-width">
+         <meta name="viewport" content="initial-scale=1, height=device-height">
+    </head>
+    <body>
+        
+
+  
+        <div class="menu">
+            <div id="sidemenu" class="menu-collapsed">
+
+                <!-- Header -->
+                <div id="header">
+                    <div id="title"><span>MENU</span></div>
+                    <div id="menu-btn">
+                        <div class="btn-hamburger"></div>
+                        <div class="btn-hamburger"></div>
+                        <div class="btn-hamburger"></div>
+                    </div>
+                </div>
+
+                <!-- Items -->
+                <div id="menu-items">
+                    <div class="item">
+                        <a href="registroingresos.html">
+                            <div class="icon"> <img src="../imagenes/menu/registro_ingresos_egresos.png" alt="">  </div>
+                            <div class="title" id="icon-1"><span>Ingresos y Egresos</span> </div>
+                        </a>
+                    </div>
+
+                    <div class="item separator"></div>
+
+                    <div class="item">
+                        <a href="resumen1.html">
+                            <div class="icon"> <img src="../imagenes/menu/ingresos_vs_gastos.png" alt="">  </div>
+                            <div class="title" id="icon-2"><span>Resumenes</span> </div>
+                        </a>
+                    </div>
+
+                    <div class="item separator"></div>
+
+                    <div class="item">
+                        <a href="serviherramientas.html">
+                            <div class="icon"> <img src="../imagenes/menu/servicios_herramientas.png" alt="">  </div>
+                            <div class="title" id="icon-3"><span>Servicios y Herramientas</span> </div>
+                        </a> 
+                    </div>
+                    
+                    <div class="item separator"></div>
+
+                    <div class="item">
+                        <a href="notificaciones.html">
+                            <div class="icon" id="icon-pic4"> <img src="../imagenes/menu/notificaciones.png" alt="">  </div>
+                            <div class="title" id="icon-4"><span>Notificaciones</span> </div>
+                        </a>
+                    </div>
+
+                    <div class="item separator"></div>
+
+                    <div class="item">
+                        <a href="encuesta.html">
+                            <div class="icon" id="icon-pic5"> <img src="../imagenes/menu/encuesta.png" alt="">  </div>
+                            <div class="title" id="icon-5"><span>Encuestas</span> </div>
+                        </a>
+                    </div>
+
+                    <div class="item separator"></div>
+
+                    <div class="item">
+                        <a href="foro1.html">
+                            <div class="icon"> <img src="../imagenes/menu/foro.png" alt="">  </div>
+                            <div class="title" id="icon-6"><span>Foros</span> </div>
+                        </a> 
+                    </div>
+
+                    <div class="item separator"></div>
+
+                    <div class="item">
+                        <a href="banco.html">
+                            <div class="icon"> <img src="../imagenes/menu/cuentas_bancarias.png" alt="">  </div>
+                            <div class="title" id="icon-7"><span>Cuentas Bancarias</span> </div>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+            <img id="logo" src="../imagenes/logo.png" alt="Logo">
+           
+            <a id="cerrar-sesion" href="../index.html">
+                <div class="mesage"><span>Cerrar Sesion</span> </div>
+            </a>
+
+            <div class="info">
+
+                <div id="title-Info">
+                    <span>Usuario Apellido</span>
+                    <br>
+                    <span>correo_example@hotmail.com</span>
+                </div>    
+                <a id="imgUsuario" href="perfil_usuario.html">
+                    <img src="../imagenes/usuario.png" alt="">
+                </a>
+            </div>
+        </div>
+
+
+        <div class="contenedor caja1">
+ 
+
+            <div class="deficidTabla">
+                <h1>Intensidad de Déficit Económico</h1>
+                
+                <div id="tabla_Intensidad">
+                    <h2 id="tI_first">BAJO</h2>
+                    <h2 id="tI_mid">MEDIO</h2>
+                    <h2 id="tI_last">ALTO</h2>
+                </div>
+            </div>
+
+            <div id="cajita">
+                <h1>Usted presenta un déficit económico alto!</h1>
+                <br><br>
+                <h2>Optimiza este resultado y mejora tu economía con estas herramientas</h2>
+
+            </div>
+            <a id="nuevo" href="serviherramientas.html">
+                <button>Ir a servicios y Herramientas</button>
+                </a>
+                   
+        </div>
+
+
+
+
+        <footer id="copyright" class="footer-menu-collapsed">
+            <small >
+                COPYRIGHT &copy; 2023
+                <br>
+            </small>
+        </footer>
+
+        <script>
+            const btn = document.querySelector('#menu-btn');
+            const menu = document.querySelector('#sidemenu');
+            const foot = document.querySelector('#copyright');
+            btn.addEventListener('click', e=>{
+                menu.classList.toggle("menu-expanded");
+                menu.classList.toggle("menu-collapsed");
+                foot.classList.toggle("footer-menu-expanded");
+                foot.classList.toggle("footer-menu-collapsed");
+
+                document.querySelector('body').classList.toggle('body-expanded');
+            } );
+        </script>
+     
+    </body>
+
+
+
+</html>
+
