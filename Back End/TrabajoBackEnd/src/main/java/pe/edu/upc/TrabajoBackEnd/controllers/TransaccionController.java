@@ -95,6 +95,7 @@ public class TransaccionController {
         return transacciones.stream()
                 .map(transaccion -> modelMapper.map(transaccion, TransaccionDTO.class))
                 .collect(Collectors.toList());
+    }
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/promediotransaccion")

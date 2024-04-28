@@ -25,8 +25,8 @@ public interface ITransaccionRepository extends JpaRepository<Transaccion, Integ
             "AND t.usuario_id = :id_usuario \n" +
             "AND t.fecha_transaccion BETWEEN :date1 AND :date2 \n" +
             "GROUP BY ct.nombre", nativeQuery = true)
-    public List<String[]> maxMontoByCategoria(LocalDate date1, LocalDate date2, int id_usuario,
-                                              Boolean es_ingreso);
+    public List<String[]> maxMontoByCategoria(@Param("date1") LocalDate date1, @Param("date2")LocalDate date2, @Param("id_usuario")int id_usuario,
+                                              @Param("es_ingreso")Boolean es_ingreso);
 
     @Query(value = "SELECT AVG(monto) FROM Transaccion WHERE usuario_id = :usuarioId \n" +
             "AND fecha BETWEEN :fechaInicio AND :fechaFin AND es_ingreso = TRUE", nativeQuery = true)
@@ -34,9 +34,6 @@ public interface ITransaccionRepository extends JpaRepository<Transaccion, Integ
 
     @Query(value = "SELECT * FROM Transaccion WHERE usuario_id = :usuarioId ORDER BY fecha ASC", nativeQuery = true)
     List<Transaccion> encontrarTodasPorUsuarioIdOrdenadoPorFechaAsc(@Param("usuarioId") int usuarioId);
-  
-  public List<String[]> maxMontoByCategoria(@Param("date1") LocalDate date1, @Param("date2")LocalDate date2, @Param("id_usuario")int id_usuario,
-                                              @Param("es_ingreso")Boolean es_ingreso);
 
     @Query (value = "SELECT u.nombre, AVG(t.monto_transaccion) AS Promedio \n" +
             "FROM transaccion t \n" +
@@ -80,6 +77,4 @@ public interface ITransaccionRepository extends JpaRepository<Transaccion, Integ
                     "c.nombre,\n" +
                     "EXTRACT(MONTH FROM t.fecha_transaccion);", nativeQuery = true)
     public List<String[]>promedioegresosporcategoria(@Param("mes") int mes);
-   }
-
 }

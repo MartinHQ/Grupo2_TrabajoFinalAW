@@ -41,20 +41,4 @@ public class RolController {
     public void delete(@PathVariable("id") Integer id){
         rS.delete(id);
     }
-
-    @PostMapping("/crearrol")
-    public ResponseEntity<?> crearRol(@RequestBody RolDTO rolDTO) {
-        if (rolDTO == null || rolDTO.getNombreRol() == null || rolDTO.getNombreRol().isEmpty()) {
-            return new ResponseEntity<>("Error: Datos requeridos no proporcionados.", HttpStatus.BAD_REQUEST);
-        }
-
-        Rol nuevoRol = rS.crearRol(rolDTO); // Se llama a un método de la interfaz
-
-        if (nuevoRol != null) {
-            return new ResponseEntity<>(nuevoRol, HttpStatus.CREATED);
-        } else {
-            return new ResponseEntity<>("Error: No se pudo crear el rol.", HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
 }

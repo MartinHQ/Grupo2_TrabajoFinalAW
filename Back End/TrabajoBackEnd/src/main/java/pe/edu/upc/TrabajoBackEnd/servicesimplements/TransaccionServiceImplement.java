@@ -39,22 +39,18 @@ public class TransaccionServiceImplement implements ITransaccionService {
         return tR.encontrarTodasPorUsuarioIdOrdenadoPorFechaAsc(usuarioId);
     }
 
-    }
     @Override
-    public List<String[]> PromedioTransaccion(LocalDate date1, LocalDate date2){
+    public List<String[]> PromedioTransaccion(LocalDate date1, LocalDate date2) {
         return tR.PromedioTransaccion(date1, date2);
     }
-  
+
     @Override
-    public List<String[]> contarTranxManualyCta()
-    {
+    public List<String[]> contarTranxManualyCta() {
         return tR.contarTranxManualyCta();
     }
-
     @Override
     public List<String[]>promedioegresosporcategoria(int mes)
     {
         return tR.promedioegresosporcategoria(mes);
     }
-
 }
