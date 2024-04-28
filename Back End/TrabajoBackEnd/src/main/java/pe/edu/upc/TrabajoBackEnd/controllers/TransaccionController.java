@@ -88,7 +88,7 @@ public class TransaccionController {
         return dtoLista;
     }
 
-
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/cuantasxtipocuenta")
     public List<contarTranxManualyCtaDTO> cuantastranxmanualcta()
     {
@@ -105,6 +105,7 @@ public class TransaccionController {
         return dtoList;
     }
 
+    @PreAuthorize("hasAuthority('CLIENTE')")
     @GetMapping("/promedioegresosporcategoria")
     public List<promedioegresosporcategoriaDTO> promedioegresosporcategoria(@RequestParam Integer mes)
     {
