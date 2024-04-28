@@ -25,54 +25,50 @@ public interface ITransaccionRepository extends JpaRepository<Transaccion, Integ
             "AND t.usuario_id = :id_usuario \n" +
             "AND t.fecha_transaccion BETWEEN :date1 AND :date2 \n" +
             "GROUP BY ct.nombre", nativeQuery = true)
-    public List<String[]> maxMontoByCategoria(LocalDate date1, LocalDate date2, int id_usuario,
-                                              Boolean es_ingreso);
+    public List<String[]> maxMontoByCategoria(@Param("date1") LocalDate date1, @Param("date2")LocalDate date2, @Param("id_usuario")int id_usuario,
+                                              @Param("es_ingreso")Boolean es_ingreso);
 
     @Query (value = "SELECT u.nombre, AVG(t.monto_transaccion) AS Promedio \n" +
             "FROM transaccion t \n" +
             "JOIN usuario u ON u.usuario_id = t.usuario_id \n" +
             "WHERE t.fecha_transaccion BETWEEN :date1 AND :date2 \n" +
             "GROUP BY u.nombre", nativeQuery = true)
-    public List<String[]> PromedioTransaccion(LocalDate date1, LocalDate date2);
-   }
+    public List<String[]> PromedioTransaccion(@Param("date1")LocalDate date1, @Param("date2")LocalDate date2);
 
     @Query(value =
             "SELECT \n" +
-            "u.nombre AS nombre_usuario,\n" +
-            "u.apellido,\n" +
-            "COUNT(CASE WHEN t.es_manual THEN 1 END) AS transacciones_manuales,\n" +
-            "COUNT(CASE WHEN NOT t.es_manual THEN 1 END) AS transacciones_cuenta\n" +
-            "FROM \n" +
-            "usuario u\n" +
-            "JOIN rol r ON u.rol_id = r.id_rol\n" +
-            "JOIN transaccion t ON u.usuario_id = t.usuario_id\n" +
-            "WHERE\n" +
-            "r.nombre = 'CLIENTE'\n" +
-            "GROUP BY\n" +
-            "u.usuario_id, u.nombre, u.apellido;"
+                    "u.nombre AS nombre_usuario,\n" +
+                    "u.apellido,\n" +
+                    "COUNT(CASE WHEN t.es_manual THEN 1 END) AS transacciones_manuales,\n" +
+                    "COUNT(CASE WHEN NOT t.es_manual THEN 1 END) AS transacciones_cuenta\n" +
+                    "FROM \n" +
+                    "usuario u\n" +
+                    "JOIN rol r ON u.rol_id = r.id_rol\n" +
+                    "JOIN transaccion t ON u.usuario_id = t.usuario_id\n" +
+                    "WHERE\n" +
+                    "r.nombre = 'CLIENTE' \n" +
+                    "GROUP BY \n" +
+                    "u.usuario_id, u.nombre, u.apellido;"
             , nativeQuery = true)
     public List<String[]>contarTranxManualyCta();
 
     @Query(value =
             "SELECT\n" +
-            "c.nombre AS categoria,\n" +
-            "EXTRACT(MONTH FROM t.fecha_transaccion) AS mes,\n" +
-            "SUM(CASE WHEN NOT t.es_ingreso_transaccion THEN t.monto_transaccion ELSE 0 END) AS total_egresos,\n" +
-            "AVG(CASE WHEN NOT t.es_ingreso_transaccion THEN t.monto_transaccion ELSE 0 END) AS promedio_egresos\n" +
-            "FROM\n" +
-            "transaccion t\n" +
-            "INNER JOIN\n" +
-            "categoria_tranx c ON t.categoria_id = c.id_categoriatranx\n" +
-            "WHERE\n" +
-            "t.es_ingreso_transaccion = false\n" +
-            "AND EXTRACT(YEAR FROM t.fecha_transaccion) = 2024\n"+
-            "AND EXTRACT(MONTH FROM t.fecha_transaccion) = :mes \n"+
-            "GROUP BY\n" +
-            "c.nombre,\n" +
-            "EXTRACT(MONTH FROM t.fecha_transaccion);", nativeQuery = true)
-    public List<String[]>promedioegresosporcategoria(int mes);
-
-
-
-}
+                    "c.nombre AS categoria,\n" +
+                    "EXTRACT(MONTH FROM t.fecha_transaccion) AS mes,\n" +
+                    "SUM(CASE WHEN NOT t.es_ingreso_transaccion THEN t.monto_transaccion ELSE 0 END) AS total_egresos,\n" +
+                    "AVG(CASE WHEN NOT t.es_ingreso_transaccion THEN t.monto_transaccion ELSE 0 END) AS promedio_egresos\n" +
+                    "FROM\n" +
+                    "transaccion t\n" +
+                    "INNER JOIN\n" +
+                    "categoria_tranx c ON t.categoria_id = c.id_categoriatranx\n" +
+                    "WHERE\n" +
+                    "t.es_ingreso_transaccion = false\n" +
+                    "AND EXTRACT(YEAR FROM t.fecha_transaccion) = 2024\n"+
+                    "AND EXTRACT(MONTH FROM t.fecha_transaccion) = :mes \n"+
+                    "GROUP BY\n" +
+                    "c.nombre,\n" +
+                    "EXTRACT(MONTH FROM t.fecha_transaccion);", nativeQuery = true)
+    public List<String[]>promedioegresosporcategoria(@Param("mes") int mes);
+   }
 
