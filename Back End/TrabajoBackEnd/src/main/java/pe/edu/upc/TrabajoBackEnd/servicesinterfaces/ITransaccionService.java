@@ -15,4 +15,7 @@ public interface ITransaccionService {
                                               LocalDate date2,
                                               int id_usuario,
                                               Boolean es_ingreso);
+
+
+    public List<String[]> PromedioTransaccion(LocalDate date1, LocalDate date2);
 }

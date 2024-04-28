@@ -21,4 +21,10 @@ public interface ITransaccionRepository extends JpaRepository<Transaccion, Integ
     public List<String[]> maxMontoByCategoria(LocalDate date1, LocalDate date2, int id_usuario,
                                               Boolean es_ingreso);
 
-}
+    @Query (value = "SELECT u.nombre, AVG(t.monto_transaccion) AS Promedio \n" +
+            "FROM transaccion t \n" +
+            "JOIN usuario u ON u.usuario_id = t.usuario_id \n" +
+            "WHERE t.fecha_transaccion BETWEEN :date1 AND :date2 \n" +
+            "GROUP BY u.nombre", nativeQuery = true)
+    public List<String[]> PromedioTransaccion(LocalDate date1, LocalDate date2);
+   }

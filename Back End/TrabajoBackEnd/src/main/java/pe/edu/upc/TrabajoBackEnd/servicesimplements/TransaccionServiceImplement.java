@@ -24,5 +24,11 @@ public class TransaccionServiceImplement implements ITransaccionService {
     public List<String[]> maxMontoByCategoria(LocalDate date1, LocalDate date2, int id_usuario,
                                               Boolean es_ingreso) {
         return tR.maxMontoByCategoria(date1, date2, id_usuario, es_ingreso);
+
     }
+    @Override
+    public List<String[]> PromedioTransaccion(LocalDate date1, LocalDate date2){
+        return tR.PromedioTransaccion(date1, date2);
+    }
+
 }

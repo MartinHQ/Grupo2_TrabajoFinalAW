@@ -3,6 +3,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.TrabajoBackEnd.dtos.MaxMontoByCategoriaDTO;
+import pe.edu.upc.TrabajoBackEnd.dtos.PromedioTransaccionDTO;
 import pe.edu.upc.TrabajoBackEnd.dtos.TransaccionDTO;
 import pe.edu.upc.TrabajoBackEnd.entities.Transaccion;
 import pe.edu.upc.TrabajoBackEnd.servicesinterfaces.ITransaccionService;
@@ -51,4 +52,19 @@ public class TransaccionController {
         }
         return dtoLista;
     }
+
+    @GetMapping("/promediotransaccion")
+    public List<PromedioTransaccionDTO> promedioTransaccion(@RequestParam LocalDate date1,
+                                                            @RequestParam LocalDate date2) {
+        List<String[]> filalista = tS.PromedioTransaccion(date1,date2);
+        List<PromedioTransaccionDTO> dtoLista = new ArrayList<>();
+        for(String[] columna: filalista) {
+            PromedioTransaccionDTO temp = new PromedioTransaccionDTO();
+            temp.setNombre(columna[0]);
+            temp.setPromedio(Float.parseFloat(columna[1]));
+            dtoLista.add(temp);
+        }
+        return dtoLista;
+    }
+
 }
