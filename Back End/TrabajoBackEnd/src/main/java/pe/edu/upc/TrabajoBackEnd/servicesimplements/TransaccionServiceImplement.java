@@ -29,7 +29,6 @@ public class TransaccionServiceImplement implements ITransaccionService {
                                               Boolean es_ingreso) {
         return tR.maxMontoByCategoria(date1, date2, id_usuario, es_ingreso);
     }
-
     @Override
     public Double obtenerPromedioIngresosPorUsuarioYRangoFechas(int usuarioId, LocalDate fechaInicio, LocalDate fechaFin) {
         return tR.encontrarPromedioIngresosPorUsuarioYRangoFechas(usuarioId, fechaInicio, fechaFin);
@@ -39,4 +38,23 @@ public class TransaccionServiceImplement implements ITransaccionService {
     public List<Transaccion> obtenerTransaccionesPorUsuarioOrdenadas(int usuarioId) {
         return tR.encontrarTodasPorUsuarioIdOrdenadoPorFechaAsc(usuarioId);
     }
+
+    }
+    @Override
+    public List<String[]> PromedioTransaccion(LocalDate date1, LocalDate date2){
+        return tR.PromedioTransaccion(date1, date2);
+    }
+  
+    @Override
+    public List<String[]> contarTranxManualyCta()
+    {
+        return tR.contarTranxManualyCta();
+    }
+
+    @Override
+    public List<String[]>promedioegresosporcategoria(int mes)
+    {
+        return tR.promedioegresosporcategoria(mes);
+    }
+
 }
