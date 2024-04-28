@@ -18,8 +18,4 @@ public interface ITransaccionService {
 
     Double obtenerPromedioIngresosPorUsuarioYRangoFechas(int usuarioId, LocalDate fechaInicio, LocalDate fechaFin);
     List<Transaccion> obtenerTransaccionesPorUsuarioOrdenadas(int usuarioId);
-    public List<String[]> PromedioTransaccion(LocalDate date1, LocalDate date2);
-    public List<String[]> contarTranxManualyCta();
-    public List<String[]>promedioegresosporcategoria(int mes);
-
 }

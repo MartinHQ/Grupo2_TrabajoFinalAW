@@ -18,16 +18,12 @@ import java.util.stream.Collectors;
 public class ConsejoController {
     @Autowired
     private IConsejoService cS;
-
-    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping
     public void insertarConsejo(@RequestBody ConsejoDTO consejoDTO) {
         ModelMapper m =new ModelMapper();
         Consejo c = m.map(consejoDTO, Consejo.class);
         cS.insert(c);
     }
-
-    @PreAuthorize("hasAuthority('CLIENTE')")
     @GetMapping
     public List<ConsejoDTO> listarConsejos(){
         return cS.list().stream().map(y->{
@@ -35,21 +31,16 @@ public class ConsejoController {
             return m.map(y, ConsejoDTO.class);
         }).collect(Collectors.toList());
     }
-
-    @PreAuthorize("hasAuthority('ADMIN')")
     @DeleteMapping("/{id}")
     public void delete(@PathVariable("id") Integer id){
         cS.delete(id);
     }
-
-    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/{id}")
     public ConsejoDTO listarId(@PathVariable("id") Integer id){
         ModelMapper m=new ModelMapper();
         ConsejoDTO dto = m.map(cS.listId(id), ConsejoDTO.class);
         return dto;
     }
-
     @GetMapping("/buscar")
     public List<ConsejoDTO> buscarTitulo(@RequestParam String titulo){
         return cS.findbyTitulo(titulo).stream().map(y->{
@@ -57,7 +48,6 @@ public class ConsejoController {
             return m.map(y, ConsejoDTO.class);
         }).collect(Collectors.toList());
     }
-
     @GetMapping("/buscarstring")
     public List<ConsejoDTO> buscarKeyword(@Param("keyword") String keyword){
         return cS.listarporKeyword(keyword).stream().map(y->{
@@ -65,7 +55,6 @@ public class ConsejoController {
             return m.map(y, ConsejoDTO.class);
         }).collect(Collectors.toList());
     }
-  
     @GetMapping("/consejos-por-categoria")
     public List<ConsejoDTO> listarPorMaxMontoCategoria(@RequestParam LocalDate date1,
                                                        @RequestParam LocalDate date2,
