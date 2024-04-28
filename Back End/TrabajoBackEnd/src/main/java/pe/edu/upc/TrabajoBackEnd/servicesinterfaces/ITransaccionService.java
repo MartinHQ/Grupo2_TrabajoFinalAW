@@ -16,6 +16,8 @@ public interface ITransaccionService {
                                               int id_usuario,
                                               Boolean es_ingreso);
 
+    public List<String[]> PromedioTransaccion(LocalDate date1, LocalDate date2);
     public List<String[]> contarTranxManualyCta();
     public List<String[]>promedioegresosporcategoria(int mes);
+
 }
