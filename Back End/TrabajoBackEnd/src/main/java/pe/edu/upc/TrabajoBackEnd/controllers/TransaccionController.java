@@ -74,6 +74,7 @@ public class TransaccionController {
         return dtoLista;
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/promediotransaccion")
     public List<PromedioTransaccionDTO> promedioTransaccion(@RequestParam LocalDate date1,
                                                             @RequestParam LocalDate date2) {
