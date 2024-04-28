@@ -1,0 +1,143 @@
+*{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    box-sizing: border-box;
+}
+body{
+    background: white;
+}
+body::before{
+   zoom: 75%;
+}
+nav{
+    background: white;
+    height: 80px;
+    width: 100%;
+}
+.imgBannerini{
+    margin: -13px 20px;
+    width: 6%;
+}
+nav ul{
+    float: right;
+    margin: 0px 2px;
+    
+
+}
+
+nav ul li{
+    display: inline-block;
+    line-height: 80px;
+    margin: 0px 2px;
+    
+}
+nav ul li a{
+    font-family: 'ABeeZee', sans-serif;
+    text-decoration: none;
+    color: black;
+    font-size: 18px;
+    padding: 7px 30px;
+    border-radius: 3px;
+    text-transform: capitalize;
+    
+}
+li a.active, li a:hover{
+    background: blue;
+    transition: .5s;
+}
+section.banner{
+    background: linear-gradient(blue, aqua);
+    padding: 3rem 0;
+}
+.containerB{
+    width: 90%;
+    height: 905px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(20rem,1fr));
+    grid-gap: 2rem;
+
+}
+.col1{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.imgBanner{
+    width: 90%;
+}
+.col2{
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+h1{
+    font-family: 'ABeeZee', sans-serif;
+    font-size: 2rem;
+    color: white;
+}
+#txtbanner{
+    color: white;
+    font-family: 'ABeeZee', sans-serif;
+    margin: 2rem 0;
+    font-size: 1.3rem;
+    line-height: 2rem;
+    text-align: justify;
+}
+
+
+@media screen and (max-width: 800px){
+    .imgBannerini{
+        margin: 5px 30px;
+        width: 20%;
+    }
+    nav ul li a{
+        font-family: 'ABeeZee', sans-serif;
+        
+        text-decoration: none;
+        color: black;
+        font-size: 10px;
+        padding: 7px 13px;
+        border-radius: 3px;
+        text-transform: capitalize;
+        
+    }
+    section.banner{
+        
+        background: linear-gradient(blue, aqua);
+        padding: 50px 10px;
+      
+    }
+	.containerB{
+        
+        width: 90%;
+        height: 635px;
+        margin: 0 auto;
+        display: block;
+        grid-template-columns: repeat(auto-fit,minmax(20rem,1fr));
+        grid-gap: 2rem;
+    
+    }
+    h1{
+        font-family: 'ABeeZee', sans-serif;
+        font-size: 30px;
+        margin-top: 10px;
+      
+        color: white;
+       
+    }
+    #txtbanner{
+       
+        color: white;
+
+     
+        font-family: 'ABeeZee', sans-serif;
+        margin: 1rem 0;
+        font-size: 1.1rem;
+        line-height: 2rem;
+        text-align: justify;
+    }
+  
+}

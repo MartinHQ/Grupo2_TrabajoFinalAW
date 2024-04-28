@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Select Personalizado</title>
+	<link href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600&display=swap" rel="stylesheet"> 
+	<script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="../estilos/stylepago.css">
+</head>
+<body>
+
+    <!-- <img class="im1" src="../imagenes/logo.png" alt="">
+    <h3>Realiza el pago de tu suscripción en el Banco de tu preferencia</h3> -->
+   
+	<div class="contenedor">
+		<form action="../index.html">
+            <img class="im1" src="../imagenes/logo.png" alt="">
+            <h3>Realiza el pago de tu suscripción en el Banco de tu preferencia</h3>
+			<div class="selectbox">
+				<div class="select" id="select">
+					<div class="contenido-select">
+						<h1 class="titulo">Selecciona el banco</h1>
+						<p class="descripcion">Haz click.</p>
+					</div>
+					<i class="fas fa-angle-down"></i>
+				</div>
+
+				<div class="opciones" id="opciones">
+					<a href="https://www.viabcp.com/pago-de-servicios" class="opcion">
+						<div class="contenido-opcion">
+							<img src="../imagenes/bcp.png" alt="">
+							<div class="textos">
+								<h1 class="titulo">BCP</h1>
+								<p class="descripcion">Banco de Crédito del Peru</p>
+							</div>
+						</div>
+					</a>
+					<a href="https://www.scotiabank.com.pe/Empresas/Comercio-Exterior/Medios-de-Pago/medios-de-pago" class="opcion">
+						<div class="contenido-opcion">
+							<img src="../imagenes/scotiabank.png" alt="">
+							<div class="textos">
+								<h1 class="titulo">SCOTIABANK</h1>
+								<p class="descripcion">Scotiabank.</p>
+							</div>
+						</div>
+					</a>
+                    <a href="https://interbank.pe/canales-digitales/interbank-app/pago-servicios" class="opcion">
+						<div class="contenido-opcion">
+							<img src="../imagenes/interbank.png" alt="">
+							<div class="textos">
+								<h1 class="titulo">INTERBANK</h1>
+								<p class="descripcion">Interbank.</p>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+
+			<input type="hidden" name="pais" id="inputSelect" value="">
+		</form>
+
+	</div>
+
+	<script src="../java/scriptpago.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-with,initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Document</title>
+        <link rel="stylesheet" href="../estilos/stylepago.css">
+    </head>
+    <body>
+        <div class="hero">
+            <div class="container">
+
+                <div class="row">
+                    <p>BCP</p>
+                    <label >
+                        <input type="checkbox" checked="checked">
+                        <span></span>
+                    </label>
+
+                </div>
+                <div class="row">
+                    <p>SCOTIABANK</p>
+                    <label >
+                        <input type="checkbox" checked="checked">
+                        <span></span>
+                    </label>
+
+                </div>
+                <div class="row">
+                    <p>INTERBANK</p>
+                    <label >
+                        <input type="checkbox" checked="checked">
+                        <span></span>
+                    </label>
+
+                </div>
+
+
+            </div>
+        </div>
+
+    </body>
+</html> -->
