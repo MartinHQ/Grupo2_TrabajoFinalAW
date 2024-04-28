@@ -42,6 +42,7 @@ public class MetaDeAhorroController {
     @DeleteMapping("/{id}")
     public void delete(@PathVariable("id") Integer id) { mS.delete(id); }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping ("/reportemetascumplidas")
     public List<CantMetaAhorroCumplidaDTO>listarpormetascumplidas(){
         List<String[]> filaLista = mS.listarpormetascumplidas();
