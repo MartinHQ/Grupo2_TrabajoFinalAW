@@ -21,6 +21,10 @@ public class TransaccionServiceImplement implements ITransaccionService {
     public Transaccion listId(int id) { return tR.findById(id).orElse(new Transaccion()); }
 
     @Override
+    public List<String[]> reporteSaldosporrangoTiempo(LocalDate fechainicio, LocalDate fechafin) {
+        return tR.reporteSaldosporrangoTiempo(fechainicio, fechafin);
+    }
+    @Override
     public List<String[]> maxMontoByCategoria(LocalDate date1, LocalDate date2, int id_usuario,
                                               Boolean es_ingreso) {
         return tR.maxMontoByCategoria(date1, date2, id_usuario, es_ingreso);
@@ -30,5 +34,19 @@ public class TransaccionServiceImplement implements ITransaccionService {
     public List<String[]> PromedioTransaccion(LocalDate date1, LocalDate date2){
         return tR.PromedioTransaccion(date1, date2);
     }
+  
+    @Override
+    public List<String[]> contarTranxManualyCta()
+    {
+        return tR.contarTranxManualyCta();
+    }
+
+    @Override
+    public List<String[]>promedioegresosporcategoria(int mes)
+    {
+        return tR.promedioegresosporcategoria(mes);
+    }
+
+
 
 }

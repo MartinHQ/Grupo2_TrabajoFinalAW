@@ -9,6 +9,6 @@ public interface IConsejoService {
     public void delete(int id);
     public Consejo listId(int id);
     public List<Consejo> findbyTitulo(String titulo);
-
+    public List<Consejo> listarporKeyword(String keyword);
     public List<Consejo> listarConsejoPorMaxMontoCategoria(LocalDate date1, LocalDate date2, int id_usuario);
 }

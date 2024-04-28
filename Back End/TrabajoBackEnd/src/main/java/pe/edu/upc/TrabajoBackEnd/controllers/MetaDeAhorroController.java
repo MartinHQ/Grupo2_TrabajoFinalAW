@@ -2,6 +2,7 @@ package pe.edu.upc.TrabajoBackEnd.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.TrabajoBackEnd.dtos.CantMetaAhorroCumplidaDTO;
 import pe.edu.upc.TrabajoBackEnd.dtos.MetaDeAhorroDTO;
@@ -19,12 +20,16 @@ import java.util.stream.Collectors;
 public class MetaDeAhorroController {
     @Autowired
     private IMetaDeAhorroService mS;
+
+    @PreAuthorize("hasAuthority('CLIENTE')")
     @PostMapping
     public void insertarMetaDeAhorro(@RequestBody MetaDeAhorroDTO metaDeAhorroDTO) {
         ModelMapper model = new ModelMapper();
         MetaDeAhorro metaDeAhorro = model.map(metaDeAhorroDTO, MetaDeAhorro.class);
         mS.insert(metaDeAhorro);
     }
+
+    @PreAuthorize("hasAuthority('CLIENTE')")
     @GetMapping
     public List<MetaDeAhorroDTO> listarMetas() {
         return mS.list().stream().map(y->{
@@ -32,6 +37,8 @@ public class MetaDeAhorroController {
             return m.map(y, MetaDeAhorroDTO.class);
         }).collect(Collectors.toList());
     }
+
+    @PreAuthorize("hasAuthority('CLIENTE')")
     @DeleteMapping("/{id}")
     public void delete(@PathVariable("id") Integer id) { mS.delete(id); }
 
