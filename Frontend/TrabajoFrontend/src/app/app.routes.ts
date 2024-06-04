@@ -15,4 +15,16 @@ export const routes: Routes = [
     ],
   },
   //fin de ruta Pregunta Frecuente
+
+  //categoria tranx
+  {
+    path: 'categoriatranx',
+    component: PreguntafrecuenteComponent,
+    children: [
+      {
+        path: 'nuevo',
+        component: RegistrarPreguntafrecuenteComponent,
+      },
+    ],
+  }
 ];
