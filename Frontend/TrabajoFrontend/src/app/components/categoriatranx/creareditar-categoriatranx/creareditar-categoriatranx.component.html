@@ -1,0 +1,40 @@
+<div class="title-container"><h1 class="title">Registro de Condominio</h1></div>
+<div class="container" style="text-align: center">
+
+  
+  <form [formGroup]="form" (submit)="aceptar()" class="example-form">
+
+    <mat-form-field *ngIf="edicion">
+      <mat-label>idCategoriatranx:</mat-label>
+      <input matInput formControlName="idCategoriatranx" readonly/>
+    </mat-form-field>
+    <br />
+
+
+
+    <mat-form-field>
+      <mat-label>nombre</mat-label>
+      <input matInput formControlName="nombre" />
+      <mat-error *ngIf="form.get('nombre')?.hasError('required')"
+        >EL nombre es obligatorio.</mat-error
+      >
+    </mat-form-field>
+
+    <br />
+
+    <mat-form-field>
+      <mat-label>descripcion:</mat-label>
+      <input matInput formControlName="descripcion" />
+      <mat-error *ngIf="form.get('descripcion')?.hasError('required')"
+        >La descripcion es obligatorio.</mat-error
+      >
+    </mat-form-field>
+
+    <br />
+    
+    <br />
+    <button mat-raised-button color="primary" *ngIf="!edicion">Registrar</button>
+    <button mat-raised-button color="primary" *ngIf="edicion">Editar</button>
+    <button mat-raised-button color="warn" routerLink="/categoriatranx"> Cancelar </button>
+  </form>
+</div>
