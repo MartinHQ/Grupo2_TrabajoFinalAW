@@ -26,6 +26,13 @@ public class ConsejoController {
         Consejo c = m.map(consejoDTO, Consejo.class);
         cS.insert(c);
     }
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @PutMapping
+    public void editarConsejo(@RequestBody ConsejoDTO consejoDTO) {
+        ModelMapper m =new ModelMapper();
+        Consejo c = m.map(consejoDTO, Consejo.class);
+        cS.insert(c);
+    }
 
     @PreAuthorize("hasAuthority('CLIENTE')")
     @GetMapping
