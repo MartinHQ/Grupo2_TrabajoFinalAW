@@ -1,10 +1,20 @@
-<mat-toolbar color="warn">
+<mat-toolbar color="primary">
     <mat-icon>menu</mat-icon>
-    <button mat-button [matMenuTriggerFor]="menuCat">Condominio</button>
+    <button style="margin-left: 2px; margin-right: 2px;" mat-button [matMenuTriggerFor]="menuCat">Categorias</button>
+    <button style="margin-left: 2px; margin-right: 2px;" mat-button [matMenuTriggerFor]="menuConsejo">Consejos</button>
+    <button style="margin-left: 2px; margin-right: 2px;" mat-button [matMenuTriggerFor]="menuPF">Preguntas Frecuentes</button> 
   </mat-toolbar>
   
   <mat-menu #menuCat="matMenu">
     <button mat-menu-item routerLink="/categoriatranx">Listar</button>
     <button mat-menu-item routerLink="/categoriatranx/nuevo">Registrar</button>
   </mat-menu>
+  <mat-menu #menuConsejo="matMenu">
+    <button mat-menu-item routerLink="/consejos">Listar</button>
+    <button mat-menu-item routerLink="/consejos/registro">Registrar</button>
+   </mat-menu>
+   <mat-menu #menuPF="matMenu">
+    <button mat-menu-item routerLink="/preguntafrecuente">Listar</button>
+    <button mat-menu-item routerLink="/preguntafrecuente/nuevo">Registrar</button>
+   </mat-menu>
 <router-outlet></router-outlet>

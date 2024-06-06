@@ -3,6 +3,8 @@ import { PreguntafrecuenteComponent } from './components/preguntafrecuente/pregu
 import { RegistrarPreguntafrecuenteComponent } from './components/preguntafrecuente/registrar-preguntafrecuente/registrar-preguntafrecuente.component';
 import { CreareditarCategoriatranxComponent } from './components/categoriatranx/creareditar-categoriatranx/creareditar-categoriatranx.component';
 import { CategoriatranxComponent } from './components/categoriatranx/categoriatranx.component';
+import { ConsejoComponent } from './components/consejo/consejo.component';
+import { RegistrarConsejoComponent } from './components/consejo/registrar-consejo/registrar-consejo.component';
 
 export const routes: Routes = [
   //pregunta frecuente
@@ -36,4 +38,18 @@ export const routes: Routes = [
     ],
   },
   //Fin de ruta Categoria Tranx
+  //consejo
+  {
+    path:'consejos',
+    component:ConsejoComponent,
+    children:[
+        {
+            path:'registro',component:RegistrarConsejoComponent
+        },
+        {
+            path:'editar/:id', component:RegistrarConsejoComponent
+        }
+    ]
+}
+  //fin de ruta categoria consejo
 ];

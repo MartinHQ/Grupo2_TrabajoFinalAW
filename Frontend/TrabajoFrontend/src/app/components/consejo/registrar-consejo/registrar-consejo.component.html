@@ -1,0 +1,29 @@
+<div class="title-container" style="padding-top: 10px; text-align: center;" *ngIf="!edit"><h1>Registro de Consejos</h1></div>
+<div class="title-container" style="padding-top: 10px; text-align: center;" *ngIf="edit"><h1>Editar consejo</h1></div>
+<div class="container" style="text-align: center;">
+    <form [formGroup]="form" (submit)="registrar()">
+    
+        <mat-form-field *ngIf="edit">
+            <mat-label>Código</mat-label>
+            <input matInput formControlName="codigo" readonly/>
+        </mat-form-field>
+        <br>
+        
+        <mat-form-field>
+            <mat-label>Título</mat-label>
+            <input matInput formControlName="titulo" />
+            <mat-error *ngIf="form.get('titulo')?.hasError('required')"
+              >El título es obligatorio.</mat-error>
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+            <mat-label>Descripción</mat-label>
+            <input matInput formControlName="descripcion" />
+            <mat-error *ngIf="form.get('descripcion')?.hasError('required')"
+              >La descripción del consejo es obligatoria.</mat-error>
+        </mat-form-field>
+        <br>
+        <br>
+        <button mat-raised-button color="primary" [disabled]="!form.valid">Registrar</button>
+    </form>
+</div>
