@@ -10,6 +10,6 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideAnimationsAsync(),
     //para que funcione el httpClient
-    provideHttpClient(withFetch()), provideAnimationsAsync(),
+    provideHttpClient(withFetch()),
   ],
 };
