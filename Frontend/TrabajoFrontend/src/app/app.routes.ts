@@ -14,10 +14,13 @@ export const routes: Routes = [
         path: 'nuevo',
         component: RegistrarPreguntafrecuenteComponent,
       },
+      {
+        path: 'ediciones/:id',
+        component: RegistrarPreguntafrecuenteComponent
+      }
     ],
   },
   //fin de ruta Pregunta Frecuente
-
   //categoria tranx
   {
     path: 'categoriatranx',
@@ -26,12 +29,11 @@ export const routes: Routes = [
       {
         path: 'nuevo',
         component: CreareditarCategoriatranxComponent,
-
       },
-
       {
         path:'ediciones/:id',component:CreareditarCategoriatranxComponent
       }
     ],
-  }
+  },
+  //Fin de ruta Categoria Tranx
 ];

@@ -33,7 +33,7 @@ export class CategoriatranxService {
   listId(id:number){
     return this.http.get<CategoriaTranx>(`${this.url}/${id}`)
   }
-  
+
   update(ct: CategoriaTranx) {
     return this.http.put(this.url, ct);
   }

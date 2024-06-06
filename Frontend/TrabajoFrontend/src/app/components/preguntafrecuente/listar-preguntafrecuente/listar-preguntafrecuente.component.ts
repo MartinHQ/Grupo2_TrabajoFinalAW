@@ -5,11 +5,22 @@ import { PreguntaFrecuente } from '../../../models/PreguntaFrecuente';
 import { MatPaginator } from '@angular/material/paginator';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { MatButton } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-listar-preguntafrecuente',
   standalone: true,
-  imports: [MatPaginator, FormsModule, MatTableModule, CommonModule],
+  imports: [
+    MatPaginator,
+    FormsModule,
+    MatTableModule,
+    CommonModule,
+    MatButton,
+    MatIconModule,
+    RouterLink
+  ],
   templateUrl: './listar-preguntafrecuente.component.html',
   styleUrl: './listar-preguntafrecuente.component.css',
 })
@@ -33,6 +44,6 @@ export class ListarPreguntafrecuenteComponent implements OnInit {
     });
   }
 
-  displayedColumns: string[] = ['codigo', 'pregunta', 'respuesta'];
+  displayedColumns: string[] = ['codigo', 'pregunta', 'respuesta', 'acciones'];
   dataSource: MatTableDataSource<PreguntaFrecuente> = new MatTableDataSource();
 }

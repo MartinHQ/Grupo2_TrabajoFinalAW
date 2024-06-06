@@ -22,13 +22,19 @@ export class PreguntafrecuenteService {
   registrar(pf: PreguntaFrecuente) {
     return this.http.post(this.url, pf);
   }
+  modificar(pf: PreguntaFrecuente) {
+    return this.http.put(this.url, pf);
+  }
+  listarId(id: number) {
+    return this.http.get<PreguntaFrecuente>(`${this.url}/buscarId/${id}`);
+  }
 
   //getter y setter
-  getListaCambio(){
+  getListaCambio() {
     return this.listaCambio.asObservable();
   }
 
-  setListaCambio(listaNueva:PreguntaFrecuente[]){
+  setListaCambio(listaNueva: PreguntaFrecuente[]) {
     this.listaCambio.next(listaNueva);
   }
 }
