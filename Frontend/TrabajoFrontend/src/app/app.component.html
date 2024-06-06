@@ -1,1 +1,10 @@
+<mat-toolbar color="warn">
+    <mat-icon>menu</mat-icon>
+    <button mat-button [matMenuTriggerFor]="menuCat">Condominio</button>
+  </mat-toolbar>
+  
+  <mat-menu #menuCat="matMenu">
+    <button mat-menu-item routerLink="/categoriatranx">Listar</button>
+    <button mat-menu-item routerLink="/categoriatranx/nuevo">Registrar</button>
+  </mat-menu>
 <router-outlet></router-outlet>
