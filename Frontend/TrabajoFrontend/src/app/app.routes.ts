@@ -12,6 +12,10 @@ export const routes: Routes = [
         path: 'nuevo',
         component: RegistrarPreguntafrecuenteComponent,
       },
+      {
+        path: 'ediciones/:id',
+        component: RegistrarPreguntafrecuenteComponent
+      }
     ],
   },
   //fin de ruta Pregunta Frecuente
