@@ -50,6 +50,12 @@ export const routes: Routes = [
             path:'editar/:id', component:RegistrarConsejoComponent
         }
     ]
-}
+},
   //fin de ruta categoria consejo
+  // rol
+  {
+    path: 'rol',
+    component: ListarRolComponent
+  }
+  //fin de ruta Rol
 ];
