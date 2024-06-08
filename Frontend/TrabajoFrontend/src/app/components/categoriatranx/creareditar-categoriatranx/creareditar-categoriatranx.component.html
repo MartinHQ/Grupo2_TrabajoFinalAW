@@ -22,9 +22,10 @@
 
     <br />
 
-    <mat-form-field>
-      <mat-label>descripcion:</mat-label>
-      <input matInput formControlName="descripcion" />
+    <mat-form-field class="example-full-width">
+      <mat-label>Descripcion</mat-label>
+      <textarea matInput #descripcion maxlength="10" formControlName="descripcion" placeholder="Ej. Esta categoria abarca..."></textarea>
+      <mat-hint align="end"> {{descripcion.value.length}} / 10</mat-hint>
       <mat-error *ngIf="form.get('descripcion')?.hasError('required')"
         >La descripcion es obligatorio.</mat-error
       >
