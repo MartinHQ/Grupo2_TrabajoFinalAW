@@ -44,6 +44,14 @@ export class ListarPreguntafrecuenteComponent implements OnInit {
     });
   }
 
+  eliminar(id:number){
+    this.pfS.eliminar(id).subscribe(()=>{
+      this.pfS.listar().subscribe((data)=>{
+        this.pfS.setListaCambio(data);
+      });
+    });
+  }
+
   displayedColumns: string[] = ['codigo', 'pregunta', 'respuesta', 'acciones'];
   dataSource: MatTableDataSource<PreguntaFrecuente> = new MatTableDataSource();
 }
