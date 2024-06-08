@@ -8,6 +8,7 @@ import { RegistrarConsejoComponent } from './components/consejo/registrar-consej
 import { TipometaComponent } from './components/tipometa/tipometa.component';
 import { CreareditarTipometaComponent } from './components/tipometa/creareditar-tipometa/creareditar-tipometa.component';
 import { RolComponent } from './components/rol/rol.component';
+import { UsuarioComponent } from './components/usuario/usuario.component';
 
 export const routes: Routes = [
   //pregunta frecuente
@@ -53,10 +54,10 @@ export const routes: Routes = [
             path:'editar/:id', component:RegistrarConsejoComponent
         }
     ]
-},
+  },
   //fin de ruta categoria consejo
    //TipoMeta
- {
+  {
   path:'tipometa',
   component:TipometaComponent,
   children:[
@@ -67,12 +68,17 @@ export const routes: Routes = [
           path:'editar/:id', component:CreareditarTipometaComponent
       }
   ]
-},
+  },
 //fin de ruta TipoMeta
 // rol
   {
     path: 'rol',
     component: RolComponent
-  }
+  },
   //fin de ruta Rol
+  //usuarios
+  {
+    path: 'usuarios', component: UsuarioComponent,
+  }
+  //fin de ruta Usuario
 ];

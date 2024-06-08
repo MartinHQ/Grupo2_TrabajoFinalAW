@@ -1,1 +1,4 @@
-<p>usuario works!</p>
+<router-outlet></router-outlet>
+<div [hidden]="route.children.length!==0">
+    <app-listar-usuario></app-listar-usuario>
+</div>
