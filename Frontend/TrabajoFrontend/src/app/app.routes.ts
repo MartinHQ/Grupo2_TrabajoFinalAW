@@ -5,6 +5,8 @@ import { CreareditarCategoriatranxComponent } from './components/categoriatranx/
 import { CategoriatranxComponent } from './components/categoriatranx/categoriatranx.component';
 import { ConsejoComponent } from './components/consejo/consejo.component';
 import { RegistrarConsejoComponent } from './components/consejo/registrar-consejo/registrar-consejo.component';
+import { TipometaComponent } from './components/tipometa/tipometa.component';
+import { CreareditarTipometaComponent } from './components/tipometa/creareditar-tipometa/creareditar-tipometa.component';
 import { RolComponent } from './components/rol/rol.component';
 
 export const routes: Routes = [
@@ -53,7 +55,21 @@ export const routes: Routes = [
     ]
 },
   //fin de ruta categoria consejo
-  // rol
+   //TipoMeta
+ {
+  path:'tipometa',
+  component:TipometaComponent,
+  children:[
+      {
+          path:'nuevo',component:CreareditarTipometaComponent
+      },
+      {
+          path:'editar/:id', component:CreareditarTipometaComponent
+      }
+  ]
+},
+//fin de ruta TipoMeta
+// rol
   {
     path: 'rol',
     component: RolComponent
