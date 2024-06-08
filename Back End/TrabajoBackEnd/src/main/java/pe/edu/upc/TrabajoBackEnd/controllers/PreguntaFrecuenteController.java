@@ -25,6 +25,13 @@ public class    PreguntaFrecuenteController {
         pfS.insert(pf);
     }
 
+    @PutMapping
+    public void modificar(@RequestBody PreguntaFrecuenteDTO preguntaFrecuenteDTO){
+        ModelMapper m= new ModelMapper();
+        PreguntaFrecuente pf=m.map(preguntaFrecuenteDTO,PreguntaFrecuente.class);
+        pfS.insert(pf);
+    }
+
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping
     public List<PreguntaFrecuenteDTO> listar(){
