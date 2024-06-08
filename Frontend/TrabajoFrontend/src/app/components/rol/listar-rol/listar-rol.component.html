@@ -18,7 +18,7 @@
       <tr mat-header-row *matHeaderRowDef="displayedColums"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColums"></tr>
     </table>
-    <mat-paginator [length]="dataSource.data.length" [pageSize]="10" [pageSizeOptions]="[4, 7, 10]"
+    <mat-paginator [length]="dataSource.data.length" [pageSize]="3" [pageSizeOptions]="[2, 3]"
       aria-label="Select page">
     </mat-paginator>
   </div>

@@ -40,4 +40,12 @@ export class ListarConsejoComponent implements OnInit, AfterViewInit{
       this.dataSource.paginator = this.paginator;
     })
   }
+
+  eliminar(id: number){
+      this.CS.eliminar(id).subscribe(()=>{
+        this.CS.list().subscribe((data)=> {
+          this.CS.setList(data);
+        })
+      })
+  }
 }

@@ -52,6 +52,4 @@ export class ListarCategoriatranxComponent implements OnInit, AfterViewInit {
       })
     })
   }
-
-  
 }
