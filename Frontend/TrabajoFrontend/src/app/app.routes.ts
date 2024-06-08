@@ -55,7 +55,7 @@ export const routes: Routes = [
   // rol
   {
     path: 'rol',
-    component: ListarRolComponent
+    component: RolComponent
   }
   //fin de ruta Rol
 ];
