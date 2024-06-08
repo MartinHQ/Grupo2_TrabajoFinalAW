@@ -1,25 +1,13 @@
 .title-container {
-
   text-align: center;
-
-  margin-bottom: 40px;
+  margin-bottom: 20px;
   /* Increase the margin-bottom to move the title lower */
-
   margin-top: 60px;
   /* Add a margin-top to further position it down the page */
-
 }
 
-
-
-.title {
-
-  font-family: 'Poppins', sans-serif;
-
-  font-weight: 600;
-
-  font-size: 2em;
-
-  color: #333;
-
+.example-card {
+  max-width: 400px;
+  margin-bottom: 8px;
+  background-color: hsl(0, 0%, 85%);
 }
