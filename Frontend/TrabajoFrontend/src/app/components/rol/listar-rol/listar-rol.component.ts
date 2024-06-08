@@ -17,8 +17,11 @@ import { Rol } from '../../../models/Rol';
   styleUrl: './listar-rol.component.css'
 })
 export class ListarRolComponent implements OnInit {
-  constructor(private rol : RolService) {}
+  
+  displayedColums : string[] = ['idRol', 'nombreRol'];
+  dataSource: MatTableDataSource<Rol> = new MatTableDataSource();
   @ViewChild(MatPaginator) paginator ?: MatPaginator;
+  constructor(private rol : RolService) {}
   ngOnInit(): void {
     this.rol.listar().subscribe((data) => {
       this.dataSource = new MatTableDataSource(data);
@@ -33,6 +36,5 @@ export class ListarRolComponent implements OnInit {
       }
     });
   }
-  displayedColums : string[] = ['id', 'nombre'];
-  dataSource: MatTableDataSource<Rol> = new MatTableDataSource();
+  
 }
