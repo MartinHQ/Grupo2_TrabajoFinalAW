@@ -1,0 +1,33 @@
+<div class="title-container"><h1 class="title"style="text-align: center">Registro de Tipo Meta </h1></div>
+<div class="container" style="text-align: center">
+
+  
+  <form [formGroup]="form" (submit)="aceptar()" class="example-form">
+
+    <mat-form-field *ngIf="edicion">
+      <mat-label>Codigo:</mat-label>
+      <input matInput formControlName="idTipoMeta" readonly/>
+    </mat-form-field>
+    <br />
+
+
+
+    <mat-form-field>
+      <mat-label>nombre</mat-label>
+      <input matInput formControlName="nombre" />
+      <mat-error *ngIf="form.get('nombre')?.hasError('required')"
+        >EL nombre es obligatorio.</mat-error
+      >
+    </mat-form-field>
+
+    <br />
+
+
+    <br />
+    
+    <br />
+    <button mat-raised-button color="primary" *ngIf="!edicion">Registrar</button>
+    <button mat-raised-button color="primary" *ngIf="edicion">Editar</button>
+    <button mat-raised-button color="warn" routerLink="/tipometa"> Cancelar </button>
+  </form>
+</div>

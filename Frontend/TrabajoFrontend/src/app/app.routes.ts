@@ -5,6 +5,8 @@ import { CreareditarCategoriatranxComponent } from './components/categoriatranx/
 import { CategoriatranxComponent } from './components/categoriatranx/categoriatranx.component';
 import { ConsejoComponent } from './components/consejo/consejo.component';
 import { RegistrarConsejoComponent } from './components/consejo/registrar-consejo/registrar-consejo.component';
+import { TipometaComponent } from './components/tipometa/tipometa.component';
+import { CreareditarTipometaComponent } from './components/tipometa/creareditar-tipometa/creareditar-tipometa.component';
 
 export const routes: Routes = [
   //pregunta frecuente
@@ -50,6 +52,22 @@ export const routes: Routes = [
             path:'editar/:id', component:RegistrarConsejoComponent
         }
     ]
-}
+},
   //fin de ruta categoria consejo
+
+  //TipoMeta
+ {
+    path:'tipometa',
+    component:TipometaComponent,
+    children:[
+        {
+            path:'nuevo',component:CreareditarTipometaComponent
+        },
+        {
+            path:'editar/:id', component:CreareditarTipometaComponent
+        }
+    ]
+}
+//fin de ruta TipoMeta
+
 ];
