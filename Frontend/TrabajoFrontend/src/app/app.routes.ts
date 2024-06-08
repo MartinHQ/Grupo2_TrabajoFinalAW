@@ -5,6 +5,7 @@ import { CreareditarCategoriatranxComponent } from './components/categoriatranx/
 import { CategoriatranxComponent } from './components/categoriatranx/categoriatranx.component';
 import { ConsejoComponent } from './components/consejo/consejo.component';
 import { RegistrarConsejoComponent } from './components/consejo/registrar-consejo/registrar-consejo.component';
+import { RolComponent } from './components/rol/rol.component';
 
 export const routes: Routes = [
   //pregunta frecuente
