@@ -3,6 +3,7 @@
     <button style="margin-left: 2px; margin-right: 2px;" mat-button [matMenuTriggerFor]="menuCat">Categorias</button>
     <button style="margin-left: 2px; margin-right: 2px;" mat-button [matMenuTriggerFor]="menuConsejo">Consejos</button>
     <button style="margin-left: 2px; margin-right: 2px;" mat-button [matMenuTriggerFor]="menuPF">Preguntas Frecuentes</button> 
+    <button style="margin-left: 2px; margin-right: 2px;" mat-button [matMenuTriggerFor]="menuTipoMeta">Tipo Meta</button> 
   </mat-toolbar>
   
   <mat-menu #menuCat="matMenu">
@@ -17,4 +18,9 @@
     <button mat-menu-item routerLink="/preguntafrecuente">Listar</button>
     <button mat-menu-item routerLink="/preguntafrecuente/nuevo">Registrar</button>
    </mat-menu>
+   <mat-menu #menuTipoMeta="matMenu">
+    <button mat-menu-item routerLink="/tipometa">Listar</button>
+    <button mat-menu-item routerLink="/tipometa/nuevo">Registrar</button>
+   </mat-menu>
+
 <router-outlet></router-outlet>

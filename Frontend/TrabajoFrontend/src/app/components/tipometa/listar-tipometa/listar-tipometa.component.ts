@@ -17,7 +17,8 @@ export class ListarTipometaComponent implements OnInit, AfterViewInit{
   displayedColumns: string[] = [
     'idTipoMeta',
     'nombre',
-    'accion01'
+    'accion01',
+    'accion02'
   ];
  
   datasource: MatTableDataSource<TipoMeta> = new MatTableDataSource();
@@ -36,6 +37,14 @@ export class ListarTipometaComponent implements OnInit, AfterViewInit{
       this.datasource.paginator = this.paginator;
     });
   }
+  eliminar(id:number){
+    this.tmS.eliminar(id).subscribe((data)=>{
+      this.tmS.listar().subscribe((data)=>{
+        this.tmS.setListaCambio(data);
+      })
+    })
+  }
+
   ngAfterViewInit(): void {
     this.datasource.paginator = this.paginator;
   }

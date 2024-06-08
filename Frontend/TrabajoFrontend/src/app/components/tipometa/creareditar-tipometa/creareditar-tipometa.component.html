@@ -6,17 +6,15 @@
 
     <mat-form-field *ngIf="edicion">
       <mat-label>Codigo:</mat-label>
-      <input matInput formControlName="idTipoMeta" readonly/>
+      <input matInput formControlName="codigo" readonly/>
     </mat-form-field>
     <br />
-
-
 
     <mat-form-field>
       <mat-label>nombre</mat-label>
       <input matInput formControlName="nombre" />
       <mat-error *ngIf="form.get('nombre')?.hasError('required')"
-        >EL nombre es obligatorio.</mat-error
+        >El nombre es obligatorio.</mat-error
       >
     </mat-form-field>
 

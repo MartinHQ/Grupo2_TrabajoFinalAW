@@ -38,7 +38,7 @@ export class CreareditarTipometaComponent implements OnInit{
     });
 
     this.form = this.formbuilder.group({
-      Codigo:[''],
+      codigo:[''],
       nombre:['', Validators.required],
     });
   }
@@ -47,7 +47,7 @@ export class CreareditarTipometaComponent implements OnInit{
     if (this.form.valid) {
       this.tipometa.idTipoMeta = this.form.value.codigo;
       this.tipometa.nombre= this.form.value.nombre
-    }
+    
     if (this.edicion) {
       //usar el metodo de modificar
       this.tmS.modificar(this.tipometa).subscribe((data)=>{
@@ -62,9 +62,9 @@ export class CreareditarTipometaComponent implements OnInit{
         });
       });
     }
-    this.router.navigate(['preguntafrecuente']);
+    this.router.navigate(['tipometa']);
   }
-
+  }
   //para cargar datos de un objeto en el formulario
   init() {
     if (this.edicion) {
