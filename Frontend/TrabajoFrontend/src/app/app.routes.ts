@@ -9,6 +9,8 @@ import { TipometaComponent } from './components/tipometa/tipometa.component';
 import { CreareditarTipometaComponent } from './components/tipometa/creareditar-tipometa/creareditar-tipometa.component';
 import { RolComponent } from './components/rol/rol.component';
 import { UsuarioComponent } from './components/usuario/usuario.component';
+import { TransaccionComponent } from './components/transaccion/transaccion.component';
+import { CreareditarTransaccionComponent } from './components/transaccion/creareditar-transaccion/creareditar-transaccion.component';
 
 export const routes: Routes = [
   //pregunta frecuente
@@ -79,6 +81,24 @@ export const routes: Routes = [
   //usuarios
   {
     path: 'usuarios', component: UsuarioComponent,
-  }
+  },
   //fin de ruta Usuario
+
+   //transacciones
+   {
+    path: 'transaccion',
+    component: TransaccionComponent,
+    children: [
+      {
+        path: 'nuevo',
+        component: CreareditarTransaccionComponent,
+      },
+      {
+        path:'ediciones/:id',component:CreareditarTransaccionComponent
+      }
+    ],
+  },
+  //Fin de ruta Categoria Tranx
+
+  
 ];

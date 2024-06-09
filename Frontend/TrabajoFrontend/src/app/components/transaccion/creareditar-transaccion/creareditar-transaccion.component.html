@@ -1,0 +1,91 @@
+<div class="title-container">
+  <h1 class="title">Registro de Transacciones</h1>
+</div>
+<div class="container" style="text-align: center">
+  <form [formGroup]="form" (ngSubmit)="aceptar()" class="example-form">
+
+    <mat-form-field *ngIf="edicion">
+      <mat-label>ID Transacción:</mat-label>
+      <input matInput formControlName="idTransaccion" readonly />
+    </mat-form-field>
+    <br />
+
+    <mat-form-field class="Titulotranx">
+      <mat-label>Título:</mat-label>
+      <input matInput placeholder="Nombre de la transacción" formControlName="nombreTransaccion" />
+      <mat-error *ngIf="form.get('nombreTransaccion')?.hasError('required')">
+        El título es obligatorio.
+      </mat-error>
+    </mat-form-field>
+    <br />
+
+    <div class="categoriafecha">
+    <mat-form-field class="Categoriatranx">
+      <mat-label>Categoría:</mat-label>
+      <mat-select formControlName="categoria_id">
+        <mat-option *ngFor="let c of listaCategorias" [value]="c.idCategoriatranx">
+          {{c.nombre}}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="form.get('categoria_id')?.hasError('required')">
+        La categoría es obligatoria.
+      </mat-error>
+    </mat-form-field>
+ 
+
+    <mat-form-field appearance="fill" class="Fechatranx">
+      <input
+        matInput
+        placeholder="Ingrese fecha"
+        [matDatepicker]="picker"
+        formControlName="fechaTransaccion"
+      />
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      <mat-error *ngIf="form.get('fechaTransaccion')?.hasError('required')">
+        La fecha es obligatoria.
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+    <br />
+  
+
+    <mat-form-field class="montotranx">
+      <mat-label>Monto:</mat-label>
+      <input matInput type="number" placeholder="Monto de la transacción" formControlName="montoTransaccion" />
+      <mat-error *ngIf="form.get('montoTransaccion')?.hasError('required')">
+        El monto es obligatorio.
+      </mat-error>
+    </mat-form-field>
+
+    
+
+    <mat-form-field class="usuariotranx">
+      <mat-label>Usuario:</mat-label>
+      <mat-select formControlName="usuario_id">
+        <mat-option *ngFor="let u of listaUsuarios" [value]="u.usuario_id">
+          {{u.nombre}} {{u.apellido}}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="form.get('usuario_id')?.hasError('required')">
+        El usuario es obligatorio.
+      </mat-error>
+    </mat-form-field>
+    <br />
+
+    <mat-radio-group formControlName="es_ingresoTransaccion" class="es_ingresoTransaccion">
+      <mat-radio-button value="true">Ingreso</mat-radio-button>
+      <mat-radio-button value="false">Egreso</mat-radio-button>
+    </mat-radio-group>
+    <br />
+    <br />
+    <br />
+
+
+    <button mat-raised-button color="primary" type="submit" *ngIf="!edicion">Registrar</button>
+    <button mat-raised-button color="primary" type="submit" *ngIf="edicion">Editar</button>
+    <button mat-raised-button color="warn" routerLink="/transaccion">Cancelar</button>
+  </form>
+</div>

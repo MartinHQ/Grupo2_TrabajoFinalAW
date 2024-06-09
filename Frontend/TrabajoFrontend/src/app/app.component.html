@@ -6,6 +6,7 @@
     <button style="margin-left: 2px; margin-right: 2px;" mat-button [matMenuTriggerFor]="menuTipoMeta">Tipo Meta</button>
     <button style="margin-left: 2px; margin-right: 2px;" mat-button [matMenuTriggerFor]="menuRol">Rol</button>
     <button style="margin-left: 2px; margin-right: 2px;" mat-button [matMenuTriggerFor]="menuUsuario">Usuarios</button>
+    <button style="margin-left: 2px; margin-right: 2px;" mat-button [matMenuTriggerFor]="menuTransaccion">Transaccion</button>
   </mat-toolbar>
 
   <mat-menu #menuCat="matMenu">
@@ -30,5 +31,9 @@
   <mat-menu #menuUsuario="matMenu">
     <button mat-menu-item routerLink="/usuarios">Listar</button>
     <!-- <button mat-menu-item routerLink="/usuarios/nuevo">Registrar</button> -->
+   </mat-menu>
+   <mat-menu #menuTransaccion="matMenu">
+    <button mat-menu-item routerLink="/transaccion">Listar</button>
+    <button mat-menu-item routerLink="/transaccion/nuevo">Registrar</button>
    </mat-menu>
 <router-outlet></router-outlet>

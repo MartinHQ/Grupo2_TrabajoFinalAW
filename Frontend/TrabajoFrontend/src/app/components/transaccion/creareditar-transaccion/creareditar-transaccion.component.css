@@ -1,0 +1,51 @@
+.title-container {
+    text-align: center;
+    margin-bottom: 40px; /* Increase the margin-bottom to move the title lower */
+    margin-top: 60px; /* Add a margin-top to further position it down the page */
+  }
+  
+  .title {
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-size: 2em;
+    color: #333;
+  }
+  
+  .Titulotranx {
+    width: 100%;
+    
+  }
+
+  .container{
+
+    width: 920px;
+    height: 800 ;
+
+
+    margin: 0 auto;
+  }
+
+.Categoriatranx{
+    width: 55%;
+    float: left;
+    margin-right: 20px;
+
+}
+
+.Fechatranx{
+    width: 42%;
+}
+
+.montotranx{
+    width: 55%;
+    float: left;
+    margin-right: 20px;
+    
+}
+
+.usuariotranx{
+    width: 42%;
+}
+.es_ingresoTransaccion{
+    float: left;
+}
