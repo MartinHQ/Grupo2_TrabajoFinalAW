@@ -1,0 +1,82 @@
+<div class="container">
+<div class="title">Lista de Transacciones</div>
+
+<div class="mat-elevation-z8">
+  
+  <table mat-table [dataSource]="dataSource" matSort>
+    <!-- nombreTransaccion Column -->
+    <ng-container matColumnDef="nombreTransaccion">
+      <th mat-header-cell *matHeaderCellDef>Titulo</th>
+      <td mat-cell *matCellDef="let row">{{ row.nombreTransaccion }}</td>
+    </ng-container>
+
+    <!-- montoTransaccion Column -->
+    <ng-container matColumnDef="montoTransaccion">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Monto</th>
+      <td mat-cell *matCellDef="let row">{{ row.montoTransaccion }}</td>
+    </ng-container>
+
+    <!-- fechaTransaccion Column -->
+    <ng-container matColumnDef="fechaTransaccion">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Fecha</th>
+      <td mat-cell *matCellDef="let row">{{ row.fechaTransaccion }}</td>
+    </ng-container>
+
+    <!-- es_ingresoTransaccion Column -->
+    <ng-container matColumnDef="es_ingresoTransaccion">
+      <th mat-header-cell *matHeaderCellDef>Tipo</th>
+      <td mat-cell *matCellDef="let row">
+        <ng-container *ngIf="row.es_ingresoTransaccion">Ingreso</ng-container>
+        <ng-container *ngIf="!row.es_ingresoTransaccion">Egreso</ng-container>
+      </td>
+    </ng-container>
+
+    <!-- es_manual Column -->
+    <ng-container matColumnDef="es_manual">
+      <th mat-header-cell *matHeaderCellDef>Registro</th>
+      <td mat-cell *matCellDef="let row">
+        <ng-container *ngIf="row.es_manual">Manual</ng-container>
+        <ng-container *ngIf="!row.es_manual">Tarjeta</ng-container>
+      </td>
+    </ng-container>
+
+    <!-- categoria_id Column -->
+    <ng-container matColumnDef="categoria_id">
+      <th mat-header-cell *matHeaderCellDef>Categoria</th>
+      <td mat-cell *matCellDef="let row">{{ row.categoria_id.nombre }}</td>
+    </ng-container>
+
+    <!-- accion01 Column -->
+    <ng-container matColumnDef="accion01">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let row">
+        <button mat-button [routerLink]="['ediciones', row.idTransaccion]">
+          <mat-icon
+            aria-hidden="false"
+            aria-label="Example home icon"
+            fontIcon="edit"
+          ></mat-icon>
+        </button>
+
+        <button mat-button (click)="deleteTransaccion(row.idTransaccion)">
+          <mat-icon
+            aria-hidden="false"
+            aria-label="Example home icon"
+            fontIcon="delete"
+          ></mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+
+  <mat-paginator
+    [pageSizeOptions]="[5, 10, 25, 100]"
+    aria-label="Select page of users"
+  ></mat-paginator>
+</div>
+
+
+</div>
