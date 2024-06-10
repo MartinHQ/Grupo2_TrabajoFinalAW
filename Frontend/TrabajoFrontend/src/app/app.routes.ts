@@ -11,6 +11,8 @@ import { RolComponent } from './components/rol/rol.component';
 import { UsuarioComponent } from './components/usuario/usuario.component';
 import { TransaccionComponent } from './components/transaccion/transaccion.component';
 import { CreareditarTransaccionComponent } from './components/transaccion/creareditar-transaccion/creareditar-transaccion.component';
+import { CuentabancariaComponent } from './components/cuentabancaria/cuentabancaria.component';
+import { CreaeditarCuentabancariaComponent } from './components/cuentabancaria/creaeditar-cuentabancaria/creaeditar-cuentabancaria.component';
 
 export const routes: Routes = [
   //pregunta frecuente
@@ -24,8 +26,8 @@ export const routes: Routes = [
       },
       {
         path: 'ediciones/:id',
-        component: RegistrarPreguntafrecuenteComponent
-      }
+        component: RegistrarPreguntafrecuenteComponent,
+      },
     ],
   },
   //fin de ruta Pregunta Frecuente
@@ -39,53 +41,59 @@ export const routes: Routes = [
         component: CreareditarCategoriatranxComponent,
       },
       {
-        path:'ediciones/:id',component:CreareditarCategoriatranxComponent
-      }
+        path: 'ediciones/:id',
+        component: CreareditarCategoriatranxComponent,
+      },
     ],
   },
   //Fin de ruta Categoria Tranx
   //consejo
   {
-    path:'consejos',
-    component:ConsejoComponent,
-    children:[
-        {
-            path:'registro',component:RegistrarConsejoComponent
-        },
-        {
-            path:'editar/:id', component:RegistrarConsejoComponent
-        }
-    ]
-  },
-  //fin de ruta categoria consejo
-   //TipoMeta
-  {
-  path:'tipometa',
-  component:TipometaComponent,
-  children:[
+    path: 'consejos',
+    component: ConsejoComponent,
+    children: [
       {
-          path:'nuevo',component:CreareditarTipometaComponent
+        path: 'registro',
+        component: RegistrarConsejoComponent,
       },
       {
-          path:'editar/:id', component:CreareditarTipometaComponent
-      }
-  ]
+        path: 'editar/:id',
+        component: RegistrarConsejoComponent,
+      },
+    ],
   },
-//fin de ruta TipoMeta
-// rol
+  //fin de ruta categoria consejo
+  //TipoMeta
+  {
+    path: 'tipometa',
+    component: TipometaComponent,
+    children: [
+      {
+        path: 'nuevo',
+        component: CreareditarTipometaComponent,
+      },
+      {
+        path: 'editar/:id',
+        component: CreareditarTipometaComponent,
+      },
+    ],
+  },
+  //fin de ruta TipoMeta
+  // rol
   {
     path: 'rol',
-    component: RolComponent
+    component: RolComponent,
   },
   //fin de ruta Rol
   //usuarios
   {
-    path: 'usuarios', component: UsuarioComponent,
+    path: 'usuarios',
+    component: UsuarioComponent,
   },
   //fin de ruta Usuario
 
-   //transacciones
-   {
+  //transacciones
+  {
     path: 'transaccion',
     component: TransaccionComponent,
     children: [
@@ -94,11 +102,26 @@ export const routes: Routes = [
         component: CreareditarTransaccionComponent,
       },
       {
-        path:'ediciones/:id',component:CreareditarTransaccionComponent
-      }
+        path: 'ediciones/:id',
+        component: CreareditarTransaccionComponent,
+      },
     ],
   },
   //Fin de ruta Categoria Tranx
-
-  
+  //Cuenta Bancaria
+  {
+    path: 'cuentabancaria',
+    component: CuentabancariaComponent,
+    children: [
+      {
+        path: 'nuevo',
+        component: CreaeditarCuentabancariaComponent,
+      },
+      {
+        path: 'ediciones/:id',
+        component: CreaeditarCuentabancariaComponent,
+      },
+    ],
+  },
+  //fin de Cuenta Bancaria
 ];

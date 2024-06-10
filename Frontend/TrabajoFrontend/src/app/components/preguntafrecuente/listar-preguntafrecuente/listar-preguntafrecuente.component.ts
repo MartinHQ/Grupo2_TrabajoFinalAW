@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { PreguntafrecuenteService } from '../../../services/preguntafrecuente.service';
 import { PreguntaFrecuente } from '../../../models/PreguntaFrecuente';
 import { FormsModule } from '@angular/forms';
@@ -8,6 +8,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
+import { Observable } from 'rxjs';
 @Component({
   selector: 'app-listar-preguntafrecuente',
   standalone: true,
@@ -19,6 +22,8 @@ import { MatButtonModule } from '@angular/material/button';
     RouterLink,
     MatCardModule,
     MatButtonModule,
+    MatPaginator,
+    MatPaginatorModule,
   ],
   templateUrl: './listar-preguntafrecuente.component.html',
   styleUrl: './listar-preguntafrecuente.component.css',
@@ -26,13 +31,20 @@ import { MatButtonModule } from '@angular/material/button';
 export class ListarPreguntafrecuenteComponent implements OnInit {
   constructor(private pfS: PreguntafrecuenteService) {}
 
-  listaPreguntasFrecuentes: PreguntaFrecuente[] = [];
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  datasource: MatTableDataSource<PreguntaFrecuente> = new MatTableDataSource();
+  obs?: Observable<any>; // objeto para listar,filtrar las tarjetas y usar el paginator
+
   ngOnInit(): void {
     this.pfS.listar().subscribe((data) => {
-      this.listaPreguntasFrecuentes = data;
+      this.datasource = new MatTableDataSource(data);
+      this.datasource.paginator = this.paginator;
+      this.obs = this.datasource.connect();
     });
     this.pfS.getListaCambio().subscribe((data) => {
-      this.listaPreguntasFrecuentes = data;
+      this.datasource = new MatTableDataSource(data);
+      this.datasource.paginator = this.paginator;
+      this.obs = this.datasource.connect();
     });
   }
 
