@@ -13,6 +13,8 @@ import { TransaccionComponent } from './components/transaccion/transaccion.compo
 import { CreareditarTransaccionComponent } from './components/transaccion/creareditar-transaccion/creareditar-transaccion.component';
 import { CuentabancariaComponent } from './components/cuentabancaria/cuentabancaria.component';
 import { CreaeditarCuentabancariaComponent } from './components/cuentabancaria/creaeditar-cuentabancaria/creaeditar-cuentabancaria.component';
+import { MetadeahorroComponent } from './components/metadeahorro/metadeahorro.component';
+import { CreaeditaMetadeahorroComponent } from './components/metadeahorro/creaedita-metadeahorro/creaedita-metadeahorro.component';
 
 export const routes: Routes = [
   //pregunta frecuente
@@ -124,4 +126,20 @@ export const routes: Routes = [
     ],
   },
   //fin de Cuenta Bancaria
+  //Meta de Ahorros
+  {
+    path: 'metadeahorro',
+    component: MetadeahorroComponent,
+    children: [
+      {
+        path: 'nuevo',
+        component: CreaeditaMetadeahorroComponent,
+      },
+      {
+        path: 'ediciones/:id',
+        component: CreaeditaMetadeahorroComponent,
+      },
+    ],
+  },
+ //fin de Meta de Ahorros
 ];
