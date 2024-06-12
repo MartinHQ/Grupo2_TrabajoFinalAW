@@ -23,3 +23,16 @@
    .container{
     margin: 30px;
    }
+
+   .example-section {
+      display: flex;
+      align-items: center;
+      justify-content: right;
+      margin-bottom: 20px;
+      
+    }
+    
+    .example-list-section {
+      margin-right: 10px;
+    }
+    
