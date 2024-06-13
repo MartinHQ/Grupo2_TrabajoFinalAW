@@ -26,7 +26,7 @@ export class PreguntafrecuenteService {
     return this.http.put(this.url, pf);
   }
   listarId(id: number) {
-    return this.http.get<PreguntaFrecuente>(`${this.url}/buscarId/${id}`);
+    return this.http.get<PreguntaFrecuente>(`${this.url}/${id}`);
   }
   eliminar(id: number) {
     return this.http.delete(`${this.url}/${id}`);

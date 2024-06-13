@@ -25,6 +25,12 @@ public class CuentaBancariaController {
         CuentaBancaria cuenta = m.map(cuentaBancariaDTO, CuentaBancaria.class);
         cS.insert(cuenta);
     }
+    @PutMapping
+    public void modificarCuentaBancaria(@RequestBody CuentaBancariaDTO cuentaBancariaDTO) {
+        ModelMapper m = new ModelMapper();
+        CuentaBancaria cuenta = m.map(cuentaBancariaDTO, CuentaBancaria.class);
+        cS.insert(cuenta);
+    }
 
     @GetMapping
     public List<CuentaBancariaDTO> listarCuentaBancaria() {
@@ -38,15 +44,7 @@ public class CuentaBancariaController {
     @DeleteMapping("/{id}")
     public void delete(@PathVariable("id") Integer id) { cS.delete(id); }
 
-    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/{id}")
-    public CuentaBancariaDTO listarId(@PathVariable("id") Integer id) {
-        ModelMapper m = new ModelMapper();
-        CuentaBancariaDTO cuen = m.map(cS.listId(id), CuentaBancariaDTO.class);
-        return cuen;
-    }
-
-    @GetMapping("/listar{id}")
     public ResponseEntity<CuentaBancariaDTO> listarCuentaBancariaPorId(@PathVariable("id") Integer id) {
         ModelMapper modelMapper = new ModelMapper();
         CuentaBancaria cuentaBancaria = cS.listId(id);

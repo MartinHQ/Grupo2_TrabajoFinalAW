@@ -32,7 +32,6 @@ public class UsuarioController {
         uS.insert(usuario);
     }
 
-    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping
     public List<UsuarioDTO> listarUsuario() {
         return uS.list().stream().map(y->{

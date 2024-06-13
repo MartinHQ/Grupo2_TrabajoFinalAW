@@ -13,10 +13,30 @@ import { TransaccionComponent } from './components/transaccion/transaccion.compo
 import { CreareditarTransaccionComponent } from './components/transaccion/creareditar-transaccion/creareditar-transaccion.component';
 import { CuentabancariaComponent } from './components/cuentabancaria/cuentabancaria.component';
 import { CreaeditarCuentabancariaComponent } from './components/cuentabancaria/creaeditar-cuentabancaria/creaeditar-cuentabancaria.component';
+import { LoginComponent } from './components/login/login.component';
+import { HomeComponent } from './components/home/home.component';
+import { segGuard } from './guard/security.guard';
 import { MetadeahorroComponent } from './components/metadeahorro/metadeahorro.component';
 import { CreaeditaMetadeahorroComponent } from './components/metadeahorro/creaedita-metadeahorro/creaedita-metadeahorro.component';
 
 export const routes: Routes = [
+  {
+    //ruta por defecto
+    path: '',
+    redirectTo: 'login',
+    pathMatch: 'full',
+  },
+  {
+    //ruta para el login
+    path: 'login',
+    component: LoginComponent,
+  },
+  {
+    //ruta para el home
+    path: 'homes',
+    component: HomeComponent,
+    canActivate: [segGuard],
+  },
   //pregunta frecuente
   {
     path: 'preguntafrecuente',
@@ -31,6 +51,7 @@ export const routes: Routes = [
         component: RegistrarPreguntafrecuenteComponent,
       },
     ],
+    canActivate: [segGuard],
   },
   //fin de ruta Pregunta Frecuente
   //categoria tranx
@@ -47,6 +68,7 @@ export const routes: Routes = [
         component: CreareditarCategoriatranxComponent,
       },
     ],
+    canActivate: [segGuard],
   },
   //Fin de ruta Categoria Tranx
   //consejo
@@ -63,6 +85,7 @@ export const routes: Routes = [
         component: RegistrarConsejoComponent,
       },
     ],
+    canActivate: [segGuard],
   },
   //fin de ruta categoria consejo
   //TipoMeta
@@ -79,18 +102,21 @@ export const routes: Routes = [
         component: CreareditarTipometaComponent,
       },
     ],
+    canActivate: [segGuard],
   },
   //fin de ruta TipoMeta
   // rol
   {
     path: 'rol',
     component: RolComponent,
+    canActivate: [segGuard],
   },
   //fin de ruta Rol
   //usuarios
   {
     path: 'usuarios',
     component: UsuarioComponent,
+    canActivate: [segGuard],
   },
   //fin de ruta Usuario
 
@@ -108,6 +134,7 @@ export const routes: Routes = [
         component: CreareditarTransaccionComponent,
       },
     ],
+    canActivate: [segGuard],
   },
   //Fin de ruta Categoria Tranx
   //Cuenta Bancaria
@@ -124,6 +151,7 @@ export const routes: Routes = [
         component: CreaeditarCuentabancariaComponent,
       },
     ],
+    canActivate: [segGuard],
   },
   //fin de Cuenta Bancaria
   //Meta de Ahorros
