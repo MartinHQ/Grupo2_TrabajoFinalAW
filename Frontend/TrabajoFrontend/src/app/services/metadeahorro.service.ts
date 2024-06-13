@@ -28,7 +28,7 @@ export class MetadeahorroService {
   }
 
   listarId(id:number){
-   return this.http.get<MetaDeAhorro[]>(`${base_url}/${id}`)
+   return this.http.get<MetaDeAhorro>(`${base_url}/${id}`)
   }
 
   modificar(mt:MetaDeAhorro){

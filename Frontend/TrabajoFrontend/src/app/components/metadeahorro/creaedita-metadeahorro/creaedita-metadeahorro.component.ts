@@ -15,11 +15,18 @@ import { MetadeahorroService } from '../../../services/metadeahorro.service';
 import { ActivatedRoute, RouterLink,Router } from '@angular/router';
 import { NgIf } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatSelectModule } from '@angular/material/select';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
 
 @Component({
   selector: 'app-creaedita-metadeahorro',
   standalone: true,
-  imports: [RouterLink,ReactiveFormsModule,NgIf,MatFormFieldModule],
+  imports: [RouterLink,ReactiveFormsModule,NgIf,MatFormFieldModule,MatDatepickerModule,
+           MatNativeDateModule,MatRadioModule,MatSelectModule,MatButtonModule,MatInputModule],
   templateUrl: './creaedita-metadeahorro.component.html',
   styleUrl: './creaedita-metadeahorro.component.css'
 })
@@ -73,8 +80,8 @@ export class CreaeditaMetadeahorroComponent implements OnInit {
       this.metaahorro.monto_objetivo=this.form.value.montoobjetivo;
       this.metaahorro.fecha_limite=this.form.value.fechalimite;
       this.metaahorro.meta_cumplida=this.form.value.metacumplida;
-      this.metaahorro.usuario_id=this.form.value.usuarioid;
-      this.metaahorro.tipo_meta_id=this.form.value.tipometaid;
+      this.metaahorro.usuario_id.usuario_id=this.form.value.usuarioid;
+      this.metaahorro.tipo_meta_id.idTipoMeta=this.form.value.tipometaid;
       if (this.edicion) {
         this.maS.modificar(this.metaahorro).subscribe(() => {
           this.maS.listar().subscribe((data) => {
@@ -104,7 +111,7 @@ export class CreaeditaMetadeahorroComponent implements OnInit {
       fechalimite:new FormControl(data.fecha_limite),
       metacumplida: new FormControl(data.meta_cumplida ? 'true' : 'false'),
       usuarioid: new FormControl(data.usuario_id.usuario_id),
-      tipo_meta_id: new FormControl(data.tipo_meta_id.idTipoMeta),
+      tipometaid: new FormControl(data.tipo_meta_id.idTipoMeta),
      });
    });
   }
