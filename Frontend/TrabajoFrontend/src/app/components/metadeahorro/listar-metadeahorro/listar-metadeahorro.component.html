@@ -2,14 +2,14 @@
     <div class="title-container">
       <h1 class="title" style="text-align: center;">  Listar metas de ahorro</h1>
     </div>
-  
+
     <table mat-table [dataSource]="datasource" class="mat-elevation-z8">
-  
+
       <ng-container matColumnDef="codigo">
         <th mat-header-cell *matHeaderCellDef>ID</th>
         <td mat-cell *matCellDef="let element">{{ element.metadeahorro}}</td>
       </ng-container>
-  
+
       <ng-container matColumnDef="titulo">
         <th mat-header-cell *matHeaderCellDef>Título</th>
         <td mat-cell *matCellDef="let element">{{element.titulo_meta }}</td>
@@ -32,9 +32,9 @@
 
       <ng-container matColumnDef="tipometanombre">
         <th mat-header-cell *matHeaderCellDef>Tipo de Meta</th>
-        <td mat-cell *matCellDef="let element">{{element.tipo_meta_id}}</td>
+        <td mat-cell *matCellDef="let element">{{element.tipo_meta_id.nombre }}</td>
       </ng-container>
-  
+
       <ng-container matColumnDef="usuarionombre">
         <th mat-header-cell *matHeaderCellDef>Nombre del usuario</th>
         <td mat-cell *matCellDef="let element">{{element.usuario_id.nombre}}</td>
@@ -51,7 +51,7 @@
         <th mat-header-cell *matHeaderCellDef>Acciones</th>
         <td mat-cell *matCellDef="let element">
         <button mat-button color="primary" [routerLink]="['ediciones', element.metadeahorro]">
-            <mat-icon>edit</mat-icon> 
+            <mat-icon>edit</mat-icon>
         </button>
         </td>
     </ng-container>
@@ -68,11 +68,11 @@
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
     </table>
-  
+
     <mat-paginator
       [pageSizeOptions]="[5, 7, 10]"
       showFirstLastButtons
       aria-label="Select page of periodic elements"
     ></mat-paginator>
   </div>
-  
+
