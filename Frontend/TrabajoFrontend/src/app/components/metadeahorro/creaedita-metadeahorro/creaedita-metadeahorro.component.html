@@ -10,24 +10,27 @@
       </mat-form-field>
       <br />
 
-      <mat-form-field>
-        <mat-label>Titulo</mat-label>
+      <mat-form-field class="titulo" >
+        <mat-label >Titulo</mat-label>
         <input matInput formControlName="tiutlometa" />
         <mat-error *ngIf="form.get('tiutlometa')?.hasError('required')"
           >El titulo de la meta es obligatorio.</mat-error
         >
       </mat-form-field>
-      <br />
-      <mat-form-field>
+      <mat-form-field class="descripcion">
         <mat-label>Descripcion</mat-label>
-        <input matInput formControlName="descripcion" />
+        <input matInput  formControlName="descripcion" />
         <mat-error *ngIf="form.get('descripcion')?.hasError('required')"
           >La decripcion es obligatoria.</mat-error
         >
       </mat-form-field>
       <br />
-      <mat-form-field>
-        <mat-label>Monto Objetivo</mat-label>
+      <br />
+      <br />
+      <br />
+      <br />
+      <mat-form-field class="montoobjetivo">
+        <mat-label >Monto Objetivo</mat-label>
         <input matInput formControlName="montoobjetivo" />
         <mat-error *ngIf="form.get('montoobjetivo')?.hasError('required')"
           >El monto objetivo es obligatorio.</mat-error
@@ -39,7 +42,6 @@
         >El monto objetivo debe ser un número válido.</mat-error
       >
       </mat-form-field>
-      <br />
       
         <mat-form-field class="tipometa">
           <mat-label>Tipo de Meta:</mat-label>
@@ -49,12 +51,15 @@
             </mat-option>
           </mat-select>
           <mat-error *ngIf="form.get('tipometaid')?.hasError('required')">
-            La categoría es obligatoria.
+            El tipo de meta es obligatoria.
           </mat-error>
         </mat-form-field>
-        
-
-        <mat-form-field appearance="fill" class="Fechalimite">
+        <br />
+      <br />
+      <br />
+      <br />
+      <br />
+        <mat-form-field appearance="fill" class="fechalimite">
             <input
               matInput
               placeholder="Ingrese fecha"
@@ -69,10 +74,10 @@
             </mat-error>
           </mat-form-field>
 
-      <mat-form-field>
+      <mat-form-field class="usuario">
         <mat-label>Usuario:</mat-label>
         <mat-select formControlName="usuarioid">
-          <mat-option *ngFor="let u of listaUsuario" [value]="u.usuario_id">
+          <mat-option *ngFor="let u of listaUsuarios" [value]="u.usuario_id">
             {{ u.nombre }} {{ u.apellido }}
           </mat-option>
         </mat-select>
@@ -82,8 +87,11 @@
       </mat-form-field>
 
       <br />
-      
-
+      <br />
+      <br />
+      <br />
+      <br />
+      <h3> Se cumple meta:</h3>
       <mat-radio-group formControlName="metacumplida" class="metacumplida">
         <mat-radio-button value="true">Si</mat-radio-button>
         <mat-radio-button value="false">No</mat-radio-button>
@@ -97,7 +105,7 @@
       
       <br />
   
-      <button mat-raised-button color="warn" *ngIf="edicion">Modificar</button>
+      <button mat-raised-button color="warn" *ngIf="edicion">Editar</button>
       <button mat-raised-button color="warn" *ngIf="!edicion">Registrar</button>
       <button mat-raised-button color="primary" routerLink="/metadeahorro">
         Cancelar

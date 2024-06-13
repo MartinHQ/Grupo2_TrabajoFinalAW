@@ -6,7 +6,7 @@ import {MatButtonModule} from '@angular/material/button';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MetaDeAhorro } from '../../../models/MetaDeAhorro';
 import { MetadeahorroService } from '../../../services/metadeahorro.service';
-import { NgIf } from '@angular/common';
+import { NgFor, NgIf } from '@angular/common';
 @Component({
   selector: 'app-listar-metadeahorro',
   standalone: true,
@@ -15,7 +15,7 @@ import { NgIf } from '@angular/common';
            MatIconModule,
            RouterLink,
            MatButtonModule,
-           NgIf],
+           NgIf,NgFor],
   templateUrl: './listar-metadeahorro.component.html',
   styleUrl: './listar-metadeahorro.component.css'
 })

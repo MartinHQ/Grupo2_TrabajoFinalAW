@@ -13,7 +13,7 @@ import { TipometaService } from '../../../services/tipometa.service';
 import { UsuarioService } from '../../../services/usuario.service';
 import { MetadeahorroService } from '../../../services/metadeahorro.service';
 import { ActivatedRoute, RouterLink,Router } from '@angular/router';
-import { NgIf } from '@angular/common';
+import { NgFor, NgIf,CommonModule } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
@@ -21,12 +21,15 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
+import { MatCalendar } from '@angular/material/datepicker';
+import {MatCardModule} from '@angular/material/card';
 
 @Component({
   selector: 'app-creaedita-metadeahorro',
   standalone: true,
   imports: [RouterLink,ReactiveFormsModule,NgIf,MatFormFieldModule,MatDatepickerModule,
-           MatNativeDateModule,MatRadioModule,MatSelectModule,MatButtonModule,MatInputModule],
+           MatNativeDateModule,MatRadioModule,MatSelectModule,MatButtonModule,
+           MatInputModule,NgFor,NgIf,MatCalendar,MatCardModule,CommonModule],
   templateUrl: './creaedita-metadeahorro.component.html',
   styleUrl: './creaedita-metadeahorro.component.css'
 })

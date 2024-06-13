@@ -1,0 +1,44 @@
+.title{
+    margin: 30px;
+}
+
+.titulo{
+    float: left;
+    margin-right: 45px;
+    width: 45%;
+}
+
+.descripcion{
+    float: left;
+    margin-right: 20px;
+    width: 45%;
+}
+
+.tipometa{
+    float: right;
+    margin-right: 100px;
+    width: 45%;
+}
+.montoobjetivo{
+    float: left;
+    margin-right: 45px;
+    width: 45%;
+}
+
+.fechalimite{
+    float: left;
+    margin-right: 45px;
+    width: 45%;
+}
+
+.usuario{
+    float: right;
+    margin-right: 100px;
+    width: 45%;
+}
+.h2{
+    float: left;
+    margin-right: 45px;
+    width: 45%;
+}
+
