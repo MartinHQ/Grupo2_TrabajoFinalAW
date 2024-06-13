@@ -17,7 +17,7 @@
   <button style="margin-left: 2px; margin-right: 2px;" mat-button [matMenuTriggerFor]="menuUsuario">Usuarios</button>
   <button style="margin-left: 2px; margin-right: 2px;" mat-button
     [matMenuTriggerFor]="menuTransaccion">Transaccion</button>
-    
+
   <!--Si es Cliente-->
   <button style="margin-left: 2px; margin-right: 2px;" mat-button [matMenuTriggerFor]="menuCuentaBancaria"
     *ngIf="isCliente()">Cuenta
@@ -25,6 +25,7 @@
 
     <button mat-button [matMenuTriggerFor]="menuSalir">Usuario</button>
 
+    <button style="margin-left: 2px; margin-right: 2px;" mat-button [matMenuTriggerFor]="menuMetadeAhorro">Meta de Ahorro</button>
 </mat-toolbar>
 
 <mat-menu #menuCat="matMenu">
@@ -59,6 +60,11 @@
   <button mat-menu-item routerLink="/cuentabancaria/nuevo">Registrar</button>
 </mat-menu>
 
+<mat-menu #menuMetadeAhorro="matMenu">
+  <button mat-menu-item routerLink="/metadeahorro">Listar</button>
+  <button mat-menu-item routerLink="/metadeahorro/nuevo">Registrar</button>
+ </mat-menu>
+
 <!--Login-->
 <mat-menu #menuSalir="matMenu">
   <button mat-menu-item routerLink="/login" (click)="cerrar()">
@@ -66,9 +72,12 @@
     <span>Cerrar sesión</span>
   </button>
   <button mat-menu-item>
-    Rol: 
+    Rol:
     <span>{{ role }}</span>
   </button>
 </mat-menu>
+
+
+
 
 <router-outlet></router-outlet>

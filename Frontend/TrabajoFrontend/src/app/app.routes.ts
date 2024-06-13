@@ -16,6 +16,8 @@ import { CreaeditarCuentabancariaComponent } from './components/cuentabancaria/c
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { segGuard } from './guard/security.guard';
+import { MetadeahorroComponent } from './components/metadeahorro/metadeahorro.component';
+import { CreaeditaMetadeahorroComponent } from './components/metadeahorro/creaedita-metadeahorro/creaedita-metadeahorro.component';
 
 export const routes: Routes = [
   {
@@ -152,4 +154,20 @@ export const routes: Routes = [
     canActivate: [segGuard],
   },
   //fin de Cuenta Bancaria
+  //Meta de Ahorros
+  {
+    path: 'metadeahorro',
+    component: MetadeahorroComponent,
+    children: [
+      {
+        path: 'nuevo',
+        component: CreaeditaMetadeahorroComponent,
+      },
+      {
+        path: 'ediciones/:id',
+        component: CreaeditaMetadeahorroComponent,
+      },
+    ],
+  },
+ //fin de Meta de Ahorros
 ];
