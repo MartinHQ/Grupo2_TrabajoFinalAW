@@ -32,6 +32,12 @@ public class TransaccionController {
         Transaccion transaccion = m.map(transaccionDTO, Transaccion.class);
         tS.insert(transaccion);
     }
+    @PutMapping
+    public void modificarTransaccion(@RequestBody TransaccionDTO transaccionDTO) {
+        ModelMapper m = new ModelMapper();
+        Transaccion transaccion = m.map(transaccionDTO, Transaccion.class);
+        tS.insert(transaccion);
+    }
 
     @PreAuthorize("hasAuthority('CLIENTE')")
     @GetMapping
@@ -40,6 +46,12 @@ public class TransaccionController {
             ModelMapper m = new ModelMapper();
             return m.map(y, TransaccionDTO.class);
         }).collect(Collectors.toList());
+    }
+    @GetMapping("/{id}")
+    public TransaccionDTO listarID(@PathVariable("id") Integer id) {
+        ModelMapper m = new ModelMapper();
+        TransaccionDTO dto = m.map(tS.listId(id), TransaccionDTO.class);
+        return dto;
     }
 
     @PreAuthorize("hasAuthority('CLIENTE')")

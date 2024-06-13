@@ -8,6 +8,7 @@ public interface IMetaDeAhorroService {
     public void insert(MetaDeAhorro metaDeAhorro);
     public List<MetaDeAhorro> list();
     public void delete(int id);
+    public MetaDeAhorro listarID(int id);
 
     List<String[]> listarpormetascumplidas();
 }

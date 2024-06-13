@@ -10,7 +10,7 @@ public class MetaDeAhorroDTO {
     private String descripcion;
     private int monto_objetivo;
     private LocalDate fecha_limite;
-    private Usuario usuario_id;
-    private TipoMeta categoria_meta_id;
     private boolean meta_cumplida;
+    private Usuario usuario_id;
+    private TipoMeta tipo_meta_id;
 }

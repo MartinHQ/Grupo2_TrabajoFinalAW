@@ -28,6 +28,12 @@ public class MetaDeAhorroController {
         MetaDeAhorro metaDeAhorro = model.map(metaDeAhorroDTO, MetaDeAhorro.class);
         mS.insert(metaDeAhorro);
     }
+    @PutMapping
+    public void modificarMetaDeAhorro(@RequestBody MetaDeAhorroDTO metaDeAhorroDTO) {
+        ModelMapper model = new ModelMapper();
+        MetaDeAhorro metaDeAhorro = model.map(metaDeAhorroDTO, MetaDeAhorro.class);
+        mS.insert(metaDeAhorro);
+    }
 
     @PreAuthorize("hasAuthority('CLIENTE')")
     @GetMapping
@@ -36,6 +42,12 @@ public class MetaDeAhorroController {
             ModelMapper m = new ModelMapper();
             return m.map(y, MetaDeAhorroDTO.class);
         }).collect(Collectors.toList());
+    }
+    @GetMapping("/{id}")
+    public MetaDeAhorroDTO listarbyId(@PathVariable("id") Integer id) {
+        ModelMapper m = new ModelMapper();
+        MetaDeAhorroDTO dto = m.map(mS.listarID(id),MetaDeAhorroDTO.class);
+        return dto;
     }
 
     @PreAuthorize("hasAuthority('CLIENTE')")

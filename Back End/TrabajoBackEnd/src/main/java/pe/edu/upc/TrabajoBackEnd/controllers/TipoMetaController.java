@@ -25,6 +25,12 @@ public class TipoMetaController {
         TipoMeta ct = m.map(tipoMetaDTO, TipoMeta.class);
         tmS.insert(ct);
     }
+    @PutMapping
+    public void modificarTipometa(@RequestBody TipoMetaDTO tipoMetaDTO){
+        ModelMapper m =new ModelMapper();
+        TipoMeta ct = m.map(tipoMetaDTO, TipoMeta.class);
+        tmS.insert(ct);
+    }
 
     @PreAuthorize("hasAuthority('CLIENTE')")
     @GetMapping
@@ -41,7 +47,6 @@ public class TipoMetaController {
         tmS.delete(id);
     }
 
-    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/{id}")
     public TipoMetaDTO listarId(@PathVariable("id") Integer id){
         ModelMapper m=new ModelMapper();
