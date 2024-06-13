@@ -1,15 +1,32 @@
-import { ApplicationConfig } from '@angular/core';
+import { ApplicationConfig, importProvidersFrom } from '@angular/core';
 import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { provideHttpClient, withFetch } from '@angular/common/http';
+import { provideHttpClient, withFetch, withInterceptorsFromDi } from '@angular/common/http';
+import { JwtModule } from '@auth0/angular-jwt';
+import { environment } from '../environments/environment';
+
+export function tokenGetter() {
+  return sessionStorage.getItem('token');
+}
+
+const base_url = environment.base
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
     provideAnimationsAsync(),
     //para que funcione el httpClient
-    provideHttpClient(withFetch()),
+    provideHttpClient(withFetch(), withInterceptorsFromDi()),
+    importProvidersFrom(
+      JwtModule.forRoot({
+        config: {
+          tokenGetter: tokenGetter,
+          allowedDomains: ["localhost:8084"],
+          disallowedRoutes: [`${base_url}/login/forget`],
+        },
+      }),
+    ),
   ],
 };
