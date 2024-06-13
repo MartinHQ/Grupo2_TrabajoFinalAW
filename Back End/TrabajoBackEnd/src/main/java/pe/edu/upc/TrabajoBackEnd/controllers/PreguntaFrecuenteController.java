@@ -48,7 +48,7 @@ public class    PreguntaFrecuenteController {
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")
-    @GetMapping("/buscarId/{id}")
+    @GetMapping("/{id}")
     public PreguntaFrecuenteDTO buscarPorId(@PathVariable("id") Integer id){
         ModelMapper m=new ModelMapper();
         return m.map(pfS.findById(id),PreguntaFrecuenteDTO.class);

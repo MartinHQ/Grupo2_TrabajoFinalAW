@@ -26,7 +26,7 @@ export class CuentabancariaService {
   }
   listarId(id: number) {
     //Revisar el url del listarId del backend
-    return this.http.get<CuentaBancaria>(`${this.url}/listarid/${id}`);
+    return this.http.get<CuentaBancaria>(`${this.url}/${id}`);
   }
   eliminar(id: number) {
     return this.http.delete(`${this.url}/${id}`);

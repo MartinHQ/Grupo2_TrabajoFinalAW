@@ -23,6 +23,12 @@ public class MetaDeAhorroServiceImplement implements IMetaDeAhorroService {
     public void delete(int id) {
         mR.deleteById(id);
     }
+
+    @Override
+    public MetaDeAhorro listarID(int id) {
+        return mR.findById(id).orElse(new MetaDeAhorro());
+    }
+
     @Override
     public List<String[]> listarpormetascumplidas(){ return mR.listarpormetascumplidas();}
 }

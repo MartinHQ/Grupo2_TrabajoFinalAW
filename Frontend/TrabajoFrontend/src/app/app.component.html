@@ -1,44 +1,74 @@
-<mat-toolbar color="primary">
-    <mat-icon>menu</mat-icon>
-    <button style="margin-left: 2px; margin-right: 2px;" mat-button [matMenuTriggerFor]="menuCat">Categorias</button>
-    <button style="margin-left: 2px; margin-right: 2px;" mat-button [matMenuTriggerFor]="menuConsejo">Consejos</button>
-    <button style="margin-left: 2px; margin-right: 2px;" mat-button [matMenuTriggerFor]="menuPF">Preguntas Frecuentes</button>
-    <button style="margin-left: 2px; margin-right: 2px;" mat-button [matMenuTriggerFor]="menuTipoMeta">Tipo Meta</button>
-    <button style="margin-left: 2px; margin-right: 2px;" mat-button [matMenuTriggerFor]="menuRol">Rol</button>
-    <button style="margin-left: 2px; margin-right: 2px;" mat-button [matMenuTriggerFor]="menuUsuario">Usuarios</button>
-    <button style="margin-left: 2px; margin-right: 2px;" mat-button [matMenuTriggerFor]="menuTransaccion">Transaccion</button>
-    <button style="margin-left: 2px; margin-right: 2px;" mat-button [matMenuTriggerFor]="menuCuentaBancaria">Cuenta Bancaria</button>
-  </mat-toolbar>
+<mat-toolbar color="primary" *ngIf="verificar()">
+  <button mat-button [routerLink]="['/homes']">
+    <mat-icon>home</mat-icon>Home
+  </button>
 
-  <mat-menu #menuCat="matMenu">
-    <button mat-menu-item routerLink="/categoriatranx">Listar</button>
-    <button mat-menu-item routerLink="/categoriatranx/nuevo">Registrar</button>
-  </mat-menu>
-  <mat-menu #menuConsejo="matMenu">
-    <button mat-menu-item routerLink="/consejos">Listar</button>
-    <button mat-menu-item routerLink="/consejos/registro">Registrar</button>
-   </mat-menu>
-   <mat-menu #menuPF="matMenu">
-    <button mat-menu-item routerLink="/preguntafrecuente">Listar</button>
-    <button mat-menu-item routerLink="/preguntafrecuente/nuevo">Registrar</button>
-   </mat-menu>
-   <mat-menu #menuTipoMeta="matMenu">
-    <button mat-menu-item routerLink="/tipometa">Listar</button>
-    <button mat-menu-item routerLink="/tipometa/nuevo">Registrar</button>
-   </mat-menu>
-   <mat-menu #menuRol="matMenu">
-    <button mat-menu-item routerLink="/rol">Listar</button>
-  </mat-menu>
-  <mat-menu #menuUsuario="matMenu">
-    <button mat-menu-item routerLink="/usuarios">Listar</button>
-    <!-- <button mat-menu-item routerLink="/usuarios/nuevo">Registrar</button> -->
-   </mat-menu>
-   <mat-menu #menuTransaccion="matMenu">
-    <button mat-menu-item routerLink="/transaccion">Listar</button>
-    <button mat-menu-item routerLink="/transaccion/nuevo">Registrar</button>
-   </mat-menu>
-   <mat-menu #menuCuentaBancaria="matMenu">
-    <button mat-menu-item routerLink="/cuentabancaria">Listar</button>
-    <button mat-menu-item routerLink="/cuentabancaria/nuevo">Registrar</button>
-   </mat-menu>
+  <mat-icon>menu</mat-icon>
+  <button style="margin-left: 2px; margin-right: 2px;" mat-button [matMenuTriggerFor]="menuCat">Categorias</button>
+  <button style="margin-left: 2px; margin-right: 2px;" mat-button [matMenuTriggerFor]="menuConsejo">Consejos</button>
+
+  <!--Si es Admin-->
+  <button style="margin-left: 2px; margin-right: 2px;" mat-button [matMenuTriggerFor]="menuPF"
+    *ngIf="isAdmin()">Preguntas
+    Frecuentes</button>
+
+  <button style="margin-left: 2px; margin-right: 2px;" mat-button [matMenuTriggerFor]="menuTipoMeta">Tipo Meta</button>
+  <button style="margin-left: 2px; margin-right: 2px;" mat-button [matMenuTriggerFor]="menuRol">Rol</button>
+  <button style="margin-left: 2px; margin-right: 2px;" mat-button [matMenuTriggerFor]="menuUsuario">Usuarios</button>
+  <button style="margin-left: 2px; margin-right: 2px;" mat-button
+    [matMenuTriggerFor]="menuTransaccion">Transaccion</button>
+    
+  <!--Si es Cliente-->
+  <button style="margin-left: 2px; margin-right: 2px;" mat-button [matMenuTriggerFor]="menuCuentaBancaria"
+    *ngIf="isCliente()">Cuenta
+    Bancaria</button>
+
+    <button mat-button [matMenuTriggerFor]="menuSalir">Usuario</button>
+
+</mat-toolbar>
+
+<mat-menu #menuCat="matMenu">
+  <button mat-menu-item routerLink="/categoriatranx">Listar</button>
+  <button mat-menu-item routerLink="/categoriatranx/nuevo">Registrar</button>
+</mat-menu>
+<mat-menu #menuConsejo="matMenu">
+  <button mat-menu-item routerLink="/consejos">Listar</button>
+  <button mat-menu-item routerLink="/consejos/registro">Registrar</button>
+</mat-menu>
+<mat-menu #menuPF="matMenu">
+  <button mat-menu-item routerLink="/preguntafrecuente">Listar</button>
+  <button mat-menu-item routerLink="/preguntafrecuente/nuevo">Registrar</button>
+</mat-menu>
+<mat-menu #menuTipoMeta="matMenu">
+  <button mat-menu-item routerLink="/tipometa">Listar</button>
+  <button mat-menu-item routerLink="/tipometa/nuevo">Registrar</button>
+</mat-menu>
+<mat-menu #menuRol="matMenu">
+  <button mat-menu-item routerLink="/rol">Listar</button>
+</mat-menu>
+<mat-menu #menuUsuario="matMenu">
+  <button mat-menu-item routerLink="/usuarios">Listar</button>
+  <!-- <button mat-menu-item routerLink="/usuarios/nuevo">Registrar</button> -->
+</mat-menu>
+<mat-menu #menuTransaccion="matMenu">
+  <button mat-menu-item routerLink="/transaccion">Listar</button>
+  <button mat-menu-item routerLink="/transaccion/nuevo">Registrar</button>
+</mat-menu>
+<mat-menu #menuCuentaBancaria="matMenu">
+  <button mat-menu-item routerLink="/cuentabancaria">Listar</button>
+  <button mat-menu-item routerLink="/cuentabancaria/nuevo">Registrar</button>
+</mat-menu>
+
+<!--Login-->
+<mat-menu #menuSalir="matMenu">
+  <button mat-menu-item routerLink="/login" (click)="cerrar()">
+    <mat-icon>logout</mat-icon>
+    <span>Cerrar sesión</span>
+  </button>
+  <button mat-menu-item>
+    Rol: 
+    <span>{{ role }}</span>
+  </button>
+</mat-menu>
+
 <router-outlet></router-outlet>
