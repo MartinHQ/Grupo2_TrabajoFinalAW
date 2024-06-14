@@ -23,7 +23,7 @@ export const routes: Routes = [
   {
     //ruta por defecto
     path: '',
-    redirectTo: 'login',
+    redirectTo: 'home',
     pathMatch: 'full',
   },
   {
@@ -33,9 +33,8 @@ export const routes: Routes = [
   },
   {
     //ruta para el home
-    path: 'homes',
+    path: 'home',
     component: HomeComponent,
-    canActivate: [segGuard],
   },
   //pregunta frecuente
   {

@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit{
     event.stopPropagation();
   }
 
-  
+
 
   login() {
     let request = new JwtRequest();
@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit{
     this.loginService.login(request).subscribe(
       (data: any) => {
         sessionStorage.setItem('token', data.jwttoken);
-        this.router.navigate(['homes']);
+        this.router.navigate(['home']);
       },
       (error) => {
         this.mensaje = 'Credenciales incorrectas!!!';
