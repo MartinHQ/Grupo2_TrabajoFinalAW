@@ -1,26 +1,34 @@
-<div class="container" style="text-align: center">
+<body>
+  <div class="container" style="text-align: center">
     <div>
       <img
         src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnQElZTFQ5KcSbxMyW711WVaRoWL8qNRgG5w&s"
         alt="Logo de la empresa"
       />
     </div>
+
     <h2>Inicie sesión</h2>
-    <mat-form-field class="example-full-width">
-      <mat-label>Usuario</mat-label>
-      <input matInput placeholder="Username" [(ngModel)]="username" />
-    </mat-form-field>
-    <br />
-    <mat-form-field class="example-full-width">
-      <mat-label>Password</mat-label>
-      <input
-        type="password"
-        matInput
-        placeholder="Password"
-        [(ngModel)]="password"
-      />
-    </mat-form-field>
-    <br />
-    <button mat-raised-button color="primary" (click)="login()">Ingresar</button>
+    <form (ngSubmit)="login()"> <!-- Añadir formulario -->
+      <mat-form-field class="example-full-width">
+        <mat-label>Usuario</mat-label>
+        <input matInput placeholder="Username" [(ngModel)]="username" name="username" />
+      </mat-form-field>
+      <br />
+      <mat-form-field class="example-full-width">
+        <mat-label>Password</mat-label>
+        <input
+          matInput
+          [type]="hide ? 'password' : 'text'"
+          placeholder="Password"
+          [(ngModel)]="password"
+          name="password"
+        />
+        <button mat-icon-button type="button" matSuffix (click)="clickEvent($event)" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+      </mat-form-field>
+      <br />
+      <button type="submit" class="login">Ingresar</button> <!-- Añadir type="submit" -->
+    </form>
   </div>
-  
+</body>

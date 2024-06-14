@@ -27,6 +27,6 @@ export const appConfig: ApplicationConfig = {
           disallowedRoutes: [`${base_url}/login/forget`],
         },
       }),
-    ),
+    ), provideAnimationsAsync(),
   ],
 };
