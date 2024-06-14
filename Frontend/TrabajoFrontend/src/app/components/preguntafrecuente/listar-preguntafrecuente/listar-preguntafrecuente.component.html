@@ -3,7 +3,7 @@
     <h1 class="title">Lista de Preguntas Frecuentes</h1>
   </div>
 
-  <mat-grid-list cols="2" rowHeight="2:1">
+  <mat-grid-list cols="3" rowHeight="3:1" >
     <mat-grid-tile *ngFor="let element of obs | async">
       <mat-card class="example-card" >
         <mat-card-header>
@@ -31,7 +31,7 @@
 
   <mat-paginator
     [pageSize]="4"
-    [pageSizeOptions]="[2, 4, 8]"
+    [pageSizeOptions]="[3, 6, 9]"
     aria-label="Select page"
   >
   </mat-paginator>
