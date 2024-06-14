@@ -11,6 +11,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Observable } from 'rxjs';
+
+import {MatGridListModule} from '@angular/material/grid-list';
+
 @Component({
   selector: 'app-listar-preguntafrecuente',
   standalone: true,
@@ -24,6 +27,7 @@ import { Observable } from 'rxjs';
     MatButtonModule,
     MatPaginator,
     MatPaginatorModule,
+    MatGridListModule,
   ],
   templateUrl: './listar-preguntafrecuente.component.html',
   styleUrl: './listar-preguntafrecuente.component.css',
