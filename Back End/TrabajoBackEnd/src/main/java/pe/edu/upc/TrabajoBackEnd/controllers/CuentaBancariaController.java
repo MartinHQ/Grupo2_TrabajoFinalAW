@@ -1,4 +1,5 @@
 package pe.edu.upc.TrabajoBackEnd.controllers;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,6 +26,8 @@ public class CuentaBancariaController {
         CuentaBancaria cuenta = m.map(cuentaBancariaDTO, CuentaBancaria.class);
         cS.insert(cuenta);
     }
+
+    @PreAuthorize("hasAuthority('CLIENTE')")
     @PutMapping
     public void modificarCuentaBancaria(@RequestBody CuentaBancariaDTO cuentaBancariaDTO) {
         ModelMapper m = new ModelMapper();
@@ -32,9 +35,10 @@ public class CuentaBancariaController {
         cS.insert(cuenta);
     }
 
+    @PreAuthorize("hasAuthority('CLIENTE') or hasAuthority('ADMIN')")
     @GetMapping
     public List<CuentaBancariaDTO> listarCuentaBancaria() {
-        return cS.list().stream().map(y->{
+        return cS.list().stream().map(y -> {
             ModelMapper m = new ModelMapper();
             return m.map(y, CuentaBancariaDTO.class);
         }).collect(Collectors.toList());
@@ -42,8 +46,11 @@ public class CuentaBancariaController {
 
     @PreAuthorize("hasAuthority('CLIENTE')")
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable("id") Integer id) { cS.delete(id); }
+    public void delete(@PathVariable("id") Integer id) {
+        cS.delete(id);
+    }
 
+    @PreAuthorize("hasAuthority('CLIENTE')")
     @GetMapping("/{id}")
     public ResponseEntity<CuentaBancariaDTO> listarCuentaBancariaPorId(@PathVariable("id") Integer id) {
         ModelMapper modelMapper = new ModelMapper();

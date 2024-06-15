@@ -34,7 +34,7 @@ public class CategoriatranxController {
         ctS.insert(ct);
     }
   
-    @PreAuthorize("hasAuthority('CLIENTE')")
+    @PreAuthorize("hasAuthority('CLIENTE') or hasAuthority('ADMIN')")
     @GetMapping
     public List<CategoriatranxDTO> listarCategoriatranx(){
         return ctS.list().stream().map(y->{
@@ -43,7 +43,7 @@ public class CategoriatranxController {
         }).collect(Collectors.toList());
     }
 
-    @PreAuthorize("hasAuthority('CLIENTE')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     @DeleteMapping("/{id}")
     public void delete(@PathVariable("id") Integer id){
         ctS.delete(id);

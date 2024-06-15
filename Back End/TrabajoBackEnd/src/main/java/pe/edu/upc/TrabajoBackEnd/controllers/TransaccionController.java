@@ -32,6 +32,8 @@ public class TransaccionController {
         Transaccion transaccion = m.map(transaccionDTO, Transaccion.class);
         tS.insert(transaccion);
     }
+
+    @PreAuthorize("hasAuthority('CLIENTE')")
     @PutMapping
     public void modificarTransaccion(@RequestBody TransaccionDTO transaccionDTO) {
         ModelMapper m = new ModelMapper();
@@ -39,7 +41,7 @@ public class TransaccionController {
         tS.insert(transaccion);
     }
 
-    @PreAuthorize("hasAuthority('CLIENTE')")
+    @PreAuthorize("hasAuthority('CLIENTE') or hasAuthority('ADMIN')")
     @GetMapping
     public List<TransaccionDTO> listarTransaccion() {
         return tS.list().stream().map(y->{
@@ -47,6 +49,8 @@ public class TransaccionController {
             return m.map(y, TransaccionDTO.class);
         }).collect(Collectors.toList());
     }
+
+    @PreAuthorize("hasAuthority('CLIENTE')")
     @GetMapping("/{id}")
     public TransaccionDTO listarID(@PathVariable("id") Integer id) {
         ModelMapper m = new ModelMapper();

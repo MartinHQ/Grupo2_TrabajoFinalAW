@@ -19,7 +19,7 @@ public class ConsejoController {
     @Autowired
     private IConsejoService cS;
 
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('CLIENTE') ")
     @PostMapping
     public void insertarConsejo(@RequestBody ConsejoDTO consejoDTO) {
         ModelMapper m =new ModelMapper();
@@ -34,7 +34,7 @@ public class ConsejoController {
         cS.insert(c);
     }
 
-    @PreAuthorize("hasAuthority('CLIENTE')")
+    @PreAuthorize("hasAuthority('CLIENTE') or hasAuthority('ADMIN') ")
     @GetMapping
     public List<ConsejoDTO> listarConsejos(){
         return cS.list().stream().map(y->{
@@ -49,7 +49,7 @@ public class ConsejoController {
         cS.delete(id);
     }
 
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('CLIENTE') ")
     @GetMapping("/{id}")
     public ConsejoDTO listarId(@PathVariable("id") Integer id){
         ModelMapper m=new ModelMapper();
