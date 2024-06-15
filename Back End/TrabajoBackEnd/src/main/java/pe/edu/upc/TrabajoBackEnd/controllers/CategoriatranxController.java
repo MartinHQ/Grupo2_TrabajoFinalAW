@@ -34,7 +34,7 @@ public class CategoriatranxController {
         ctS.insert(ct);
     }
   
-    @PreAuthorize("hasAuthority('CLIENTE')")
+    @PreAuthorize("hasAuthority('CLIENTE') or hasAuthority('ADMIN')")
     @GetMapping
     public List<CategoriatranxDTO> listarCategoriatranx(){
         return ctS.list().stream().map(y->{

@@ -25,7 +25,7 @@ public class TransaccionController {
     @Autowired
     private ITransaccionService tS;
 
-    @PreAuthorize("hasAuthority('CLIENTE')")
+    @PreAuthorize("hasAuthority('CLIENTE') or hasAuthority('ADMIN')")
     @PostMapping
     public void insertarTransaccion(@RequestBody TransaccionDTO transaccionDTO) {
         ModelMapper m = new ModelMapper();
@@ -39,7 +39,7 @@ public class TransaccionController {
         tS.insert(transaccion);
     }
 
-    @PreAuthorize("hasAuthority('CLIENTE')")
+    @PreAuthorize("hasAuthority('CLIENTE') or hasAuthority('ADMIN')")
     @GetMapping
     public List<TransaccionDTO> listarTransaccion() {
         return tS.list().stream().map(y->{
