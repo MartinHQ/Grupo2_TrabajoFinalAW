@@ -3,6 +3,6 @@
 ¿Está seguro que desea eliminar esta {{data.entityName}}?
 </mat-dialog-content>
 <mat-dialog-actions>
-  <button mat-button mat-dialog-close (click)="onNoClick()">Cancelar</button>
-  <button mat-button mat-dialog-close cdkFocusInitial [mat-dialog-close]="true">Eliminar</button>
+  <button class="cancel" mat-dialog-close (click)="onNoClick()">Cancelar</button>
+  <button class="delete" mat-dialog-close cdkFocusInitial [mat-dialog-close]="true">Eliminar</button>
 </mat-dialog-actions>
