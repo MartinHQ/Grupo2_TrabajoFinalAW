@@ -1,0 +1,90 @@
+/* Ajustes globales */
+body {
+  background-color: #f0f2f5;
+  font-family: 'Roboto', sans-serif;
+}
+
+.container {
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 1500px; 
+  background-color: #ffffff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+.title-container {
+  margin-bottom: 20px;
+}
+
+.title {
+  text-align: center;
+  font-size: 24px;
+  color: #333;
+}
+
+.full-width-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+mat-header-cell, mat-cell {
+  padding: 16px 24px; /* Aumenta el padding para hacer las celdas más grandes */
+}
+
+mat-header-cell {
+  background-color: #f5f5f5;
+  font-weight: bold;
+  text-align: center;
+}
+
+mat-cell {
+  text-align: center;
+}
+
+.action-cell {
+  display: flex;
+  justify-content: flex-end; /* Alinea los botones a la derecha */
+  align-items: center;
+  gap: 10px;
+}
+
+/* Botones */
+button {
+  width: 10%;
+  min-height: 30px;
+  border-radius: 5px;
+  font-size: 16px;
+  margin: 0 5px;
+}
+
+.mat-mdc-button.mat-warn {
+  background-color: #f32d2def !important;
+  color: #ffffff;
+  border: 1px solid #ddd;
+}
+
+.mat-mdc-button.mat-warn:hover {
+  background-color: #d31313dd !important;
+  color: #ffffff;
+}
+
+.mat-mdc-button.mat-primary {
+  background-color: #2925F3 !important;
+  color: #ffffff;
+  border: 1px solid #ddd;
+}
+
+.mat-mdc-button.mat-primary:hover {
+  background-color: #4643f5 !important;
+  color: #ffffff;
+}
+
+/* Ajustes del Paginador */
+mat-paginator {
+  margin-top: 20px;
+}
+
+.mat-paginator-page-size {
+  width: 50px;
+}

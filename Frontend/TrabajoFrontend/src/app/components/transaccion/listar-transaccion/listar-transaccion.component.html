@@ -1,75 +1,39 @@
 <div class="container">
-  <div class="title">Lista de Transacciones</div>
+  <div class="title">Mis transacciones</div>
 
-  <!-- Sección para los checkboxes de filtrado -->
-  <section class="example-section">
-    <mat-checkbox [(ngModel)]="showIngresos" (change)="applyFilter()" color="primary">
-      Ingreso
-    </mat-checkbox>
-    <mat-checkbox [(ngModel)]="showEgresos" (change)="applyFilter()" color="primary">
-      Egreso
-    </mat-checkbox>
-  </section>
+  <div class="card-container">
+    <div *ngFor="let element of obs | async" class="card-item">
+      <mat-card class="example-card">
+        <mat-card-header>
+          <div class="header-content">
+            <div>
+              <mat-card-title>{{ element.nombreTransaccion }}</mat-card-title>
+              <mat-card-subtitle>{{ element.fechaTransaccion | date }}</mat-card-subtitle>
+            </div>
+            <div class="amount">
+              <h1>{{ element.es_ingresoTransaccion ? '' : '-' }} S/{{ element.montoTransaccion }}</h1>
+            </div>
+          </div>
+        </mat-card-header>
+        <mat-card-content>
+          <mat-chip class = "categoria" title="Categoria">{{ element.categoria_id.nombre }}</mat-chip>
+        </mat-card-content>
+        <mat-card-actions class="actions-right">
+          <button mat-button color="primary" [routerLink]="['ediciones', element.idTransaccion]">
+            <mat-icon>edit</mat-icon>
 
-  <div class="mat-elevation-z8">
-    <!-- Tabla de transacciones -->
-    <table mat-table [dataSource]="dataSource" matSort>
-      <!-- Columnas de la tabla -->
-      <ng-container matColumnDef="nombreTransaccion">
-        <th mat-header-cell *matHeaderCellDef> Titulo </th>
-        <td mat-cell *matCellDef="let row"> {{ row.nombreTransaccion }} </td>
-      </ng-container>
-
-      <ng-container matColumnDef="montoTransaccion">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Monto </th>
-        <td mat-cell *matCellDef="let row"> {{ row.montoTransaccion }} </td>
-      </ng-container>
-
-      <ng-container matColumnDef="fechaTransaccion">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha </th>
-        <td mat-cell *matCellDef="let row"> {{ row.fechaTransaccion }} </td>
-      </ng-container>
-
-      <ng-container matColumnDef="es_ingresoTransaccion">
-        <th mat-header-cell *matHeaderCellDef> Tipo </th>
-        <td mat-cell *matCellDef="let row">
-          <ng-container *ngIf="row.es_ingresoTransaccion">Ingreso</ng-container>
-          <ng-container *ngIf="!row.es_ingresoTransaccion">Egreso</ng-container>
-        </td>
-      </ng-container>
-
-      <ng-container matColumnDef="es_manual">
-        <th mat-header-cell *matHeaderCellDef> Registro </th>
-        <td mat-cell *matCellDef="let row">
-          <ng-container *ngIf="row.es_manual">Manual</ng-container>
-          <ng-container *ngIf="!row.es_manual">Tarjeta</ng-container>
-        </td>
-      </ng-container>
-
-      <ng-container matColumnDef="categoria_id">
-        <th mat-header-cell *matHeaderCellDef> Categoria </th>
-        <td mat-cell *matCellDef="let row"> {{ row.categoria_id.nombre }} </td>
-      </ng-container>
-
-      <ng-container matColumnDef="accion01">
-        <th mat-header-cell *matHeaderCellDef> </th>
-        <td mat-cell *matCellDef="let row">
-          <button mat-button [routerLink]="['ediciones', row.idTransaccion]" title="Editar">
-            <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="edit"></mat-icon>
           </button>
-
-          <button mat-button (click)="openDialog(row.idTransaccion)" title="Borrar">
-            <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="delete"></mat-icon>
+          <button mat-button color="warn" (click)="openDialog(element.idTransaccion)">
+            <mat-icon>delete</mat-icon>
           </button>
-        </td>
-      </ng-container>
-
-      <!-- Filas de encabezado y cuerpo de la tabla -->
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-    </table>
-
-    <!-- Paginador -->
-    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+          <button mat-button color="accent" (click)="openDialog(element.idTransaccion)">
+            <mat-icon>visibility </mat-icon>
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
   </div>
+
+  <!-- Paginador -->
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
 </div>

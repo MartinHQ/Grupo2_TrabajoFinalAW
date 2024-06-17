@@ -26,6 +26,22 @@ export class LoginService {
     }
     const helper = new JwtHelperService();
     const decodedToken = helper.decodeToken(token);
+    console.log('Decoded Token:', decodedToken);
     return decodedToken?.role;
+  }
+
+  getCurrentUser() {
+    let token = sessionStorage.getItem('token');
+    if (!token) {
+      return null;
+    }
+    const helper = new JwtHelperService();
+    const decodedToken = helper.decodeToken(token);
+    console.log('Decoded Token:', decodedToken); // Log para ver el contenido del token decodificado
+    return {
+      email: decodedToken.sub,
+      role: decodedToken.role,
+      nombre: decodedToken.nombre
+    };
   }
 }

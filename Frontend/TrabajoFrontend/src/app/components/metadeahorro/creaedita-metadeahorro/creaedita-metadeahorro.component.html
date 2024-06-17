@@ -75,9 +75,9 @@
       </mat-error>
     </mat-radio-group><br>
 
-    <button mat-raised-button color="warn" *ngIf="edicion">Editar</button>
-    <button mat-raised-button color="warn" *ngIf="!edicion">Registrar</button>
-    <button mat-raised-button color="primary" routerLink="/metadeahorro">
+    <button class="primaryButton"  *ngIf="edicion">Editar</button>
+    <button class="primaryButton" *ngIf="!edicion">Registrar</button>
+    <button class="secondaryButton" routerLink="/metadeahorro">
       Cancelar
     </button>
   </form>
