@@ -1,0 +1,34 @@
+.example-container {
+    height: 100vh;
+  }
+
+  mat-sidenav {
+    color: white;
+    width: 250px;
+    background-color: #1B58D0;
+    display: flex;
+    flex-direction: column;
+  }
+  mat-sidenav button{
+    color: white;
+  }
+
+  .sidenav-content {
+    overflow: auto;
+  }
+
+  .sidenav-button {
+    width: 100%;
+    justify-content: flex-start;
+    text-align: left;
+    padding: 10px 16px;
+    box-sizing: border-box; /* Ensure padding doesn't affect width */
+  }
+
+  mat-toolbar {
+    background-color: #1B58D0;
+    color: white;
+  }
+  mat-toolbar button {
+    margin-right: 20px;
+  }

@@ -6,6 +6,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import { LoginService } from './services/login.service';
 import { NgIf } from '@angular/common';
+import {MatSidenavModule} from '@angular/material/sidenav';
 
 @Component({
   selector: 'app-root',
@@ -16,7 +17,9 @@ import { NgIf } from '@angular/common';
     MatMenuModule,
     MatButtonModule,
     RouterLink,
-    NgIf],
+    NgIf,
+    MatSidenavModule
+    ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
