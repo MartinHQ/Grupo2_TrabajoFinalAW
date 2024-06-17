@@ -24,6 +24,10 @@
         </mat-form-field>
         <br>
         <br>
-        <button mat-raised-button color="primary" [disabled]="!form.valid">Registrar</button>
+        <button mat-raised-button color="primary" [disabled]="!form.valid" *ngIf="edit">Editar</button>
+        <button class="primaryButton" *ngIf="!edit">Registrar</button>
+        <button class="secondaryButton" routerLink="/consejos">
+            Cancelar
+          </button>
     </form>
 </div>

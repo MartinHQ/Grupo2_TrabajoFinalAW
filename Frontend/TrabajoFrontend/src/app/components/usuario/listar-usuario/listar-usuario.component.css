@@ -1,0 +1,18 @@
+button {
+    width: 30%;
+    height: 40px;
+    border-radius: 5px;
+    font-size: 16px;
+    margin: 10px;
+  }
+  
+  .mat-mdc-button.mat-warn{
+    background-color: #f32d2def !important;
+    color: #ffffff;
+    border: 1px solid #ddd;
+  }
+  
+  .mat-mdc-button.mat-warn:hover{
+    background-color: #d31313dd !important;
+    color: #ffffff;
+  }

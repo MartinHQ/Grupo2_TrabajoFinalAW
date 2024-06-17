@@ -58,7 +58,7 @@
     <ng-container matColumnDef="accion02">
       <th mat-header-cell *matHeaderCellDef>Acciones</th>
       <td mat-cell *matCellDef="let element">
-      <button mat-button color="accent" (click)="eliminar(element.metadeahorro)">
+      <button mat-button color="accent" (click)="openDialog(element.metadeahorro)">
           <mat-icon>delete</mat-icon>
       </button>
       </td>

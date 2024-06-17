@@ -22,7 +22,6 @@ import { CategoriatranxService } from '../../../services/categoriatranx.service'
 import { Usuario } from '../../../models/Usuario';
 import { UsuarioService } from '../../../services/usuario.service';
 import {MatCardModule} from '@angular/material/card';
-import {provideNativeDateAdapter} from '@angular/material/core';
 import { MatCalendar } from '@angular/material/datepicker';
 
 @Component({
