@@ -23,6 +23,7 @@ import { Usuario } from '../../../models/Usuario';
 import { UsuarioService } from '../../../services/usuario.service';
 import {MatCardModule} from '@angular/material/card';
 import { MatCalendar } from '@angular/material/datepicker';
+import { LoginService } from '../../../services/login.service';
 
 @Component({
   selector: 'app-creareditar-transaccion',
@@ -55,6 +56,7 @@ export class CreareditarTransaccionComponent implements OnInit {
   listaUsuarios: Usuario[] = [];
   edicion: boolean = false;
   id: number = 0;
+  usuarioLogeado: Usuario | null = null;
 
   constructor(
     private ctS: CategoriatranxService,
@@ -62,10 +64,18 @@ export class CreareditarTransaccionComponent implements OnInit {
     private router: Router,
     private formbuilder: FormBuilder,
     private tS: TransaccionService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private lS : LoginService
   ) {}
 
   ngOnInit(): void {
+    const correoUsuario = this.lS.getCurrentUser();
+    if (correoUsuario) {
+      this.uS.findbyCorreo(correoUsuario).subscribe((usuario) => {
+        this.usuarioLogeado = usuario;
+      });
+    }
+
     this.route.params.subscribe((data: Params) => {
       this.id = data['id'];
       this.edicion = data['id'] !=null;
@@ -78,7 +88,7 @@ export class CreareditarTransaccionComponent implements OnInit {
       montoTransaccion: ['', [Validators.required, Validators.min(1)]],
       fechaTransaccion: ['', Validators.required],
       es_ingresoTransaccion: ['', Validators.required],
-      usuario_id: ['', Validators.required],
+      // usuario_id: ['', Validators.required],
       categoria_id: ['', Validators.required],
     });
 
@@ -98,7 +108,9 @@ export class CreareditarTransaccionComponent implements OnInit {
       this.transaccion.montoTransaccion = this.form.value.montoTransaccion;
       this.transaccion.fechaTransaccion = this.form.value.fechaTransaccion;
       this.transaccion.es_ingresoTransaccion = this.form.value.es_ingresoTransaccion === 'true';
-      this.transaccion.usuario_id.usuario_id = this.form.value.usuario_id; //de momento se registra el usuario manualmente hasta tener security...
+      if (this.usuarioLogeado) {
+        this.transaccion.usuario_id = this.usuarioLogeado;
+      }
       this.transaccion.categoria_id.idCategoriatranx = this.form.value.categoria_id;
       this.transaccion.es_manual = true; // de momento todas se guardan como true hasta que se valide por tarjeta...
 
@@ -129,7 +141,7 @@ export class CreareditarTransaccionComponent implements OnInit {
           montoTransaccion: data.montoTransaccion,
           fechaTransaccion: data.fechaTransaccion,
           es_ingresoTransaccion: data.es_ingresoTransaccion ? 'true' : 'false',
-          usuario_id: data.usuario_id.usuario_id,
+          // usuario_id: data.usuario_id.usuario_id,
           categoria_id: data.categoria_id.idCategoriatranx,
         });
       });

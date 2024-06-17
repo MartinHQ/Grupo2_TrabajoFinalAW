@@ -12,7 +12,6 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { FormsModule } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
-
 import { ConfirmDialogComponent } from '../../confirm-dialog/confirm-dialog.component';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatCardModule} from '@angular/material/card';
@@ -20,6 +19,7 @@ import {MatChipsModule} from '@angular/material/chips';
 import { Observable } from 'rxjs';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { MatButton } from '@angular/material/button';
+
 @Component({
   selector: 'app-listar-transaccion',
   standalone: true,
