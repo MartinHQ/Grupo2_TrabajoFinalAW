@@ -44,6 +44,6 @@ export class UsuarioService {
   }
 
   findbyCorreo(correo:string){
-    return this.http.get(`${this.url}/${id}`)
+    return this.http.get<Usuario>(`${this.url}/correo?correo=${correo}`);
   }
 }
