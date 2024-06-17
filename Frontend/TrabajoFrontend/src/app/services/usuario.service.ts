@@ -42,4 +42,8 @@ export class UsuarioService {
   eliminar(id: number){
     return this.http.delete(`${this.url}/${id}`)
   }
+
+  findbyCorreo(correo:string){
+    return this.http.get(`${this.url}/${id}`)
+  }
 }
