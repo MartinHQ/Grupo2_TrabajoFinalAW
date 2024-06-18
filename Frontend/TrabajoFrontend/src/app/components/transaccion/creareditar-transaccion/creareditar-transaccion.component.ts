@@ -88,7 +88,6 @@ export class CreareditarTransaccionComponent implements OnInit {
       montoTransaccion: ['', [Validators.required, Validators.min(1)]],
       fechaTransaccion: ['', Validators.required],
       es_ingresoTransaccion: ['', Validators.required],
-      // usuario_id: ['', Validators.required],
       categoria_id: ['', Validators.required],
     });
 
@@ -116,16 +115,26 @@ export class CreareditarTransaccionComponent implements OnInit {
 
       if (this.edicion) {
         this.tS.update(this.transaccion).subscribe(() => {
-          this.tS.listar().subscribe((data) => {
-            this.tS.setListaCambio(data);
-          });
+          if(this.usuarioLogeado)
+            {
+              this.tS.listarPorUsuarioOrdenadas(this.usuarioLogeado.usuario_id).subscribe((data) => {
+                this.tS.setListaCambio(data);
+              });
+            }
+          
         });
       } else {
         this.tS.registrar(this.transaccion).subscribe((data) => {
-          this.tS.listar().subscribe((data) => {
-            this.tS.setListaCambio(data);
-          });
+        if(this.usuarioLogeado)
+          {
+            
+              this.tS.listarPorUsuarioOrdenadas(this.usuarioLogeado.usuario_id).subscribe((data) => {
+                this.tS.setListaCambio(data);
+              });
+            
+          }
         });
+        
       }
 
       this.router.navigate(['transaccion']);

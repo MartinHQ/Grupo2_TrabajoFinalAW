@@ -3,6 +3,7 @@ import { Transaccion } from '../models/Transaccion';
 import { environment } from '../../environments/environment';
 import { Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 
 const base_url = environment.base;
@@ -43,6 +44,18 @@ export class TransaccionService {
 
   delete(id:number){
     return this.http.delete(`${this.url}/${id}`)
+  }
+
+  listarPorUsuarioOrdenadas(usuarioId: number): Observable<Transaccion[]> {
+    return this.http.get<Transaccion[]>(`${this.url}/usuario/${usuarioId}`);
+  }
+
+  getListaCambioPorUsuario(){
+    return this.listaCambio.asObservable();
+  }
+
+  setListaCambioPorUsuario(listanueva:Transaccion[]){
+    this.listaCambio.next(listanueva);
   }
 
 
