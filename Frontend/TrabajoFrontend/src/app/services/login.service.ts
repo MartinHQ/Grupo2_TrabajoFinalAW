@@ -46,7 +46,7 @@ export class LoginService {
     const decodedToken = helper.decodeToken(token);
     const correoUsuario = decodedToken.sub;
 
-    this.uS.findbyCorreo(correoUsuario).subscribe((data: any) => {
+    this.uS.findbyCorreo(correoUsuario).subscribe((data) => {
       this.usuarioLogeado = data;
     });
 

@@ -1,1 +1,110 @@
-<p>home works!</p>
+<div class="container">
+    <div class="tittle">
+        <h1>Bienvenido {{ usuarioLogeado!.nombre }}!</h1>
+    </div>
+
+  <!-- Mostrar metas si existe mas de una meta -->
+  <div class="card-container" *ngIf="">
+    <mat-card class="chart-card" appearance="outlined">
+      <mat-card-header>
+        <div class="header-contet">
+            <mat-card-title> Mis metas de ahorro</mat-card-title>
+            <mat-card-subtitle>Subtitulo provicional</mat-card-subtitle>    
+        </div>
+        </mat-card-header>
+        
+      <mat-card-content>
+        <div class="chart-content">
+            Aqui van los charts 
+        </div> 
+        </mat-card-content>
+      <mat-card-actions class="actions">
+        <button mat-button color = "primary" routerLink="/metadeahorro">
+          Ver mis metas de ahorro
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+
+  <!-- Mostrar boton crear meta si el usuario no tiene metas de ahorro -->
+  <div class="card-container" *ngIf="true">
+    <mat-card class="first-card" appearance="outlined">
+      <mat-card-header>
+        <div class="header-contet">
+            <mat-card-title> Mis metas de ahorro</mat-card-title>
+            <mat-card-subtitle>No tienes metas de ahorro registradas</mat-card-subtitle>    
+        </div>
+        </mat-card-header>
+        
+      <mat-card-content>
+        <div class="text-content">
+            <p>Crea una meta de ahorro para comenzar a economizar!</p> 
+        </div> 
+        </mat-card-content>
+      <mat-card-actions class="actions">
+        <button mat-button color = "primary" routerLink="/metadeahorro/nuevo">
+          Registra una meta de ahorro
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+  
+
+  <!-- Mostrar presupuestos si existe mas de un presupuesto -->
+
+  <div class="card-container" *ngIf="">
+    <mat-card class="chart-card" appearance="outlined">
+      <mat-card-header>
+        <div class="header-contet">
+            <mat-card-title> Mis presupuestos</mat-card-title>
+            <mat-card-subtitle>Subtitulo provicional</mat-card-subtitle>    
+        </div>
+        </mat-card-header>
+        
+      <mat-card-content>
+        <div class="chart-content">
+            Aqui van los charts 
+        </div> 
+        </mat-card-content>
+      <mat-card-actions class="actions">
+        <button mat-button color = "primary" routerLink="/transaccion">
+          Ver mis transacciones
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+
+  <!-- Mostrar boton crear presupuesto si el usuario no tiene presupuestos -->
+ 
+
+
+  <div class="card-container" *ngIf="true">
+    <mat-card class="first-card" appearance="outlined">
+      <mat-card-header>
+        <div class="header-contet">
+            <mat-card-title> Mis presupuestos</mat-card-title>
+            <mat-card-subtitle>No tienes ninguna transaccion registrada</mat-card-subtitle>    
+        </div>
+        </mat-card-header>
+        
+      <mat-card-content>
+        <div class="text-content">
+            <p>
+                Registra tus ingresos o egresos y crearemos un presupuesto mensual
+                para ti
+            </p> 
+        </div> 
+        </mat-card-content>
+      <mat-card-actions class="actions">
+        <button mat-button color = "primary" routerLink="/transaccion/nuevo">
+            Registra una transaccion
+        </button>
+      </mat-card-actions>
+    </mat-card>
+
+
+    
+
+    
+  </div>
+</div>

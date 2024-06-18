@@ -81,4 +81,18 @@ public interface ITransaccionRepository extends JpaRepository<Transaccion, Integ
                     "c.nombre,\n" +
                     "EXTRACT(MONTH FROM t.fecha_transaccion);", nativeQuery = true)
     public List<String[]>promedioegresosporcategoria(@Param("mes") int mes);
+
+
+    @Query(value = "SELECT\n" +
+            "TO_CHAR(t.fecha_transaccion, 'FMMonth') as mes,\n" +
+            "AVG(CASE WHEN NOT t.es_ingreso_transaccion THEN t.monto_transaccion ELSE 0 END) AS promedio_egresos,\n" +
+            "AVG(CASE WHEN t.es_ingreso_transaccion THEN t.monto_transaccion ELSE 0 END) AS promedio_ingresos\n" +
+            "FROM\n" +
+            "transaccion t\n" +
+            "WHERE\n" +
+            "usuario_id = :usuarioId\n" +
+            "GROUP BY TO_CHAR(t.fecha_transaccion, 'FMMonth'), EXTRACT(YEAR FROM t.fecha_transaccion), EXTRACT(MONTH FROM t.fecha_transaccion)\n" +
+            "ORDER BY EXTRACT(YEAR FROM t.fecha_transaccion), EXTRACT(MONTH FROM t.fecha_transaccion)", nativeQuery = true)
+    public List<String[]> promedioingresoegresopormes(@Param("usuarioId")int usuarioId);
+
 }

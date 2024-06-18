@@ -1,0 +1,52 @@
+.container {
+  margin: 30px;
+}
+
+.title {
+  font-size: 30px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.card-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-item {
+  width: 50%;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+h1 {
+  
+    font-size: 30px;
+    margin-top: 20px;
+  }
+
+
+
+  .mat-mdc-button.mat-primary{
+    background-color: #fff !important;
+    color: #2925F3;
+    border: 1px solid #ddd;
+  }
+
+  .mat-mdc-button.mat-primary:hover{
+    background-color: #8b8aec !important;
+    color: #ffffff;
+  }
+
+
+
+.PreguntasFrecuentes {
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+}
