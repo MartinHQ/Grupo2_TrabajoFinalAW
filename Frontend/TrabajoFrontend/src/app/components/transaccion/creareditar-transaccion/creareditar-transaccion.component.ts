@@ -150,7 +150,6 @@ export class CreareditarTransaccionComponent implements OnInit {
           montoTransaccion: data.montoTransaccion,
           fechaTransaccion: data.fechaTransaccion,
           es_ingresoTransaccion: data.es_ingresoTransaccion ? 'true' : 'false',
-          // usuario_id: data.usuario_id.usuario_id,
           categoria_id: data.categoria_id.idCategoriatranx,
         });
       });
