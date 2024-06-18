@@ -69,19 +69,13 @@ export class CreareditarTransaccionComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const correoUsuario = this.lS.getCurrentUser();
-    if (correoUsuario) {
-      this.uS.findbyCorreo(correoUsuario).subscribe((usuario) => {
-        this.usuarioLogeado = usuario;
-      });
-    }
-
+   
     this.route.params.subscribe((data: Params) => {
       this.id = data['id'];
-      this.edicion = data['id'] !=null;
+      this.edicion = data['id'] != null;
       this.Init();
     });
-
+  
     this.form = this.formbuilder.group({
       idTransaccion: [''],
       nombreTransaccion: ['', Validators.required],
@@ -90,17 +84,19 @@ export class CreareditarTransaccionComponent implements OnInit {
       es_ingresoTransaccion: ['', Validators.required],
       categoria_id: ['', Validators.required],
     });
-
+  
     this.ctS.listar().subscribe((data) => {
       this.listaCategorias = data;
     });
-
+  
     this.uS.list().subscribe((data) => {
       this.listaUsuarios = data;
     });
   }
 
   aceptar(): void {
+    this.usuarioLogeado = this.lS.getCurrentUser()!;
+    
     if (this.form.valid) {
       this.transaccion.idTransaccion = this.form.value.idTransaccion;
       this.transaccion.nombreTransaccion = this.form.value.nombreTransaccion;

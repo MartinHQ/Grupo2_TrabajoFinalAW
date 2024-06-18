@@ -20,7 +20,6 @@ import { Observable } from 'rxjs';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatButton } from '@angular/material/button';
 import { LoginService } from '../../../services/login.service';
-import { UsuarioService } from '../../../services/usuario.service';
 import { Usuario } from '../../../models/Usuario';
 
 @Component({
@@ -70,7 +69,6 @@ export class ListarTransaccionComponent implements OnInit {
     private snackBar: MatSnackBar,
     private dialog: MatDialog,
     private lS: LoginService,
-    private uS: UsuarioService
   ) {}
 
   mensaje: string = '';
@@ -88,39 +86,30 @@ export class ListarTransaccionComponent implements OnInit {
   }
 
   ngOnInit() {
-    const correoUsuario = this.lS.getCurrentUser();
-    if (correoUsuario) {
-      this.uS.findbyCorreo(correoUsuario).subscribe(usuario => {
-        this.usuarioLogeado = usuario;
-        if (this.usuarioLogeado && this.usuarioLogeado.usuario_id) {
-          this.tS.listarPorUsuarioOrdenadas(this.usuarioLogeado.usuario_id).subscribe(data => {
-            this.dataSource.data = data;
-            this.dataSource.paginator = this.paginator;
-            this.obs = this.dataSource.connect();
-          });
+    this.usuarioLogeado = this.lS.getCurrentUser()!;
+    if (this.usuarioLogeado && this.usuarioLogeado.usuario_id) {
+      this.tS.listarPorUsuarioOrdenadas(this.usuarioLogeado.usuario_id).subscribe(data => {
+        this.dataSource.data = data;
+        this.dataSource.paginator = this.paginator;
+        this.obs = this.dataSource.connect();
+      });
   
-          this.tS.getListaCambio().subscribe(data => {
-            this.dataSource.data = data;
-            this.dataSource.paginator = this.paginator;
-            this.obs = this.dataSource.connect();
-          });
-        }
+      this.tS.getListaCambio().subscribe(data => {
+        this.dataSource.data = data;
+        this.dataSource.paginator = this.paginator;
+        this.obs = this.dataSource.connect();
       });
     }
   }
-
+  
   deleteTransaccion(id: number) {
     this.tS.delete(id).subscribe(() => {
-      const correoUsuario = this.lS.getCurrentUser();
-      if (correoUsuario) {
-        this.uS.findbyCorreo(correoUsuario).subscribe((usuario) => {
-          if (usuario) {
-            this.tS.listarPorUsuarioOrdenadas(usuario.usuario_id).subscribe((data) => {
-              this.tS.setListaCambio(data);
-              this.mensaje = 'Transacción eliminada correctamente';
-              this.snackBar.open(this.mensaje, 'Cerrar', { duration: 2000 });
-            });
-          }
+      this.usuarioLogeado = this.lS.getCurrentUser()!;
+      if (this.usuarioLogeado && this.usuarioLogeado.usuario_id) {
+        this.tS.listarPorUsuarioOrdenadas(this.usuarioLogeado.usuario_id).subscribe((data) => {
+          this.tS.setListaCambio(data);
+          this.mensaje = 'Transacción eliminada correctamente';
+          this.snackBar.open(this.mensaje, 'Cerrar', { duration: 2000 });
         });
       }
     });
