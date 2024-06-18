@@ -24,4 +24,8 @@ public class UsuarioServiceImplement implements IUsuarioService {
     public void delete(int id) {
         uR.deleteById(id);
     }
+
+    @Override
+    public Usuario findByCorreo(String correo){return uR.findByCorreo(correo);}
+    
 }

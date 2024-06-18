@@ -60,19 +60,6 @@
       </mat-error>
     </mat-form-field>
 
-    
-
-    <mat-form-field class="usuariotranx">
-      <mat-label>Usuario:</mat-label>
-      <mat-select formControlName="usuario_id">
-        <mat-option *ngFor="let u of listaUsuarios" [value]="u.usuario_id">
-          {{u.nombre}} {{u.apellido}}
-        </mat-option>
-      </mat-select>
-      <mat-error *ngIf="form.get('usuario_id')?.hasError('required')">
-        El usuario es obligatorio.
-      </mat-error>
-    </mat-form-field>
     <br />
 
     <mat-radio-group formControlName="es_ingresoTransaccion" class="es_ingresoTransaccion">

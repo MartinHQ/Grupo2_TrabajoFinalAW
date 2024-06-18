@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
+
 import pe.edu.upc.TrabajoBackEnd.dtos.UsuarioDTO;
 import pe.edu.upc.TrabajoBackEnd.entities.Rol;
 import pe.edu.upc.TrabajoBackEnd.entities.Usuario;
@@ -38,6 +39,12 @@ public class UsuarioController {
             ModelMapper model = new ModelMapper();
             return model.map(y, UsuarioDTO.class);
         }).collect(Collectors.toList());
+    }
+
+    @GetMapping("/correo")
+    public Usuario findByCorreo(@RequestParam String correo){
+        return uS.findByCorreo(correo);
+
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")
