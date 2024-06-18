@@ -20,13 +20,13 @@ public class UsuarioController {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    @PostMapping("/registrar-cliente")
+    @PostMapping("/registrar-usuario")
     public void insertarUsuario(@RequestBody UsuarioDTO usuarioDTO) {
         ModelMapper m = new ModelMapper();
         Usuario usuario = m.map(usuarioDTO, Usuario.class);
 
-        Rol rol = new Rol(2, "CLIENTE");
-        usuario.setRol_id(rol);
+        //Rol rol = new Rol(2, "CLIENTE");
+        //usuario.setRol_id(rol);
 
         String encodedPassword = passwordEncoder.encode(usuario.getContrasenia());
         usuario.setContrasenia(encodedPassword);
