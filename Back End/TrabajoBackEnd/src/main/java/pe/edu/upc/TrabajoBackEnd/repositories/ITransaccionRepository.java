@@ -4,12 +4,16 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import pe.edu.upc.TrabajoBackEnd.entities.Transaccion;
+import pe.edu.upc.TrabajoBackEnd.entities.Usuario;
 
 import java.time.LocalDate;
 import java.util.List;
 
 @Repository
 public interface ITransaccionRepository extends JpaRepository<Transaccion, Integer> {
+
+
+
     @Query(value = "SELECT t.usuario_id, CONCAT(u.nombre, ' ', u.apellido) AS Nombre,\n" +
             "SUM(CASE WHEN t.es_ingreso_transaccion THEN t.monto_transaccion ELSE -t.monto_transaccion END) AS saldo_total\n" +
             "FROM transaccion t INNER JOIN usuario u ON t.usuario_id = u.usuario_id \n" +
@@ -32,7 +36,7 @@ public interface ITransaccionRepository extends JpaRepository<Transaccion, Integ
             "AND fecha BETWEEN :fechaInicio AND :fechaFin AND es_ingreso = TRUE", nativeQuery = true)
     Double encontrarPromedioIngresosPorUsuarioYRangoFechas(@Param("usuarioId") int usuarioId, @Param("fechaInicio") LocalDate fechaInicio, @Param("fechaFin") LocalDate fechaFin);
 
-    @Query(value = "SELECT * FROM Transaccion WHERE usuario_id = :usuarioId ORDER BY fecha ASC", nativeQuery = true)
+    @Query(value = "SELECT * FROM Transaccion WHERE usuario_id = :usuarioId ORDER BY fecha_transaccion DESC", nativeQuery = true)
     List<Transaccion> encontrarTodasPorUsuarioIdOrdenadoPorFechaAsc(@Param("usuarioId") int usuarioId);
 
     @Query (value = "SELECT u.nombre, AVG(t.monto_transaccion) AS Promedio \n" +

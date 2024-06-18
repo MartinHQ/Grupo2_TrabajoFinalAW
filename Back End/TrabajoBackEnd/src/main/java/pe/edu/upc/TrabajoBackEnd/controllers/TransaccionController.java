@@ -104,6 +104,7 @@ public class TransaccionController {
         return tS.obtenerPromedioIngresosPorUsuarioYRangoFechas(usuarioId, fechaInicio, fechaFin);
     }
 
+    @PreAuthorize("hasAuthority('CLIENTE')")
     @GetMapping("/usuario/{usuarioId}")
     public List<TransaccionDTO> obtenerTransacciones(@PathVariable("usuarioId") int usuarioId) {
         List<Transaccion> transacciones = tS.obtenerTransaccionesPorUsuarioOrdenadas(usuarioId);
@@ -113,7 +114,7 @@ public class TransaccionController {
                 .collect(Collectors.toList());
     }
 
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAuthority('CLIENTE')")
     @GetMapping("/promediotransaccion")
     public List<PromedioTransaccionDTO> promedioTransaccion(@RequestParam LocalDate date1,
                                                             @RequestParam LocalDate date2) {
