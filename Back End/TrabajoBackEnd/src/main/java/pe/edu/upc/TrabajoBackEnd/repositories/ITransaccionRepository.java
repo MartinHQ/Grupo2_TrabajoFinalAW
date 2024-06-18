@@ -4,7 +4,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import pe.edu.upc.TrabajoBackEnd.entities.Transaccion;
-import pe.edu.upc.TrabajoBackEnd.entities.Usuario;
+
 
 import java.time.LocalDate;
 import java.util.List;
