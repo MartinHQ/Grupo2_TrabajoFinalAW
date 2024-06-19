@@ -4,6 +4,7 @@ import { LoginService } from '../../../services/login.service';
 import { Usuario } from '../../../models/Usuario';
 import { TransaccionService } from '../../../services/transaccion.service';
 import { BaseChartDirective } from 'ng2-charts';
+import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-reporte01',
@@ -16,7 +17,7 @@ export class Reporte01Component implements OnInit {
   usuariologeado: Usuario = new Usuario();
 
   barChartOptions: ChartOptions = {
-    responsive: false,
+    responsive: true,
   };
 
   barChartLabels: string[] = [];
@@ -30,7 +31,7 @@ export class Reporte01Component implements OnInit {
   barChartLegend = true;
   barChartData: ChartDataset[] = [];
 
-  constructor(private tS: TransaccionService, private lS: LoginService) {}
+  constructor(private tS: TransaccionService, private lS: LoginService, private cdr: ChangeDetectorRef) {}
   ngOnInit(): void {
     this.usuariologeado = this.lS.getCurrentUser()!;
     this.tS.getIngresosEgresosPorMes(this.usuariologeado.usuario_id).subscribe((data) => {
@@ -40,16 +41,18 @@ export class Reporte01Component implements OnInit {
         {
           data: data.map((item) => item.promedio_egresos),
           label: 'promedio_egresos',
-          backgroundColor: ['#0094d3', '#4169c7'],
+          backgroundColor: ['#F32525'],
           borderWidth: 1,
         },
         {
           data: data.map((item) => item.promedio_ingresos),
           label: 'promedio_ingresos',
-          backgroundColor: ['#f39c12', '#e74c3c'],
+          backgroundColor: ['#2925F3'],
           borderWidth: 1,
         },
       ];
+      this.cdr.detectChanges(); // Forzar la detección de cambios
     });
+    
   }
 }

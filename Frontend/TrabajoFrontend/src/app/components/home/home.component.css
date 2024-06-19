@@ -11,6 +11,11 @@
 .card-container {
   display: flex;
   flex-direction: column;
+  margin-bottom: 20px; /* Espacio entre las tarjetas */
+}
+
+mat-card {
+  margin-bottom: 20px; /* Espacio entre las tarjetas */
 }
 
 .card-item {
@@ -18,35 +23,62 @@
 }
 
 .header-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
+  display: flex;
+  flex-direction: column; /* Asegura que el título y el subtítulo estén uno debajo del otro */
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.chart-container {
+  display: flex;
+  flex-direction: row; /* Asegura que el gráfico y el botón estén en la misma fila */
+  align-items: center; /* Alinea el gráfico y el botón verticalmente en el centro */
+  justify-content: space-between; /* Espacia el gráfico y el botón uniformemente */
+}
+
+.chart-content {
+  flex: 1; /* Ocupa todo el espacio disponible */
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  margin-left: 20px; /* Margen a la izquierda del gráfico */
 }
 
 h1 {
-  
-    font-size: 30px;
-    margin-top: 20px;
-  }
+  font-size: 30px;
+  margin-top: 20px;
+}
 
+.mat-mdc-button.mat-primary {
+  background-color: #2925F3 !important;
+  color: #fff;
+  border: 1px solid #ddd;
+  padding: 12px 24px; /* Aumenta el tamaño del botón */
+  font-size: 16px; /* Aumenta el tamaño de la fuente */
+}
 
-
-  .mat-mdc-button.mat-primary{
-    background-color: #fff !important;
-    color: #2925F3;
-    border: 1px solid #ddd;
-  }
-
-  .mat-mdc-button.mat-primary:hover{
-    background-color: #8b8aec !important;
-    color: #ffffff;
-  }
-
-
+.mat-mdc-button.mat-primary:hover {
+  background-color: #6B69F9 !important;
+  color: #ffffff;
+}
 
 .PreguntasFrecuentes {
   width: 100%;
   height: auto;
   overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  .chart-container {
+    flex-direction: column; /* Cambia a disposición en columna en pantallas pequeñas */
+    align-items: flex-start;
+  }
+
+  .actions {
+    margin-left: 0;
+    margin-top: 10px; /* Añade margen superior en pantallas pequeñas */
+  }
 }

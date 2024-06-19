@@ -37,10 +37,10 @@ export class LoginService {
     return decodedToken?.role;
   }
 
-  getCurrentUser() {
+  getCurrentUser() : Usuario {
     let token = sessionStorage.getItem('token');
     if (!token) {
-      return null;
+      return this.usuarioLogeado;
     }
     const helper = new JwtHelperService();
     const decodedToken = helper.decodeToken(token);
