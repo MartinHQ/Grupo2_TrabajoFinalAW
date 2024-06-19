@@ -93,6 +93,6 @@ public interface ITransaccionRepository extends JpaRepository<Transaccion, Integ
             "usuario_id = :usuarioId\n" +
             "GROUP BY TO_CHAR(t.fecha_transaccion, 'FMMonth'), EXTRACT(YEAR FROM t.fecha_transaccion), EXTRACT(MONTH FROM t.fecha_transaccion)\n" +
             "ORDER BY EXTRACT(YEAR FROM t.fecha_transaccion), EXTRACT(MONTH FROM t.fecha_transaccion)", nativeQuery = true)
-    public List<String[]> promedioingresoegresopormes(@Param("usuarioId")int usuarioId);
+    public List<String[]> promedioingresoegresopormes(@Param("usuarioId") int usuarioId);
 
 }

@@ -8,6 +8,7 @@ import { ListarPreguntafrecuenteComponent } from '../preguntafrecuente/listar-pr
 import { RouterOutlet, ActivatedRoute } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { Reporte01Component } from '../reportes/reporte01/reporte01.component';
 
 @Component({
   selector: 'app-home',
@@ -19,6 +20,7 @@ import { MatCardModule } from '@angular/material/card';
     RouterLink,
     MatCardModule,
     MatButtonModule,
+    Reporte01Component
   ],
   standalone: true,
   templateUrl: './home.component.html',

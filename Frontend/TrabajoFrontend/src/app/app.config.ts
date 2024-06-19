@@ -6,6 +6,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { provideHttpClient, withFetch, withInterceptorsFromDi } from '@angular/common/http';
 import { JwtModule } from '@auth0/angular-jwt';
 import { environment } from '../environments/environment';
+import { provideCharts, withDefaultRegisterables } from 'ng2-charts';
 
 export function tokenGetter() {
   return sessionStorage.getItem('token');
@@ -19,6 +20,7 @@ export const appConfig: ApplicationConfig = {
     provideAnimationsAsync(),
     //para que funcione el httpClient
     provideHttpClient(withFetch(), withInterceptorsFromDi()),
+    provideCharts(withDefaultRegisterables()),
     importProvidersFrom(
       JwtModule.forRoot({
         config: {

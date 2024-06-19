@@ -1,3 +1,4 @@
+<router-outlet></router-outlet>
 <div class="container">
     <div class="tittle">
         <h1>Bienvenido {{ usuarioLogeado!.nombre }}!</h1>
@@ -52,7 +53,7 @@
 
   <!-- Mostrar presupuestos si existe mas de un presupuesto -->
 
-  <div class="card-container" *ngIf="">
+  <div class="card-container" *ngIf="true">
     <mat-card class="chart-card" appearance="outlined">
       <mat-card-header>
         <div class="header-contet">
@@ -63,7 +64,7 @@
         
       <mat-card-content>
         <div class="chart-content">
-            Aqui van los charts 
+          
         </div> 
         </mat-card-content>
       <mat-card-actions class="actions">
@@ -102,8 +103,10 @@
       </mat-card-actions>
     </mat-card>
 
+    <app-reporte01></app-reporte01>
 
-    
+
+
 
     
   </div>
