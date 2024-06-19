@@ -37,7 +37,7 @@ export class LoginService {
     return decodedToken?.role;
   }
 
-  getCurrentUser(): Usuario {
+  getCurrentUser() {
     let token = sessionStorage.getItem('token');
     if (!token) {
       return this.usuarioLogeado;
@@ -46,7 +46,7 @@ export class LoginService {
     const decodedToken = helper.decodeToken(token);
     const correoUsuario = decodedToken.sub;
 
-    this.uS.findbyCorreo(correoUsuario).subscribe((data: any) => {
+    this.uS.findbyCorreo(correoUsuario).subscribe((data) => {
       this.usuarioLogeado = data;
     });
 

@@ -53,4 +53,7 @@ public class TransaccionServiceImplement implements ITransaccionService {
     {
         return tR.promedioegresosporcategoria(mes);
     }
+
+    @Override
+    public List<String[]> promedioingresoegresopormes(int usuarioId) {return tR.promedioingresoegresopormes(usuarioId);}
 }

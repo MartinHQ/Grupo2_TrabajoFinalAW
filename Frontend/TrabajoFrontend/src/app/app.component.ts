@@ -31,6 +31,7 @@ export class AppComponent {
 
   cerrar() {
     sessionStorage.clear();
+    sessionStorage.removeItem('token');
   }
   verificar() {
     this.role = this.loginService.showRole();

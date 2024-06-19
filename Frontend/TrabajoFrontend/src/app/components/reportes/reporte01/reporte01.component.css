@@ -1,0 +1,13 @@
+.chart-container {
+  width: 900px; /* Ajusta este valor según sea necesario */
+  margin: 0; /* Elimina margen adicional */
+  padding: 0; /* Elimina padding adicional */
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+}
+
+canvas {
+  width: 100% !important; /* Asegura que el canvas ocupe todo el contenedor */
+  height: auto !important; /* Mantén la relación de aspecto */
+}
