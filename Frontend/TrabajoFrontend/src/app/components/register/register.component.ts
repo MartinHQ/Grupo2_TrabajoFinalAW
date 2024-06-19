@@ -72,13 +72,9 @@ export class RegisterComponent implements OnInit{
       this.usuario.ahorro_acumulado = 0;
       this.usuario.rol_id = this.rolCliente;
       console.log(this.usuario)
-      this.uS.insert(this.usuario).subscribe((data)=>{
-        this.uS.list().subscribe((data)=>{
-          this.uS.setList(data);
-        })
-      })
+      this.uS.insert(this.usuario).subscribe()
     }
-
+    this.toLogin()
   }
 
   toLogin(): void{
