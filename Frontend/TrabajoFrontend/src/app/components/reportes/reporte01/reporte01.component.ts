@@ -16,7 +16,7 @@ export class Reporte01Component implements OnInit {
   usuariologeado: Usuario = new Usuario();
 
   barChartOptions: ChartOptions = {
-    responsive: true,
+    responsive: false,
   };
 
   barChartLabels: string[] = [];
