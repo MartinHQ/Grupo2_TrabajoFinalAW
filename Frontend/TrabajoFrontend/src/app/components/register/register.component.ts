@@ -34,7 +34,6 @@ export class RegisterComponent implements OnInit{
   constructor(private uS: UsuarioService,
     private router: Router,
     private formBuilder: FormBuilder,
-    private route: ActivatedRoute,
   ){}
   
   hide = true;

@@ -9,5 +9,6 @@ public interface IUsuarioService {
     public List<Usuario> list();
     public void delete(int id);
     public Usuario findByCorreo(String correo);
+    public Usuario listId(int id);
     
 }

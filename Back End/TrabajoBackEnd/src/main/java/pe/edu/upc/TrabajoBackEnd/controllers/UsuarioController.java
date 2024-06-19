@@ -7,7 +7,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import pe.edu.upc.TrabajoBackEnd.dtos.UsuarioDTO;
-import pe.edu.upc.TrabajoBackEnd.entities.Rol;
 import pe.edu.upc.TrabajoBackEnd.entities.Usuario;
 import pe.edu.upc.TrabajoBackEnd.servicesinterfaces.IUsuarioService;
 import java.util.List;
@@ -25,8 +24,15 @@ public class UsuarioController {
         ModelMapper m = new ModelMapper();
         Usuario usuario = m.map(usuarioDTO, Usuario.class);
 
-        //Rol rol = new Rol(2, "CLIENTE");
-        //usuario.setRol_id(rol);
+        String encodedPassword = passwordEncoder.encode(usuario.getContrasenia());
+        usuario.setContrasenia(encodedPassword);
+        uS.insert(usuario);
+    }
+
+    @PutMapping
+    public void editarUsuario(@RequestBody UsuarioDTO usuarioDTO) {
+        ModelMapper m = new ModelMapper();
+        Usuario usuario = m.map(usuarioDTO, Usuario.class);
 
         String encodedPassword = passwordEncoder.encode(usuario.getContrasenia());
         usuario.setContrasenia(encodedPassword);
@@ -50,4 +56,11 @@ public class UsuarioController {
     @PreAuthorize("hasAuthority('ADMIN')")
     @DeleteMapping("/{id}")
     public void delete(@PathVariable("id") Integer id) { uS.delete(id); }
+
+    @GetMapping("/{id}")
+    public UsuarioDTO listarId(@PathVariable("id") Integer id){
+        ModelMapper m=new ModelMapper();
+        UsuarioDTO dto = m.map(uS.listId(id), UsuarioDTO.class);
+        return dto;
+    }
 }
