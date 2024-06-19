@@ -18,6 +18,7 @@ import { HomeComponent } from './components/home/home.component';
 import { segGuard } from './guard/security.guard';
 import { MetadeahorroComponent } from './components/metadeahorro/metadeahorro.component';
 import { CreaeditaMetadeahorroComponent } from './components/metadeahorro/creaedita-metadeahorro/creaedita-metadeahorro.component';
+import { RegisterComponent } from './components/register/register.component';
 
 export const routes: Routes = [
   {
@@ -31,6 +32,12 @@ export const routes: Routes = [
     path: 'login',
     component: LoginComponent,
   },
+    //ruta para el register
+  {
+    path: 'register',
+    component: RegisterComponent,
+  },
+    //fin ruta register
   {
     //ruta para el home
     path: 'homes',

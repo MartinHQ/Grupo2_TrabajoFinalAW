@@ -20,9 +20,8 @@ export class UsuarioService {
   }
 
   insert(u: Usuario){
-    return this.http.post(this.url, u)
+    return this.http.post(`${this.url}/registrar-usuario`, u)
   }
-
   setList(newlist: Usuario[]){
     this.updatedlistConsejos.next(newlist)
   }
