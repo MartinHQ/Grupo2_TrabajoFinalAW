@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ChartData, ChartDataset, ChartOptions, ChartType } from 'chart.js';
+import { ChartDataset, ChartOptions, ChartType } from 'chart.js';
 import { LoginService } from '../../../services/login.service';
 import { Usuario } from '../../../models/Usuario';
 import { TransaccionService } from '../../../services/transaccion.service';
@@ -33,23 +33,23 @@ export class Reporte01Component implements OnInit {
   constructor(private tS: TransaccionService, private lS: LoginService) {}
   ngOnInit(): void {
     this.usuariologeado = this.lS.getCurrentUser()!;
-    this.tS.getIngresosEgresosPorMes(this.usuariologeado.usuario_id).subscribe((data) => 
-      {
-        this.barChartLabels = data.map((item) => item.mes);
-        this.barChartData = [
-          {
-            data: data.map((item) => item.promedio_egresos),
-            label: 'promedio_egresos',
-            backgroundColor: ['#0094d3', '#4169c7'],
-            borderWidth: 1,
-          },
-          {
-            data: data.map((item) => item.promedio_ingresos),
-            label: 'promedio_ingresos',
-            backgroundColor: ['#f39c12', '#e74c3c'],
-            borderWidth: 1,
-          },
-        ];
-      });
+    this.tS.getIngresosEgresosPorMes(this.usuariologeado.usuario_id).subscribe((data) => {
+      console.log(data); // Verifica los datos recibidos
+      this.barChartLabels = data.map((item) => item.mes);
+      this.barChartData = [
+        {
+          data: data.map((item) => item.promedio_egresos),
+          label: 'promedio_egresos',
+          backgroundColor: ['#0094d3', '#4169c7'],
+          borderWidth: 1,
+        },
+        {
+          data: data.map((item) => item.promedio_ingresos),
+          label: 'promedio_ingresos',
+          backgroundColor: ['#f39c12', '#e74c3c'],
+          borderWidth: 1,
+        },
+      ];
+    });
   }
 }

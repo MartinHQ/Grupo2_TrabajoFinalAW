@@ -163,8 +163,8 @@ public class TransaccionController {
         return dtoList;
     }
 
-    @GetMapping("/ingresosEgresosPorMes")
-        public List<promedioingresoegresopormesDTO> promedioingresoegresopormes(@RequestParam("usuarioId") int usuarioId)
+    @GetMapping("/ingresosEgresosPorMes/{usuarioId}")
+        public List<promedioingresoegresopormesDTO> promedioingresoegresopormes(@PathVariable("usuarioId") int usuarioId)
     {
         List<String[]> listFila = tS.promedioingresoegresopormes(usuarioId);
         List<promedioingresoegresopormesDTO> dtoList = new ArrayList<>();
