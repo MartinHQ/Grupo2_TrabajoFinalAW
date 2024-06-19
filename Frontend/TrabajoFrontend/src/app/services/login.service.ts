@@ -37,7 +37,7 @@ export class LoginService {
     return decodedToken?.role;
   }
 
-  getCurrentUser() : Usuario {
+  getCurrentUser() {
     let token = sessionStorage.getItem('token');
     if (!token) {
       return this.usuarioLogeado;

@@ -20,9 +20,8 @@ export class UsuarioService {
   }
 
   insert(u: Usuario){
-    return this.http.post(this.url, u)
+    return this.http.post(`${this.url}/registrar-usuario`, u)
   }
-
   setList(newlist: Usuario[]){
     this.updatedlistConsejos.next(newlist)
   }
@@ -32,11 +31,10 @@ export class UsuarioService {
   }
 
   listId(id: number){
-    //return this.http.get<Usuario>(`${this.url}/${id}`)
-    //metodo update se implementara tras clase de security
+    return this.http.get<Usuario>(`${this.url}/${id}`)
   }
-  update(){
-    //metodo update se implementara tras clase de security
+  update(u: Usuario){
+    return this.http.put<Usuario>(this.url, u)
   }
 
   eliminar(id: number){

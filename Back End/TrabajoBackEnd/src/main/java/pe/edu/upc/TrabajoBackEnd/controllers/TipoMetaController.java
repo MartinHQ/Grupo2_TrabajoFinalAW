@@ -34,7 +34,7 @@ public class TipoMetaController {
         tmS.insert(ct);
     }
 
-    @PreAuthorize("hasAuthority('CLIENTE') or hasAuthority('CLIENTE')")
+    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('CLIENTE')")
     @GetMapping
     public List<TipoMetaDTO> listarTipometa(){
         return tmS.list().stream().map(y->{

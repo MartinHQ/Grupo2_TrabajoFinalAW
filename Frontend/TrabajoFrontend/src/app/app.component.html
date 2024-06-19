@@ -16,14 +16,14 @@
     <button mat-button class="sidenav-button" [matMenuTriggerFor]="menuTipoMeta" *ngIf="isAdmin()">
       <mat-icon>bookmark_star</mat-icon>Tipo Meta
     </button>
-    <button mat-button class="sidenav-button" [matMenuTriggerFor]="menuRol">
+    <button mat-button class="sidenav-button" [matMenuTriggerFor]="menuRol" *ngIf="isAdmin()">
       <mat-icon>person_outline</mat-icon>Rol
     </button>
-    <button mat-button class="sidenav-button" [matMenuTriggerFor]="menuUsuario">
+    <button mat-button class="sidenav-button" [matMenuTriggerFor]="menuUsuario" *ngIf="isAdmin()">
       <mat-icon>people</mat-icon>Usuarios
     </button>
     <button mat-button class="sidenav-button" [matMenuTriggerFor]="menuTransaccion">
-      <mat-icon>swap_horiz</mat-icon>Transaccion
+      <mat-icon>swap_horiz</mat-icon>Transacciones
     </button>
 
     <!-- Si es Cliente -->
@@ -46,11 +46,11 @@
     </mat-menu>
     <mat-menu #menuConsejo="matMenu">
       <button mat-menu-item routerLink="/consejos">Listar</button>
-      <button mat-menu-item routerLink="/consejos/registro">Registrar</button>
+      <button mat-menu-item routerLink="/consejos/registro" *ngIf="isAdmin()">Registrar</button>
     </mat-menu>
     <mat-menu #menuPF="matMenu">
       <button mat-menu-item routerLink="/preguntafrecuente">Listar</button>
-      <button mat-menu-item routerLink="/preguntafrecuente/nuevo">Registrar</button>
+      <button mat-menu-item routerLink="/preguntafrecuente/nuevo" *ngIf="isAdmin()">Registrar</button>
     </mat-menu>
     <mat-menu #menuTipoMeta="matMenu">
       <button mat-menu-item routerLink="/tipometa">Listar</button>
@@ -75,6 +75,9 @@
       <button mat-menu-item routerLink="/metadeahorro/nuevo">Registrar</button>
     </mat-menu>
     <mat-menu #menuSalir="matMenu">
+      <button mat-menu-item routerLink="/editarPerfil">
+        Editar perfil
+      </button>
       <button mat-menu-item routerLink="/login" (click)="cerrar(); sidenav.close()">
         <mat-icon>logout</mat-icon>
         <span>Cerrar sesión</span>

@@ -41,10 +41,7 @@ import { LoginService } from '../../../services/login.service';
     MatNativeDateModule,
     MatRadioModule,
     MatCardModule,
-    MatCalendar
-    
-    
-    
+    MatCalendar    
   ],
   templateUrl: './creareditar-transaccion.component.html',
   styleUrl: './creareditar-transaccion.component.css',
