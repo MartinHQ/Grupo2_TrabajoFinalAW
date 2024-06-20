@@ -12,6 +12,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { CommonModule} from '@angular/common';
 import { Observable } from 'rxjs';
+import { LoginService } from '../../../services/login.service';
+import { Usuario } from '../../../models/Usuario';
 
 @Component({
   selector: 'app-listar-consejo',
@@ -32,11 +34,15 @@ import { Observable } from 'rxjs';
   styleUrl: './listar-consejo.component.css',
 })
 export class ListarConsejoComponent implements OnInit, AfterViewInit {
+  rol: string = ''
+
   dataSource: MatTableDataSource<Consejo> = new MatTableDataSource();
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   obs?: Observable<any>;
 
-  constructor(private CS: ConsejoService, private dialog: MatDialog) {}
+  constructor(private CS: ConsejoService,
+    private dialog: MatDialog,
+    private lS: LoginService) {}
 
   openDialog(id: number): void {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
@@ -51,6 +57,7 @@ export class ListarConsejoComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
+    this.verificar()
   }
 
   ngOnInit(): void {
@@ -73,5 +80,17 @@ export class ListarConsejoComponent implements OnInit, AfterViewInit {
         this.CS.setList(data);
       });
     });
+  }
+
+  verificar() {
+    this.rol = this.lS.showRole();
+    return this.lS.verificar();
+  }
+
+  isAdmin() {
+    return this.rol === 'ADMIN';
+  }
+  isCliente() {
+    return this.rol === 'CLIENTE';
   }
 }
