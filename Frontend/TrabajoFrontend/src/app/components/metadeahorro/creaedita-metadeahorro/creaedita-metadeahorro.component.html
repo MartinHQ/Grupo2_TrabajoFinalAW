@@ -3,7 +3,7 @@
 </div>
 
 <div class="container" style="text-align: center">
-  <form [formGroup]="form" (ngsubmit)="aceptar()" class="example-form">
+  <form [formGroup]="form" (submit)="aceptar()" class="example-form">
 
 
     <mat-form-field *ngIf="edicion">
@@ -48,7 +48,7 @@
    </div>
    <br>
 
-   <mat-form-field class="tipometa">
+   <mat-form-field class="tipometa" >
     <mat-label>Tipo de Meta:</mat-label>
     <mat-select formControlName="tipometaid">
       <mat-option *ngFor="let c of listatipoMeta" [value]="c.idTipoMeta">
@@ -60,10 +60,8 @@
     </mat-error>
   </mat-form-field>
 
-
     <br>
     <br>
-
     <button class="primaryButton"  *ngIf="edicion">Editar</button>
     <button class="primaryButton" *ngIf="!edicion">Registrar</button>
     <button class="secondaryButton" routerLink="/metadeahorro">

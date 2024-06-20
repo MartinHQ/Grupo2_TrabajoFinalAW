@@ -25,6 +25,7 @@ import { MatCalendar } from '@angular/material/datepicker';
 import { MatCardModule } from '@angular/material/card';
 import { LoginService } from '../../../services/login.service';
 
+
 @Component({
   selector: 'app-creaedita-metadeahorro',
   standalone: true,
@@ -42,7 +43,7 @@ import { LoginService } from '../../../services/login.service';
     NgFor,
     MatCalendar,
     MatCardModule,
-    CommonModule,
+    CommonModule, 
   ],
   templateUrl: './creaedita-metadeahorro.component.html',
   styleUrl: './creaedita-metadeahorro.component.css',
@@ -62,14 +63,16 @@ export class CreaeditaMetadeahorroComponent implements OnInit {
     private formbuilder: FormBuilder,
     private maS: MetadeahorroService,
     private route: ActivatedRoute,
-    private lS: LoginService
+    private lS: LoginService,
+   
   ) {}
-
+  
   ngOnInit(): void {
     this.route.params.subscribe((data: Params) => {
       this.id = data['id'];
       this.edicion = data['id'] != null;
       this.Init();
+      
     });
 
     this.form = this.formbuilder.group({
@@ -85,7 +88,6 @@ export class CreaeditaMetadeahorroComponent implements OnInit {
         ],
       ],
       fecha: ['', Validators.required],
-      meta: ['', Validators.required],
       tipometaid: ['', Validators.required],
     });
 
@@ -104,8 +106,7 @@ export class CreaeditaMetadeahorroComponent implements OnInit {
       this.metaahorro.titulo_meta = this.form.value.nombre;
       this.metaahorro.descripcion = this.form.value.descripcion;
       this.metaahorro.monto_objetivo = this.form.value.monto;
-      this.metaahorro.fecha_limite = this.form.value.fecha;
-      this.metaahorro.meta_cumplida = this.form.value.meta === 'false';// se inicializa en false
+      this.metaahorro.fecha_limite = this.form.value.fecha; 
       if(this.usuariologeado){
         this.metaahorro.usuario_id=this.usuariologeado;
       }
