@@ -188,6 +188,7 @@ export const routes: Routes = [
         component: CreaeditaMetadeahorroComponent,
       },
     ],
+    canActivate: [segGuard],
   },
  //fin de Meta de Ahorros
 ];

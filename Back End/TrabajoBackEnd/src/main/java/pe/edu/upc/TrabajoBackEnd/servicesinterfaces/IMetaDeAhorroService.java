@@ -11,4 +11,5 @@ public interface IMetaDeAhorroService {
     public MetaDeAhorro listarID(int id);
 
     List<String[]> listarpormetascumplidas();
+    List<MetaDeAhorro> obtenermetasdeahorroporusuario(int usuario_id);
 }
