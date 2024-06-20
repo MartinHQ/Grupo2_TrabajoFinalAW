@@ -70,5 +70,12 @@ public class MetaDeAhorroController {
         return dtoLista;
     }
 
-
+   @PreAuthorize("hasAuthority('CLIENTE')")
+   @GetMapping("/usuarioactivo/{usuarioId}")
+    public List<MetaDeAhorroDTO> obtenermetadeahorroporusuario(@PathVariable("usuarioId")int usuarioId){
+        List<MetaDeAhorro> metadeahorros= mS.obtenermetasdeahorroporusuario(usuarioId);
+        ModelMapper modelMapper= new ModelMapper();
+        return metadeahorros.stream()
+        .map(metadeahorro->modelMapper.map(metadeahorro,MetaDeAhorroDTO.class)).collect(Collectors.toList());
+    }
 }
