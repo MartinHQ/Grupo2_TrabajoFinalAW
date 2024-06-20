@@ -8,6 +8,12 @@ import { MatButtonModule } from '@angular/material/button';
 import { RouterLink } from '@angular/router';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from '../../confirm-dialog/confirm-dialog.component';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatCardModule } from '@angular/material/card';
+import { CommonModule} from '@angular/common';
+import { Observable } from 'rxjs';
+import { LoginService } from '../../../services/login.service';
+import { Usuario } from '../../../models/Usuario';
 
 @Component({
   selector: 'app-listar-consejo',
@@ -20,15 +26,23 @@ import { ConfirmDialogComponent } from '../../confirm-dialog/confirm-dialog.comp
     RouterLink,
     ConfirmDialogComponent,
     MatDialogModule,
+    MatGridListModule,
+    MatCardModule,
+    CommonModule
   ],
   templateUrl: './listar-consejo.component.html',
   styleUrl: './listar-consejo.component.css',
 })
 export class ListarConsejoComponent implements OnInit, AfterViewInit {
-  Columnas: string[] = ['codigo', 'titulo', 'descripcion', 'accion01'];
+  rol: string = ''
+
   dataSource: MatTableDataSource<Consejo> = new MatTableDataSource();
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-  constructor(private CS: ConsejoService, private dialog: MatDialog) {}
+  obs?: Observable<any>;
+
+  constructor(private CS: ConsejoService,
+    private dialog: MatDialog,
+    private lS: LoginService) {}
 
   openDialog(id: number): void {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
@@ -43,17 +57,20 @@ export class ListarConsejoComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
+    this.verificar()
   }
 
   ngOnInit(): void {
     this.CS.list().subscribe((data) => {
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.paginator = this.paginator;
+      this.obs = this.dataSource.connect();
     });
 
     this.CS.getList().subscribe((data) => {
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.paginator = this.paginator;
+      this.obs = this.dataSource.connect();
     });
   }
 
@@ -63,5 +80,17 @@ export class ListarConsejoComponent implements OnInit, AfterViewInit {
         this.CS.setList(data);
       });
     });
+  }
+
+  verificar() {
+    this.rol = this.lS.showRole();
+    return this.lS.verificar();
+  }
+
+  isAdmin() {
+    return this.rol === 'ADMIN';
+  }
+  isCliente() {
+    return this.rol === 'CLIENTE';
   }
 }

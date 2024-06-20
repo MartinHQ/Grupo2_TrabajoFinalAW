@@ -38,6 +38,7 @@ export class ListarPreguntafrecuenteComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   datasource: MatTableDataSource<PreguntaFrecuente> = new MatTableDataSource();
   obs?: Observable<any>; // objeto para listar,filtrar las tarjetas y usar el paginator
+  rol: string = ''
 
   ngOnInit(): void {
     this.pfS.listar().subscribe((data) => {
@@ -58,5 +59,12 @@ export class ListarPreguntafrecuenteComponent implements OnInit {
         this.pfS.setListaCambio(data);
       });
     });
+  }
+
+  isAdmin() {
+    return this.rol === 'ADMIN';
+  }
+  isCliente() {
+    return this.rol === 'CLIENTE';
   }
 }
