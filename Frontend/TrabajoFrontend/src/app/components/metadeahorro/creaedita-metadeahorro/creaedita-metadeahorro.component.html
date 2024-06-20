@@ -3,7 +3,7 @@
 </div>
 
 <div class="container" style="text-align: center">
-  <form [formGroup]="form" (submit)="aceptar()" class="example-form">
+  <form [formGroup]="form" (ngsubmit)="aceptar()" class="example-form">
 
 
     <mat-form-field *ngIf="edicion">
@@ -16,33 +16,25 @@
       <mat-label>Titulo</mat-label>
       <input matInput formControlName="nombre" />
       <mat-error *ngIf="form.get('nombre')?.hasError('required')">El titulo de la meta es obligatorio.</mat-error>
-    </mat-form-field><br>
-
+    </mat-form-field>
+    
     <mat-form-field class="descripcion">
       <mat-label>Descripcion</mat-label>
-      <input matInput formControlName="descripcion" />
+      <textarea matInput #descripcion maxlength="250" formControlName="descripcion" placeholder="Ej. Esta categoria abarca..."></textarea>
+      <mat-hint [align]="'end'"> {{descripcion.value.length}} / 250</mat-hint>
       <mat-error *ngIf="form.get('descripcion')?.hasError('required')">La decripcion es obligatoria.</mat-error>
     </mat-form-field><br>
 
+   <div class="cointainer2"> 
+    
     <mat-form-field class="montoobjetivo">
       <mat-label>Monto Objetivo</mat-label>
       <input matInput formControlName="monto" />
       <mat-error *ngIf="form.get('monto')?.hasError('required')">El monto objetivo es obligatorio.</mat-error>
       <mat-error *ngIf="form.get('monto')?.hasError('min')">El monto objetivo minimo es 1.</mat-error>
       <mat-error *ngIf="form.get('monto')?.hasError('pattern')">El monto objetivo debe ser un número válido.</mat-error>
-    </mat-form-field><br>
+    </mat-form-field>
 
-    <mat-form-field class="tipometa">
-      <mat-label>Tipo de Meta:</mat-label>
-      <mat-select formControlName="tipometaid">
-        <mat-option *ngFor="let c of listatipoMeta" [value]="c.idTipoMeta">
-          {{c.nombre}}
-        </mat-option>
-      </mat-select>
-      <mat-error *ngIf="form.get('tipometaid')?.hasError('required')">
-        El tipo de meta es obligatoria.
-      </mat-error>
-    </mat-form-field><br>
 
     <mat-form-field appearance="fill" class="fechalimite">
       <input matInput placeholder="Ingrese fecha" [matDatepicker]="picker" formControlName="fecha" />
@@ -52,28 +44,25 @@
       <mat-error *ngIf="form.get('fecha')?.hasError('required')">
         La fecha es obligatoria.
       </mat-error>
-    </mat-form-field><br>
+    </mat-form-field>
+   </div>
+   <br>
 
-    <mat-form-field class="usuario">
-      <mat-label>Usuario:</mat-label>
-      <mat-select formControlName="usuarioid">
-        <mat-option *ngFor="let u of listaUsuarios" [value]="u.usuario_id">
-          {{ u.nombre }} {{ u.apellido }}
-        </mat-option>
-      </mat-select>
-      <mat-error *ngIf="form.get('usuarioid')?.hasError('required')">
-        El usuario es obligatorio.
-      </mat-error>
-    </mat-form-field><br>
+   <mat-form-field class="tipometa">
+    <mat-label>Tipo de Meta:</mat-label>
+    <mat-select formControlName="tipometaid">
+      <mat-option *ngFor="let c of listatipoMeta" [value]="c.idTipoMeta">
+        {{c.nombre}}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="form.get('tipometaid')?.hasError('required')">
+      El tipo de meta es obligatoria.
+    </mat-error>
+  </mat-form-field>
 
-    <mat-label>Meta cumplida</mat-label>
-    <mat-radio-group formControlName="meta" class="metacumplida">
-      <mat-radio-button value="true">Si</mat-radio-button>
-      <mat-radio-button value="false">No</mat-radio-button>
-      <mat-error *ngIf="form.get('meta')?.hasError('required')">
-        Este campo es obligatorio.
-      </mat-error>
-    </mat-radio-group><br>
+
+    <br>
+    <br>
 
     <button class="primaryButton"  *ngIf="edicion">Editar</button>
     <button class="primaryButton" *ngIf="!edicion">Registrar</button>

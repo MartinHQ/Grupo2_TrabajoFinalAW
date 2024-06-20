@@ -23,6 +23,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatCalendar } from '@angular/material/datepicker';
 import { MatCardModule } from '@angular/material/card';
+import { LoginService } from '../../../services/login.service';
 
 @Component({
   selector: 'app-creaedita-metadeahorro',
@@ -53,13 +54,15 @@ export class CreaeditaMetadeahorroComponent implements OnInit {
   listaUsuarios: Usuario[] = [];
   edicion: boolean = false;
   id: number = 0;
+  usuariologeado: Usuario | null =null;
   constructor(
     private mtS: TipometaService,
-    private uS: UsuarioService,
+    private uS: UsuarioService, 
     private router: Router,
     private formbuilder: FormBuilder,
     private maS: MetadeahorroService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private lS: LoginService
   ) {}
 
   ngOnInit(): void {
@@ -83,7 +86,6 @@ export class CreaeditaMetadeahorroComponent implements OnInit {
       ],
       fecha: ['', Validators.required],
       meta: ['', Validators.required],
-      usuarioid: ['', Validators.required],
       tipometaid: ['', Validators.required],
     });
 
@@ -96,26 +98,34 @@ export class CreaeditaMetadeahorroComponent implements OnInit {
     });
   }
   aceptar(): void {
+    this.usuariologeado=this.lS.getCurrentUser()!;
     if (this.form.valid) {
       this.metaahorro.metadeahorro = this.form.value.codigo;
       this.metaahorro.titulo_meta = this.form.value.nombre;
       this.metaahorro.descripcion = this.form.value.descripcion;
       this.metaahorro.monto_objetivo = this.form.value.monto;
       this.metaahorro.fecha_limite = this.form.value.fecha;
-      this.metaahorro.meta_cumplida = this.form.value.meta === 'true';
-      this.metaahorro.usuario_id.usuario_id = this.form.value.usuarioid;
+      this.metaahorro.meta_cumplida = this.form.value.meta === 'false';// se inicializa en false
+      if(this.usuariologeado){
+        this.metaahorro.usuario_id=this.usuariologeado;
+      }
       this.metaahorro.tipo_meta_id.idTipoMeta = this.form.value.tipometaid;
       if (this.edicion) {
         this.maS.modificar(this.metaahorro).subscribe(() => {
-          this.maS.listar().subscribe((data) => {
-            this.maS.setListaCambio(data);
-          });
+          if(this.usuariologeado){
+            this.maS.listarporusuarioactivo(this.usuariologeado.usuario_id).subscribe((data)=>{
+              this.maS.setListaCambio(data);
+            });
+          }
+          
         });
       } else {
-        this.maS.registrar(this.metaahorro).subscribe(() => {
-          this.maS.listar().subscribe((data) => {
+        this.maS.registrar(this.metaahorro).subscribe((data) => {
+         if(this.usuariologeado){
+          this.maS.listarporusuarioactivo(this.usuariologeado.usuario_id).subscribe((data)=>{
             this.maS.setListaCambio(data);
           });
+         }
         });
       }
 
@@ -125,15 +135,14 @@ export class CreaeditaMetadeahorroComponent implements OnInit {
   Init(): void {
     if (this.edicion) {
       this.maS.listarId(this.id).subscribe((data) => {
-        this.form = new FormGroup({
-          codigo: new FormControl(data.metadeahorro),
-          nombre: new FormControl(data.titulo_meta),
-          descripcion: new FormControl(data.descripcion),
-          monto: new FormControl(data.monto_objetivo),
-          fecha: new FormControl(data.fecha_limite),
-          meta: new FormControl(data.meta_cumplida ? 'true' : 'false'),
-          usuarioid: new FormControl(data.usuario_id.usuario_id),
-          tipometaid: new FormControl(data.tipo_meta_id.idTipoMeta),
+        this.form.setValue({
+          codigo: data.metadeahorro,
+          nombre: data.titulo_meta,
+          descripcion: data.descripcion,
+          monto: data.monto_objetivo,
+          fecha: data.fecha_limite,
+          meta:  data.meta_cumplida ? 'true' : 'false',
+          tipometaid: data.tipo_meta_id.idTipoMeta,
         });
       });
     }
