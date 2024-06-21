@@ -9,7 +9,7 @@ import { ChangeDetectorRef } from '@angular/core';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-maxmontobycategoria',
@@ -20,7 +20,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
     MatInputModule,
     MatSelectModule,
     MatFormFieldModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   templateUrl: './maxmontobycategoria.component.html',
   styleUrl: './maxmontobycategoria.component.css',
@@ -38,38 +38,51 @@ export class MaxmontobycategoriaComponent implements OnInit {
     { name: 'Septiembre', value: 8 },
     { name: 'Octubre', value: 9 },
     { name: 'Noviembre', value: 10 },
-    { name: 'Diciembre', value: 11 }
+    { name: 'Diciembre', value: 11 },
   ];
-  selected:string='0';
+  selectedMonth: number = new Date().getMonth();
+  selectedTransactionType: boolean = true;
 
-  form: FormGroup= new FormGroup({});
   barChartOptions: ChartOptions = {
     responsive: true,
   };
   barChartLabels: string[] = [];
-  barChartType: ChartType = 'pie';
-  barChartLegend = true;
+  barChartType: ChartType = 'bar';
+  barChartLegend = false;
   barChartData: ChartDataset[] = [];
 
   constructor(
     private tS: TransaccionService,
     private lS: LoginService,
-    private cdr: ChangeDetectorRef,
-    private formBuilder:FormBuilder,
+    private cdr: ChangeDetectorRef
   ) {}
 
-  currentYear = new Date().getFullYear();
-  fechaInicio = new Date(this.currentYear, this.form.value.mes, 1);
-  fechaFin = new Date(this.currentYear, this.form.value.mes + 1, 0);
-  idUsuario = this.lS.getCurrentUser().usuario_id;
-  esIngreso = false;
-
   ngOnInit(): void {
-    this.selected='0';
-
-    this.mostrar(this.fechaInicio, this.fechaFin,this.idUsuario, this.esIngreso);
+    this.mostrarDatosPorMes(this.selectedMonth, this.selectedTransactionType);
   }
-  mostrar(fechaInicio:Date, fechaFin:Date, idUsuario:number, esIngreso:boolean){
+  onMonthChange(event:any){
+    this.selectedMonth= event.value;
+    this.mostrarDatosPorMes(this.selectedMonth, this.selectedTransactionType);
+  }
+
+  onTransactionTypeChange(event: any): void {
+    this.selectedTransactionType = event.value;
+    this.mostrarDatosPorMes(this.selectedMonth, this.selectedTransactionType);
+  }
+
+  mostrarDatosPorMes(mes:number, esIngreso: boolean){
+    const fechaInicio = new Date(new Date().getFullYear(), mes, 1);
+    const fechaFin = new Date(new Date().getFullYear(), mes+1, 0);
+    const idUsuario = this.lS.getCurrentUser().usuario_id;
+
+    this.mostrar(fechaInicio, fechaFin, idUsuario, esIngreso);
+  }
+  mostrar(
+    fechaInicio: Date,
+    fechaFin: Date,
+    idUsuario: number,
+    esIngreso: boolean
+  ) {
     this.tS
       .getMaxMontoByCategoria(fechaInicio, fechaFin, idUsuario, esIngreso)
       .subscribe(
@@ -89,6 +102,5 @@ export class MaxmontobycategoriaComponent implements OnInit {
           console.error('Error al obtener datos', error);
         }
       );
-
   }
 }

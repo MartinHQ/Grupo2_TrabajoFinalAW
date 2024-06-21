@@ -34,7 +34,6 @@
 
   <div class="tittle">
     <h1>Hola, {{ usuarioLogeado.nombre }}!</h1>
-    <button mat-button color="primary" routerLink="/reporte02">Revisar reporte 02</button>
     <h2>
       Tu ahorro acumulado actual es de {{ usuarioLogeado.ahorro_acumulado }},
       puedes gestionarlo en <a href="/metadeahorro/">metas de ahorro</a>
@@ -112,6 +111,7 @@
     </mat-card>
   </div>
 
+
   <!-- Mostrar boton crear presupuesto si el usuario no tiene presupuestos -->
   <div class="card-container" *ngIf="!haytransacciones">
     <mat-card class="first-card" appearance="outlined">
@@ -135,6 +135,25 @@
           Registra una transacción
         </button>
       </mat-card-actions>
+    </mat-card>
+  </div>
+
+  <!--Mostrar Ingresos o Egresos de un mes en especifico por categoria-->
+  <div class="card-container">
+    <mat-card class="chart-card" appearance="outlined">
+      <mat-card-header>
+        <mat-card-title>
+          Ingresos o Gastos en cada Mes Por Categoria de Transaccion
+        </mat-card-title>
+      </mat-card-header>
+
+      <mat-card-content>
+        <div class="chart-container">
+          <div class="chart-content">
+            <app-maxmontobycategoria></app-maxmontobycategoria>
+          </div>
+        </div>
+      </mat-card-content>
     </mat-card>
   </div>
 

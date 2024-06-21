@@ -17,6 +17,7 @@ import { Transaccion } from '../../models/Transaccion';
 import { MetaDeAhorro } from '../../models/MetaDeAhorro';
 import { MetadeahorroService } from '../../services/metadeahorro.service';
 import {MatChipsModule} from '@angular/material/chips';
+import { MaxmontobycategoriaComponent } from '../reportes/maxmontobycategoria/maxmontobycategoria.component';
 
 @Component({
   selector: 'app-home',
@@ -29,12 +30,13 @@ import {MatChipsModule} from '@angular/material/chips';
     MatCardModule,
     MatButtonModule,
     Reporte01Component,
-    MatChipsModule
+    MatChipsModule,
+    MaxmontobycategoriaComponent,
   ],
   standalone: true,
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
-  
+
 })
 export class HomeComponent implements OnInit {
   usuarioLogeado: Usuario = this.lS.getCurrentUser()!;
