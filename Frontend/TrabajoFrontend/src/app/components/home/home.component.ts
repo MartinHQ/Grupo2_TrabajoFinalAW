@@ -18,6 +18,7 @@ import { MetaDeAhorro } from '../../models/MetaDeAhorro';
 import { MetadeahorroService } from '../../services/metadeahorro.service';
 import {MatChipsModule} from '@angular/material/chips';
 import { Reporte02Component } from '../reportes/reporte02/reporte02.component';
+import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-home',
@@ -52,10 +53,14 @@ export class HomeComponent implements OnInit {
     public route: ActivatedRoute,
     private cS: ConsejoService,
     private tS: TransaccionService,
-    private mS : MetadeahorroService
+    private mS : MetadeahorroService,
+    private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
+
+    console.log('Home',this.usuarioLogeado)
+    this.cdr.detectChanges(); // Forzar la detección de cambios
     this.usuarioLogeado = this.lS.getCurrentUser()!;
 
     this.cS.list().subscribe((data) => {
@@ -78,6 +83,7 @@ export class HomeComponent implements OnInit {
     this.verificar();
     this.isAdmin();
     this.isCliente();
+    this.SetAhorroAcumulado
 
 
   }

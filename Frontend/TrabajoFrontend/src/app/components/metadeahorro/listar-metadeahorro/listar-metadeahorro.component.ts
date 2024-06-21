@@ -22,6 +22,7 @@ import { MatSort, MatSortModule } from '@angular/material/sort';
 import { FormsModule } from '@angular/forms';
 import { MatButton } from '@angular/material/button';
 import { VerDetalleDialogoComponent } from '../ver-detalle-dialogo/ver-detalle-dialogo.component';
+
 @Component({
   selector: 'app-listar-metadeahorro',
   standalone: true,
@@ -73,6 +74,7 @@ export class ListarMetadeahorroComponent implements OnInit {
       }
     });
   }
+  
   openDetailDialog(element:MetaDeAhorro):void{
     this.dialog.open(VerDetalleDialogoComponent,{data:element});
   }
@@ -104,5 +106,26 @@ export class ListarMetadeahorroComponent implements OnInit {
         });
       }
     });
+  }
+
+  marcarComoCumplida(element: MetaDeAhorro) {
+     element.meta_cumplida = !element.meta_cumplida; // Alterna el estado de la meta
+    this.mS.modificar(element).subscribe(() => {
+      this.mensaje = `Meta de Ahorro marcada como ${element.meta_cumplida ? 'cumplida' : 'no cumplida'}`;
+      this.snackBar.open(this.mensaje, 'Cerrar', { duration: 2000 });
+      this.actualizarDatos();
+    });
+  }
+
+  actualizarDatos() {
+    this.usuariologeado = this.ls.getCurrentUser()!;
+    if (this.usuariologeado && this.usuariologeado.usuario_id) {
+      this.mS.listarporusuarioactivo(this.usuariologeado.usuario_id).subscribe(data => {
+        this.datasource.data = data;
+        this.datasource.paginator = this.paginator;
+        this.obs = this.datasource.connect();
+      });
+      
+    }
   }
 }

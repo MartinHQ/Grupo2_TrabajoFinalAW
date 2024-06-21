@@ -56,4 +56,6 @@ export class TransaccionService {
   getAhorroAcumulado(usuarioId: number): Observable<number> {
     return this.http.get<number>(`${this.url}/ahorroAcumulado/${usuarioId}`);
   }
+
+
 }

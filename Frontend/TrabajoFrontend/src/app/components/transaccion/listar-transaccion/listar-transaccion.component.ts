@@ -21,7 +21,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatButton } from '@angular/material/button';
 import { LoginService } from '../../../services/login.service';
 import { Usuario } from '../../../models/Usuario';
-import { VerDetalleDialogComponent } from '../../ver-detalle-dialog/ver-detalle-dialog.component';
+import { VerDetalleDialogComponent } from '../ver-detalle-dialog/ver-detalle-dialog.component';
 
 @Component({
   selector: 'app-listar-transaccion',

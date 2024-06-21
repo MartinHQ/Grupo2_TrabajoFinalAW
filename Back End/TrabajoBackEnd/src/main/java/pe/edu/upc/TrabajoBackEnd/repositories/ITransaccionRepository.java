@@ -96,12 +96,18 @@ public interface ITransaccionRepository extends JpaRepository<Transaccion, Integ
     public List<String[]> promedioingresoegresopormes(@Param("usuarioId") int usuarioId);
 
     @Query(value="SELECT \r\n" + //
-                        "    SUM(CASE WHEN t.es_ingreso_transaccion THEN t.monto_transaccion ELSE 0 END) -\r\n" + //
-                        "    SUM(CASE WHEN NOT t.es_ingreso_transaccion THEN t.monto_transaccion ELSE 0 END) AS ahorro_acumulado\r\n" + //
+                        "    (SUM(CASE WHEN t.es_ingreso_transaccion THEN t.monto_transaccion ELSE 0 END) - \r\n" + //
+                        "     SUM(CASE WHEN NOT t.es_ingreso_transaccion THEN t.monto_transaccion ELSE 0 END)) - \r\n" + //
+                        "    (SELECT SUM(CASE WHEN m.meta_cumplida THEN m.monto_objetivo ELSE 0 END) \r\n" + //
+                        "     FROM meta_de_ahorro m \r\n" + //
+                        "     WHERE m.usuario_id = t.usuario_id) AS ahorro_acumulado\r\n" + //
                         "FROM \r\n" + //
                         "    transaccion t\r\n" + //
                         "WHERE \r\n" + //
-                        "    t.usuario_id = :usuarioId",nativeQuery =true)
+                        "    t.usuario_id = :usuarioId\r\n" + //
+                        "GROUP BY \r\n" + //
+                        "    t.usuario_id;\r\n" + //
+                        "",nativeQuery =true)
     public Double getahorroacumulado(@Param("usuarioId") int usuarioId);
 
 }
