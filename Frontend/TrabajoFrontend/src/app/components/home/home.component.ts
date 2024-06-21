@@ -91,6 +91,7 @@ export class HomeComponent implements OnInit {
     this.verificar();
     this.isAdmin();
     this.isCliente();
+    this.SetAhorroAcumulado();
   }
 
   verificar() {
@@ -103,5 +104,21 @@ export class HomeComponent implements OnInit {
   }
   isCliente() {
     return this.role === 'CLIENTE';
+  }
+
+
+  SetAhorroAcumulado(){
+    const ingresos = this.transacciones
+      .filter(transaccion => transaccion.es_ingresoTransaccion)
+      .reduce((total, transaccion) => total + transaccion.montoTransaccion, 0);
+
+    const egresos = this.transacciones
+      .filter(transaccion => !transaccion.es_ingresoTransaccion)
+      .reduce((total, transaccion) => total + transaccion.montoTransaccion, 0);
+
+    this.usuarioLogeado.ahorro_acumulado = ingresos - egresos;
+
+    console.log('Ahorro acumulado:', this.usuarioLogeado.ahorro_acumulado);
+    
   }
 }

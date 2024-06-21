@@ -18,35 +18,36 @@ export class Reporte02Component implements OnInit{
   barChartOptions: ChartOptions = {
     responsive: true,
   };
-  barChartLabels: string[] = [];
+  //barChartLabels: string[] = [];
 
-  barChartType: ChartType = 'pie';
+  //barChartType: ChartType = 'pie';
   //barChartType: ChartType = 'doughnut';
   //barChartType: ChartType = 'line';
-  //barChartType: ChartType = 'bar';
+  barChartType: ChartType = 'bar';
   //barChartType: ChartType = 'polarArea';
 
   barChartLegend = true;
   barChartData: ChartDataset[] = [];
+  barChartLabels: string[] = ['Metas de Ahorro'];
 
   constructor(private maS:MetadeahorroService, private lS: LoginService, private cdr: ChangeDetectorRef) {}
 
  ngOnInit(): void {
   this.usuariologeado = this.lS.getCurrentUser()!;
   this.maS.getcantidadmetasiynocumplidas(this.usuariologeado.usuario_id).subscribe((data)=>
+    
     {console.log(data);
-      this.barChartLabels=data.map((item)=>item.nombre);
       this.barChartData = [
         {
           data: data.map((item) => item.meta_cumplida),
-          label: 'cant_metacumplida',
-          backgroundColor: ['#F32525'],
+          label: 'metas cumplidas',
+          backgroundColor: ['#2925F3'],
           borderWidth: 1,
         },
         {
           data: data.map((item) => item.meta_no_cumplida),
-          label: 'cant_metanocumplida',
-          backgroundColor: ['#2925F3'],
+          label: 'metas no cumplidas',
+          backgroundColor: ['#F32525'],
           borderWidth: 1,
         },
       ];

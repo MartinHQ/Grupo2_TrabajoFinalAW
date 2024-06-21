@@ -1,17 +1,8 @@
 package pe.edu.upc.TrabajoBackEnd.dtos;
 
 public class CantMetaAhorroSiNoCumplidaDTO {
- private String nombre;
  private int  meta_cumplida;
  private int meta_no_cumplida;
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
 
     public int getMeta_cumplida() {
         return meta_cumplida;

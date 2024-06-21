@@ -1,6 +1,7 @@
 package pe.edu.upc.TrabajoBackEnd.servicesimplements;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 import pe.edu.upc.TrabajoBackEnd.entities.MetaDeAhorro;
 import pe.edu.upc.TrabajoBackEnd.repositories.IMetaDeAhorroRepository;
@@ -34,7 +35,7 @@ public class MetaDeAhorroServiceImplement implements IMetaDeAhorroService {
         return mR.listarporelusuarioactivo(usuario_id);
     }
     @Override
-    public List<MetaDeAhorro> listarcantidadmetascumplidasyno(int usuario_id) {
+    public List<String[]> listarcantidadmetascumplidasynocumplidas(int usuario_id){
         return mR.listarcantidadmetascumplidasynocumplidas(usuario_id);
     }
     
