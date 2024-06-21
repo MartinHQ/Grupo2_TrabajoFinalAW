@@ -9,7 +9,6 @@ public interface IMetaDeAhorroService {
     public List<MetaDeAhorro> list();
     public void delete(int id);
     public MetaDeAhorro listarID(int id);
-
-    List<String[]> listarpormetascumplidas();
+    List<MetaDeAhorro> listarcantidadmetascumplidasyno(int usuario_id);
     List<MetaDeAhorro> obtenermetasdeahorroporusuario(int usuario_id);
 }

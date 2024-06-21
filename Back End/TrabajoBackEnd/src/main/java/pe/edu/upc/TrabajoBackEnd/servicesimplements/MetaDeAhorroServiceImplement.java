@@ -30,10 +30,12 @@ public class MetaDeAhorroServiceImplement implements IMetaDeAhorroService {
     }
 
     @Override
-    public List<String[]> listarpormetascumplidas(){ return mR.listarpormetascumplidas();}
-
-    @Override
     public List<MetaDeAhorro> obtenermetasdeahorroporusuario(int usuario_id) {
         return mR.listarporelusuarioactivo(usuario_id);
     }
+    @Override
+    public List<MetaDeAhorro> listarcantidadmetascumplidasyno(int usuario_id) {
+        return mR.listarcantidadmetascumplidasynocumplidas(usuario_id);
+    }
+    
 }

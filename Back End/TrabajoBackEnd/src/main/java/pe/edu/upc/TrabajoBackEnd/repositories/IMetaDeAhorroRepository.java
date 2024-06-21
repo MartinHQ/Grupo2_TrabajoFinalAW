@@ -7,12 +7,15 @@ import pe.edu.upc.TrabajoBackEnd.entities.MetaDeAhorro;
 import java.util.List;
 @Repository
 public interface IMetaDeAhorroRepository extends JpaRepository<MetaDeAhorro, Integer> {
-   @Query(value = "Select u.nombre, count(ma.metadeahorro) as metas_cumplidas \n"+
-                 "from Usuario u  \n" +
-                 "join meta_de_ahorro ma on u.usuario_id = ma.usuario_id \n"+
-                 " where ma.meta_cumplida = 'true' \n"+
-                 "group by u.nombre", nativeQuery = true)
-    List<String[]> listarpormetascumplidas();
+   @Query(value = "SELECT u.nombre,\r\n" + 
+                  "       COUNT(mc.metadeahorro) AS metas_cumplidas,\r\n" + 
+                  "       COUNT(mnc.metadeahorro) AS metas_no_cumplidas\r\n" + 
+                  "FROM Usuario u\r\n" + 
+                  "LEFT JOIN meta_de_ahorro mc ON u.usuario_id = mc.usuario_id AND mc.meta_cumplida = 'true'\r\n" + 
+                  "LEFT JOIN meta_de_ahorro mnc ON u.usuario_id = mnc.usuario_id AND mnc.meta_cumplida = 'false'\r\n" + 
+                  "WHERE u.usuario_id = :usuario_id \r\n" + 
+                  "GROUP BY u.nombre;", nativeQuery = true)
+    List<MetaDeAhorro> listarcantidadmetascumplidasynocumplidas(@Param("usuario_id") int usuario_id);
 
     @Query(value="SELECT * FROM meta_de_ahorro \n"+
           "WHERE usuario_id= :usuario_id",nativeQuery=true)
