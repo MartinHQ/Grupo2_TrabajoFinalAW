@@ -1,0 +1,23 @@
+<!-- max-monto-by-categoria.component.html -->
+<form [formGroup]="form"></form>
+<h4>Seleccione el mes</h4>
+<mat-form-field appearance="fill">
+  <mat-label>Mes</mat-label>
+  <mat-select formControlName="mes" (selectionChange)="mostrar(fechaInicio,fechaFin,idUsuario,esIngreso)">
+    <mat-option *ngFor="let month of months" [value]="month.value">
+      {{ month.name }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+
+<div class="title-container">
+  <div style="text-align: center" class="title">
+    <h1>Máximo Monto por Categoria de Transacciones</h1>
+  </div>
+
+  <div style="text-align: center" class="chart-container">
+    <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
+      [legend]="barChartLegend" [type]="barChartType">
+    </canvas>
+  </div>
+</div>
