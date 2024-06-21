@@ -52,4 +52,8 @@ export class TransaccionService {
   getIngresosEgresosPorMes(usuarioId: number): Observable<promedioingresoegresopormesDTO[]> {
     return this.http.get<promedioingresoegresopormesDTO[]>(`${this.url}/ingresosEgresosPorMes/${usuarioId}`);
   }
+
+  getAhorroAcumulado(usuarioId: number): Observable<number> {
+    return this.http.get<number>(`${this.url}/ahorroAcumulado/${usuarioId}`);
+  }
 }

@@ -70,7 +70,7 @@ export class HomeComponent implements OnInit {
     });
 
     //cambiar el metodo cuando se implemente el servicio listar por usuario...
-    this.mS.listar().subscribe((data) => {
+    this.mS.listarporusuarioactivo(this.usuarioLogeado.usuario_id ).subscribe((data) => {
       this.metas = data;
       this.haymetas = this.metas.length > 0;
       console.log('Metas cargadas:', this.metas);});
@@ -108,17 +108,9 @@ export class HomeComponent implements OnInit {
 
 
   SetAhorroAcumulado(){
-    const ingresos = this.transacciones
-      .filter(transaccion => transaccion.es_ingresoTransaccion)
-      .reduce((total, transaccion) => total + transaccion.montoTransaccion, 0);
-
-    const egresos = this.transacciones
-      .filter(transaccion => !transaccion.es_ingresoTransaccion)
-      .reduce((total, transaccion) => total + transaccion.montoTransaccion, 0);
-
-    this.usuarioLogeado.ahorro_acumulado = ingresos - egresos;
-
-    console.log('Ahorro acumulado:', this.usuarioLogeado.ahorro_acumulado);
-    
+    this.tS.getAhorroAcumulado(this.usuarioLogeado.usuario_id).subscribe((data) => {
+      this.usuarioLogeado.ahorro_acumulado = data;
+      console.log('Ahorro acumulado:', this.usuarioLogeado.ahorro_acumulado);
+    });
   }
 }
