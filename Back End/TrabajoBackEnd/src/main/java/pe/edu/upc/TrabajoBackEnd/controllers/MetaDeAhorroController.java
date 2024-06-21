@@ -59,7 +59,7 @@ public class MetaDeAhorroController {
         mS.delete(id);
     }
 
-    // @PreAuthorize("hasAuthority('CLIENTE')")
+    @PreAuthorize("hasAuthority('CLIENTE')")
     @GetMapping("/reportemetassiynocumplidas/{usuarioId}")
     public List<CantMetaAhorroSiNoCumplidaDTO> listarcantmetassiynocumplidas(@PathVariable("usuarioId") int usuarioId) {
         
