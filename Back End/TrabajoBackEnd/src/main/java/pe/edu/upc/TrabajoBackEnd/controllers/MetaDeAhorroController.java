@@ -56,7 +56,7 @@ public class MetaDeAhorroController {
     public void delete(@PathVariable("id") Integer id) { mS.delete(id); }
 
     @PreAuthorize("hasAuthority('CLIENTE')")
-    @GetMapping ("/reportemetassiynocumplidas")
+    @GetMapping ("/reportemetassiynocumplidas/{usuarioId}")
     public List<CantMetaAhorroSiNoCumplidaDTO>listarcantmetassiynocumplidas(@PathVariable("usuarioId")int usuarioId){
       List<MetaDeAhorro> metadeahorros=mS.listarcantidadmetascumplidasyno(usuarioId);
       ModelMapper modelMapper= new ModelMapper();
