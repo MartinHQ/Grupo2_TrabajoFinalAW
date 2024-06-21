@@ -3,6 +3,8 @@ import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { MetaDeAhorro } from '../models/MetaDeAhorro';
 import { Observable, Subject } from 'rxjs';
+import { CantMetaAhorroSiNoCumplidaDTO } from '../models/CantMetaAhorroSiNoCumplidaDTO';
+
 const base_url = environment.base;
 @Injectable({
   providedIn: 'root',
@@ -39,7 +41,11 @@ export class MetadeahorroService {
     return this.http.delete(`${this.url}/${id}`);
   }
   //para listar solo los datos del usuario que se acaba de iniciar sesion 
-  listarporusuarioactivo(usuario_id:number):Observable<MetaDeAhorro[]>{
-    return this.http.get<MetaDeAhorro[]>(`${this.url}/usuarioactivo/${usuario_id}`);
+  listarporusuarioactivo(usuarioId:number):Observable<MetaDeAhorro[]>{
+    return this.http.get<MetaDeAhorro[]>(`${this.url}/usuarioactivo/${usuarioId}`);
+  }
+
+  getcantidadmetasiynocumplidas(usuarioId:number):Observable<CantMetaAhorroSiNoCumplidaDTO[]>{
+   return this.http.get<CantMetaAhorroSiNoCumplidaDTO[]>(`${this.url}/reportemetassiynocumplidas/${usuarioId}`);
   }
 }

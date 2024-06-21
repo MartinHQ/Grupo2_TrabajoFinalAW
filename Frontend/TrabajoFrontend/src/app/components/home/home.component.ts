@@ -17,6 +17,7 @@ import { Transaccion } from '../../models/Transaccion';
 import { MetaDeAhorro } from '../../models/MetaDeAhorro';
 import { MetadeahorroService } from '../../services/metadeahorro.service';
 import {MatChipsModule} from '@angular/material/chips';
+import { Reporte02Component } from '../reportes/reporte02/reporte02.component';
 
 @Component({
   selector: 'app-home',
@@ -29,7 +30,8 @@ import {MatChipsModule} from '@angular/material/chips';
     MatCardModule,
     MatButtonModule,
     Reporte01Component,
-    MatChipsModule
+    MatChipsModule,
+    Reporte02Component
   ],
   standalone: true,
   templateUrl: './home.component.html',
