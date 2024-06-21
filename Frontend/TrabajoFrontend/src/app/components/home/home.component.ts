@@ -18,6 +18,7 @@ import { MetaDeAhorro } from '../../models/MetaDeAhorro';
 import { MetadeahorroService } from '../../services/metadeahorro.service';
 import {MatChipsModule} from '@angular/material/chips';
 import { MaxmontobycategoriaComponent } from '../reportes/maxmontobycategoria/maxmontobycategoria.component';
+import { Reporte02Component } from '../reportes/reporte02/reporte02.component';
 
 @Component({
   selector: 'app-home',
@@ -32,6 +33,7 @@ import { MaxmontobycategoriaComponent } from '../reportes/maxmontobycategoria/ma
     Reporte01Component,
     MatChipsModule,
     MaxmontobycategoriaComponent,
+    Reporte02Component
   ],
   standalone: true,
   templateUrl: './home.component.html',
