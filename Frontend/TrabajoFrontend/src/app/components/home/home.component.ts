@@ -17,6 +17,7 @@ import { Transaccion } from '../../models/Transaccion';
 import { MetaDeAhorro } from '../../models/MetaDeAhorro';
 import { MetadeahorroService } from '../../services/metadeahorro.service';
 import {MatChipsModule} from '@angular/material/chips';
+import { Reporte02Component } from '../reportes/reporte02/reporte02.component';
 
 @Component({
   selector: 'app-home',
@@ -29,7 +30,8 @@ import {MatChipsModule} from '@angular/material/chips';
     MatCardModule,
     MatButtonModule,
     Reporte01Component,
-    MatChipsModule
+    MatChipsModule,
+    Reporte02Component
   ],
   standalone: true,
   templateUrl: './home.component.html',
@@ -89,6 +91,7 @@ export class HomeComponent implements OnInit {
     this.verificar();
     this.isAdmin();
     this.isCliente();
+    this.SetAhorroAcumulado();
   }
 
   verificar() {
@@ -101,5 +104,21 @@ export class HomeComponent implements OnInit {
   }
   isCliente() {
     return this.role === 'CLIENTE';
+  }
+
+
+  SetAhorroAcumulado(){
+    const ingresos = this.transacciones
+      .filter(transaccion => transaccion.es_ingresoTransaccion)
+      .reduce((total, transaccion) => total + transaccion.montoTransaccion, 0);
+
+    const egresos = this.transacciones
+      .filter(transaccion => !transaccion.es_ingresoTransaccion)
+      .reduce((total, transaccion) => total + transaccion.montoTransaccion, 0);
+
+    this.usuarioLogeado.ahorro_acumulado = ingresos - egresos;
+
+    console.log('Ahorro acumulado:', this.usuarioLogeado.ahorro_acumulado);
+    
   }
 }

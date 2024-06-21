@@ -56,6 +56,7 @@ export class CreaeditaMetadeahorroComponent implements OnInit {
   edicion: boolean = false;
   id: number = 0;
   usuariologeado: Usuario | null =null;
+  fechamaxima: Date = new Date();
   constructor(
     private mtS: TipometaService,
     private uS: UsuarioService, 
@@ -87,7 +88,7 @@ export class CreaeditaMetadeahorroComponent implements OnInit {
           Validators.pattern('^[0-9]*$'),
         ],
       ],
-      fecha: ['', Validators.required],
+      fecha: ['',Validators.required],
       tipometaid: ['', Validators.required],
     });
 
@@ -99,6 +100,9 @@ export class CreaeditaMetadeahorroComponent implements OnInit {
       this.listaUsuarios = data;
     });
   }
+ 
+
+
   aceptar(): void {
     this.usuariologeado=this.lS.getCurrentUser()!;
     if (this.form.valid) {

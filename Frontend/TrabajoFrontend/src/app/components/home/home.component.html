@@ -46,13 +46,13 @@
       <mat-card-header>
         <div class="header-contet">
           <mat-card-title>Mis metas de ahorro</mat-card-title>
-          <mat-card-subtitle>Subtitulo provisional</mat-card-subtitle>
+          <mat-card-subtitle>Cantidad de metas cumplidas y no cumplidas</mat-card-subtitle>
         </div>
       </mat-card-header>
 
       <mat-card-content>
         <div class="chart-content">
-          Aqui van los charts
+         <app-reporte02></app-reporte02>
         </div>
       </mat-card-content>
       <mat-card-actions class="actions">
@@ -86,7 +86,7 @@
     </mat-card>
   </div>
 
-  <!-- Mostrar presupuestos si existe mas de un presupuesto -->
+  <!-- Mostrar transaccion si existe mas de un presupuesto -->
   <div class="card-container" *ngIf="haytransacciones">
     <mat-card class="chart-card" appearance="outlined">
       <mat-card-header>
