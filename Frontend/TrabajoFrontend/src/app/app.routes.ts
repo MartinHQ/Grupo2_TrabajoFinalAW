@@ -20,6 +20,7 @@ import { MetadeahorroComponent } from './components/metadeahorro/metadeahorro.co
 import { CreaeditaMetadeahorroComponent } from './components/metadeahorro/creaedita-metadeahorro/creaedita-metadeahorro.component';
 import { RegisterComponent } from './components/register/register.component';
 import { RegistrarUsuarioComponent } from './components/usuario/registrar-usuario/registrar-usuario.component';
+import { MaxmontobycategoriaComponent } from './components/reportes/maxmontobycategoria/maxmontobycategoria.component';
 
 export const routes: Routes = [
   {
@@ -190,5 +191,11 @@ export const routes: Routes = [
     ],
     canActivate: [segGuard],
   },
- //fin de Meta de Ahorros
+  //fin de Meta de Ahorros
+  //ruta para mostrar reporte MaxMontoByCategoria
+  {
+    path: 'reporte02',
+    component: MaxmontobycategoriaComponent,
+    canActivate: [segGuard]
+  }
 ];

@@ -17,6 +17,7 @@ import { Transaccion } from '../../models/Transaccion';
 import { MetaDeAhorro } from '../../models/MetaDeAhorro';
 import { MetadeahorroService } from '../../services/metadeahorro.service';
 import {MatChipsModule} from '@angular/material/chips';
+import { MaxmontobycategoriaComponent } from '../reportes/maxmontobycategoria/maxmontobycategoria.component';
 import { Reporte02Component } from '../reportes/reporte02/reporte02.component';
 
 @Component({
@@ -31,12 +32,13 @@ import { Reporte02Component } from '../reportes/reporte02/reporte02.component';
     MatButtonModule,
     Reporte01Component,
     MatChipsModule,
+    MaxmontobycategoriaComponent,
     Reporte02Component
   ],
   standalone: true,
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
-  
+
 })
 export class HomeComponent implements OnInit {
   usuarioLogeado: Usuario = this.lS.getCurrentUser()!;
@@ -91,7 +93,6 @@ export class HomeComponent implements OnInit {
     this.verificar();
     this.isAdmin();
     this.isCliente();
-    this.SetAhorroAcumulado();
   }
 
   verificar() {
@@ -104,21 +105,5 @@ export class HomeComponent implements OnInit {
   }
   isCliente() {
     return this.role === 'CLIENTE';
-  }
-
-
-  SetAhorroAcumulado(){
-    const ingresos = this.transacciones
-      .filter(transaccion => transaccion.es_ingresoTransaccion)
-      .reduce((total, transaccion) => total + transaccion.montoTransaccion, 0);
-
-    const egresos = this.transacciones
-      .filter(transaccion => !transaccion.es_ingresoTransaccion)
-      .reduce((total, transaccion) => total + transaccion.montoTransaccion, 0);
-
-    this.usuarioLogeado.ahorro_acumulado = ingresos - egresos;
-
-    console.log('Ahorro acumulado:', this.usuarioLogeado.ahorro_acumulado);
-    
   }
 }
