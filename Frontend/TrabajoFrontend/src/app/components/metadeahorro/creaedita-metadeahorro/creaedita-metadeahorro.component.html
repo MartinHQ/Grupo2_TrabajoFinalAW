@@ -37,7 +37,8 @@
 
 
     <mat-form-field appearance="fill" class="fechalimite">
-      <input matInput placeholder="Ingrese fecha" [matDatepicker]="picker" formControlName="fecha" />
+      <input matInput placeholder="Ingrese fecha" [matDatepicker]="picker" 
+            formControlName="fecha" [min]="fechamaxima"/>
       <mat-hint>MM/DD/YYYY</mat-hint>
       <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
