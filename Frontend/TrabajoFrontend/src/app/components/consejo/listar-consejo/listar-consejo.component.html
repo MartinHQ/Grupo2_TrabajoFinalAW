@@ -1,44 +1,30 @@
-<div class="container" style="padding-top: 10px; padding-left: 10px; padding-right: 10px;">
-    
-    <div class="title-container" style="text-align: center;"><h1>Lista de Consejos</h1></div>
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-        <!-- Columna Codigo -->
-        <ng-container matColumnDef="codigo">
-            <th mat-header-cell *matHeaderCellDef>Código</th>
-            <td mat-cell *matCellDef="let element">{{ element.idConsejo }}</td>
-        </ng-container>
-        
-        <!-- Columna Titulo -->
-        <ng-container matColumnDef="titulo">
-            <th mat-header-cell *matHeaderCellDef>Titulo</th>
-            <td mat-cell *matCellDef="let element">{{ element.titulo }}</td>
-        </ng-container>
-
-        <!-- Columna Descripcion -->
-        <ng-container matColumnDef="descripcion">
-            <th mat-header-cell *matHeaderCellDef>Descripción</th>
-            <td mat-cell *matCellDef="let element">{{ element.descripcion }}</td>
-        </ng-container>
-
-        <!-- Columna Accion -->
-        <ng-container matColumnDef="accion01">
-            <th mat-header-cell *matHeaderCellDef></th>
-            <td mat-cell *matCellDef="let element">
+<div class="container">
+    <div class="title-container">
+      <h1 class="title">Econo Consejos</h1>
+    </div>
+    <mat-grid-list cols="3" rowHeight="200px">
+      <mat-grid-tile class="full-size-tile" *ngFor="let element of obs | async" >
+        <mat-card class="example-card" >
+          <mat-card-header>
+            <mat-card-title-group>
+              <mat-card-title>{{ element.titulo }}</mat-card-title>
+            </mat-card-title-group>
+          </mat-card-header>
+          <mat-card-content>
+            {{ element.descripcion }}
+          </mat-card-content>
+          <mat-card-actions *ngIf="isAdmin()">
             <button mat-button color="primary" [routerLink]="['editar', element.idConsejo]" title="Editar">
-                <mat-icon>edit</mat-icon>
-                
+                <mat-icon>edit</mat-icon>Modificar
             </button>
             <button mat-button color="warn" (click)="openDialog(element.idConsejo)" title="Borrar">
-                <mat-icon>delete</mat-icon>
-                
+                <mat-icon>delete</mat-icon>Eliminar
             </button>
-            </td>
-        </ng-container>
-
-        <tr mat-header-row *matHeaderRowDef="Columnas"></tr>
-        <tr mat-row *matRowDef="let row; columns: Columnas"></tr>
-    </table>
-    <mat-paginator [pageSizeOptions]="[3, 5, 10]"
+          </mat-card-actions>
+        </mat-card>
+      </mat-grid-tile>
+    </mat-grid-list>
+    <mat-paginator [pageSize]="9" [pageSizeOptions]="[3, 6, 9]"
                 showFirstLastButtons=""
               aria-label="Seleccionar pagina">
     </mat-paginator>

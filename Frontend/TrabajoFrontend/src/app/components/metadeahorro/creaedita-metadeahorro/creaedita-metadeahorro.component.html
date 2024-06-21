@@ -15,14 +15,14 @@
     <mat-form-field class="titulo">
       <mat-label>Titulo</mat-label>
       <input matInput formControlName="nombre" />
-      <mat-error *ngIf="form.get('nombre')?.hasError('required')">El titulo de la meta es obligatorio.</mat-error>
+      <mat-error *ngIf="form.get('nombre')?.hasError('required')">El título de la meta es obligatorio.</mat-error>
     </mat-form-field>
     
     <mat-form-field class="descripcion">
       <mat-label>Descripcion</mat-label>
-      <textarea matInput #descripcion maxlength="250" formControlName="descripcion" placeholder="Ej. Esta categoria abarca..."></textarea>
+      <textarea matInput #descripcion maxlength="250" formControlName="descripcion" placeholder="Ej. Meta para comprar un..."></textarea>
       <mat-hint [align]="'end'"> {{descripcion.value.length}} / 250</mat-hint>
-      <mat-error *ngIf="form.get('descripcion')?.hasError('required')">La decripcion es obligatoria.</mat-error>
+      <mat-error *ngIf="form.get('descripcion')?.hasError('required')">La descripción es obligatoria.</mat-error>
     </mat-form-field><br>
 
    <div class="cointainer2"> 
@@ -38,7 +38,7 @@
 
     <mat-form-field appearance="fill" class="fechalimite">
       <input matInput placeholder="Ingrese fecha" [matDatepicker]="picker" 
-            formControlName="fecha" [min]="fechamaxima" readonly/>
+      formControlName="fecha" [min]="fechamaxima" readonly/>
       <mat-hint>MM/DD/YYYY</mat-hint>
       <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
