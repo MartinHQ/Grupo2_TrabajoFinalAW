@@ -25,8 +25,8 @@ public class CantMetaAhorroSiNoCumplidaDTO {
         return meta_no_cumplida;
     }
 
-    public void setMeta_no_cumplida(int meta_no_cumplidas){
-        this.meta_no_cumplida=meta_no_cumplidas;
+    public void setMeta_no_cumplida(int meta_no_cumplida){
+        this.meta_no_cumplida=meta_no_cumplida;
     }
 
 }
