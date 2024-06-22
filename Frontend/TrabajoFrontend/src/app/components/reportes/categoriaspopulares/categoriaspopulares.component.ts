@@ -36,9 +36,11 @@ export class CategoriaspopularesComponent implements OnInit {
           data: data.map((item) => item.total_transacciones),
           label: 'transacciones con esta categoria',
           backgroundColor: [
-            'rgba(75, 192, 192, 0.2)',
-            'rgba(54, 162, 235, 0.2)',
-            'rgba(255, 206, 86, 0.2)',
+            'rgba(41, 37, 243, 0.6)',  // Azul principal pastel
+            'rgba(41, 127, 243, 0.6)', // Variación de azul pastel
+            'rgba(37, 243, 229, 0.6)', // Variación de azul verdoso pastel
+            'rgba(116, 37, 243, 0.6)', // Variación de púrpura pastel
+            'rgba(41, 37, 153, 0.6)'   // Variación de azul oscuro pastel
           ],
         },
       ];

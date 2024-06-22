@@ -126,7 +126,7 @@ public interface ITransaccionRepository extends JpaRepository<Transaccion, Integ
                         "    c.nombre\r\n" + //
                         "ORDER BY \r\n" + //
                         "    total_transacciones DESC\r\n" + //
-                        "LIMIT 3;", nativeQuery = true)
+                        "LIMIT 5;", nativeQuery = true)
     public List<String[]> categoriaspopulares();
 
 }
