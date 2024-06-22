@@ -8,7 +8,7 @@ import { ListarPreguntafrecuenteComponent } from '../preguntafrecuente/listar-pr
 import { RouterOutlet, ActivatedRoute } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import { Reporte01Component } from '../reportes/reporte01/reporte01.component';
+import { Reporte01Component } from '../reportes/promedioingresoegresopormes/reporte01.component';
 import { ConsejoService } from '../../services/consejo.service';
 import { Consejo } from '../../models/Consejo';
 import { NgFor } from '@angular/common';
@@ -21,6 +21,7 @@ import { MaxmontobycategoriaComponent } from '../reportes/maxmontobycategoria/ma
 import { Reporte02Component } from '../reportes/reporte02/reporte02.component';
 import { ChangeDetectorRef } from '@angular/core';
 import { UsuarioService } from '../../services/usuario.service';
+import { CategoriaspopularesComponent } from '../reportes/categoriaspopulares/categoriaspopulares.component';
 
 @Component({
   selector: 'app-home',
@@ -35,7 +36,8 @@ import { UsuarioService } from '../../services/usuario.service';
     Reporte01Component,
     MatChipsModule,
     MaxmontobycategoriaComponent,
-    Reporte02Component
+    Reporte02Component,
+    CategoriaspopularesComponent
   ],
   standalone: true,
   templateUrl: './home.component.html',

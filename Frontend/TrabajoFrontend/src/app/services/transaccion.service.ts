@@ -5,7 +5,8 @@ import { Subject } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { promedioingresoegresopormesDTO } from '../models/PromedioingresoegresopormesDTO';
-import { MaxMontoByCategoriaDTO } from '../models/MaxMontoByCategoriaDTO';
+import { MaxMontoByCategoriaDTO } from '../models/maxMontoByCategoriaDTO';
+import { CategoriasPopularesDTO } from '../models/CategoriasPopularesDTO';
 
 const base_url = environment.base;
 
@@ -82,5 +83,7 @@ export class TransaccionService {
     return this.http.get<number>(`${this.url}/ahorroAcumulado/${usuarioId}`);
   }
 
-
+  getCategoriasPopulares(){
+    return this.http.get<CategoriasPopularesDTO[]>(`${this.url}/categoriaspopulares`);
+  }
 }
