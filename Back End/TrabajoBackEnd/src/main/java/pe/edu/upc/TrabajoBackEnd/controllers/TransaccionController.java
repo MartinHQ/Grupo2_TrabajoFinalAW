@@ -117,7 +117,7 @@ public class TransaccionController {
                 .collect(Collectors.toList());
     }
 
-    @PreAuthorize("hasAuthority('CLIENTE')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/promediotransaccion")
     public List<PromedioTransaccionDTO> promedioTransaccion(@RequestParam LocalDate date1,
                                                             @RequestParam LocalDate date2) {
@@ -125,7 +125,7 @@ public class TransaccionController {
         List<PromedioTransaccionDTO> dtoLista = new ArrayList<>();
         for(String[] columna: filalista) {
             PromedioTransaccionDTO temp = new PromedioTransaccionDTO();
-            temp.setNombre(columna[0]);
+            temp.setMes(Integer.parseInt(columna[0]));
             temp.setPromedio(Float.parseFloat(columna[1]));
             dtoLista.add(temp);
         }
