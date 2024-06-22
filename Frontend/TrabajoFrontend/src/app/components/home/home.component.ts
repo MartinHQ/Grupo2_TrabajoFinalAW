@@ -20,6 +20,7 @@ import {MatChipsModule} from '@angular/material/chips';
 import { MaxmontobycategoriaComponent } from '../reportes/maxmontobycategoria/maxmontobycategoria.component';
 import { Reporte02Component } from '../reportes/reporte02/reporte02.component';
 import { ChangeDetectorRef } from '@angular/core';
+import { UsuarioService } from '../../services/usuario.service';
 
 @Component({
   selector: 'app-home',
@@ -56,7 +57,8 @@ export class HomeComponent implements OnInit {
     private cS: ConsejoService,
     private tS: TransaccionService,
     private mS : MetadeahorroService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private uS: UsuarioService
   ) {}
 
   ngOnInit(): void {
@@ -117,7 +119,8 @@ export class HomeComponent implements OnInit {
   SetAhorroAcumulado(){
     this.tS.getAhorroAcumulado(this.usuarioLogeado.usuario_id).subscribe((data) => {
       this.usuarioLogeado.ahorro_acumulado = data;
-      console.log('Ahorro acumulado:', this.usuarioLogeado.ahorro_acumulado);
+      this.uS.update(this.usuarioLogeado)
     });
+    
   }
 }
