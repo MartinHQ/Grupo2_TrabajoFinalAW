@@ -31,7 +31,7 @@ import { MatButtonModule } from '@angular/material/button';
     MatNativeDateModule,
     CommonModule,
     FormsModule,
-    MatButtonModule    
+    MatButtonModule
   ],
   providers: [provideNativeDateAdapter()],
   templateUrl: './top-saldos-usuarios.component.html',
@@ -79,6 +79,6 @@ export class TopSaldosUsuariosComponent implements OnInit {
   }
 
   onDateChange(): void {
-    
+
   }
 }

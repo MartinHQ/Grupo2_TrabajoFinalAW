@@ -6,8 +6,8 @@
     display: flex;
     align-items: center;
   }
-  
+
   canvas {
-    width: 100% !important; /* Asegura que el canvas ocupe todo el contenedor */
+    width: 60% !important; /* Asegura que el canvas ocupe todo el contenedor */
     height: auto !important; /* Mantén la relación de aspecto */
   }

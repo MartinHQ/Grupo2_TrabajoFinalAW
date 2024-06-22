@@ -6,7 +6,7 @@
     display: flex;
     align-items: center;
   }
-  
+
   canvas {
     width: 100% !important; /* Asegura que el canvas ocupe todo el contenedor */
     height: auto !important; /* Mantén la relación de aspecto */
@@ -20,21 +20,20 @@
     color: #ffffff;
     border: 1px solid #ddd;
   }
-  
+
   .mat-mdc-button.mat-warn:hover{
     background-color: #d31313dd !important;
     color: #ffffff;
   }
-  
+
   .mat-mdc-button.mat-primary{
     background-color: #2925F3 !important;
     color: #ffffff;
     border: 1px solid #ddd;
   }
-  
+
   .mat-mdc-button.mat-primary:hover{
     background-color: #4643f5 !important;
     color: #ffffff;
   }
-  
-  
+
