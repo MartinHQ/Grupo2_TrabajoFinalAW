@@ -1,22 +1,8 @@
-<div *ngIf="isAdmin">
+<div>
   <div style="display: flex; justify-content: center; align-items: center; margin: 20px;">
-    <mat-form-field appearance="fill" style="margin: 10px;">
-      <mat-label>Fecha de inicio</mat-label>
-      <input matInput [matDatepicker]="startPicker" formControlName="fechainicio">
-      <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
-      <mat-datepicker #startPicker></mat-datepicker>
-    </mat-form-field>
-    
-    <mat-form-field appearance="fill" style="margin: 10px;">
-      <mat-label>Fecha de fin</mat-label>
-      <input matInput [matDatepicker]="endPicker" formControlName="fechafin">
-      <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
-      <mat-datepicker #endPicker></mat-datepicker>
-    </mat-form-field>
-
   <div style="display: block; width: 80%; margin: auto;">
     <canvas baseChart
-            [data]="barChartData"
+            [datasets]="barChartData"
             [labels]="barChartLabels"
             [options]="barChartOptions"
             [legend]="barChartLegend"

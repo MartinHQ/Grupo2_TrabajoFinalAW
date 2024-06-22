@@ -16,19 +16,28 @@
          <app-reporte-promediotransaccion></app-reporte-promediotransaccion>
         </div>
       </mat-card-content>
-      <mat-card-actions class="actions">
-        <button mat-button color="primary" routerLink="/promediotransaccion">
-          Boton para redirigir
-        </button>
-      </mat-card-actions>
     </mat-card>
   </div>
 
+  <!--Mostrar Ingresos o Egresos de un mes en especifico por categoria-->
+  <div class="card-container">
+    <mat-card class="chart-card" appearance="outlined">
+      <mat-card-header>
+        <mat-card-title>
+          Ingresos o Gastos en cada Mes Por Categoria de Transaccion
+        </mat-card-title>
+      </mat-card-header>
+
+      <mat-card-content>
+        <div class="chart-container">
+          <div class="chart-content">
+            <app-maxmontobycategoria></app-maxmontobycategoria>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
 </div>
-
-
-
-
 
 <div class="container" *ngIf="isCliente()">
 

@@ -11,12 +11,14 @@ import { MatCardModule } from '@angular/material/card';
 import { NgFor, NgIf, CommonModule } from '@angular/common';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-reporte-promediotransaccion',
   standalone: true,
   imports: [BaseChartDirective,
             MatDatepickerModule, MatNativeDateModule,
-            MatCalendar,MatCardModule,NgIf,NgFor,CommonModule,MatFormFieldModule,MatInputModule],
+            MatCalendar,MatCardModule,NgIf,NgFor,CommonModule,MatFormFieldModule,MatInputModule,
+            FormsModule],
   templateUrl: './reporte-promediotransaccion.component.html',
   styleUrl: './reporte-promediotransaccion.component.css'
 })
@@ -35,25 +37,18 @@ barChartOptions: ChartOptions = {
  barChartLegend = true;
  barChartData: ChartDataset[] = [];
  barChartLabels: string[] = [];
- isAdmin: boolean = false; // Variable para verificar si el usuario es admin
  
  constructor( private tS:TransaccionService,
-              private lS: LoginService,
-              private cdr: ChangeDetectorRef){}
+              private lS: LoginService){}
  ngOnInit(): void {
-   // Verificar si el usuario tiene el rol de admin
-   this.isAdmin = this.lS.showRole() === 'admin';
-
-   if (this.isAdmin) {
-     // Opcional: Inicialización con el mes actual si es admin
      const hoy = new Date();
-     this.fechainicio = new Date(hoy.getFullYear(), hoy.getMonth(), 1);
+     this.fechainicio = new Date(hoy.getFullYear() - 1, hoy.getMonth(), hoy.getDate());
      this.fechafin = hoy;
      this.mostrarPromedioTransaccion(); // Inicializa con el mes actual
-   }
  }
  // Método para mostrar el promedio de transacciones
  mostrarPromedioTransaccion(): void {
+  console.log(this.fechainicio, this.fechafin)
   if (this.fechainicio && this.fechafin) {
     this.tS.getPromedioTransaccion(this.fechainicio, this.fechafin).subscribe((data)=>{
       console.log(data);
@@ -62,11 +57,10 @@ barChartOptions: ChartOptions = {
         {
           data: data.map(item => item.promedio),
           label: 'Promedio de Transacciones',
-          borderColor: ['#2925F3','#F32525'],
+          backgroundColor: ['#2925F3','#F32525'],
           fill: false
         }
       ];
-      this.cdr.detectChanges();
     });
   }
 }
