@@ -85,7 +85,7 @@ export class HomeComponent implements OnInit {
     this.verificar();
     this.isAdmin();
     this.isCliente();
-    this.SetAhorroAcumulado
+    this.SetAhorroAcumulado();
 
 
   }

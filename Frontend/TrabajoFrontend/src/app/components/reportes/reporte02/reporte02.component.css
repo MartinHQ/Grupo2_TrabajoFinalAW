@@ -8,7 +8,7 @@
   }
   
   canvas {
-    width: 100% !important; /* Asegura que el canvas ocupe todo el contenedor */
+    width: 50% !important; /* Asegura que el canvas ocupe todo el contenedor */
     height: auto !important; /* Mantén la relación de aspecto */
   }
   
