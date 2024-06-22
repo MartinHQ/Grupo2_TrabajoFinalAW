@@ -1,5 +1,5 @@
-<div class="title-container" style="padding-top: 10px; text-align: center;" *ngIf="!edit"><h1>Registro de Consejos</h1></div>
-<div class="title-container" style="padding-top: 10px; text-align: center;" *ngIf="edit"><h1>Editar consejo</h1></div>
+<div class="title-container"  *ngIf="!edit"><h1>Registro de Consejos</h1></div>
+<div class="title-container"  *ngIf="edit"><h1>Editar consejo</h1></div>
 <div class="container" style="text-align: center;">
     <form [formGroup]="form" (submit)="registrar()">
     
@@ -18,7 +18,8 @@
         <br>
         <mat-form-field>
             <mat-label>Descripción</mat-label>
-            <input matInput formControlName="descripcion" />
+            <textarea matInput #descripcion maxlength="250" formControlName="descripcion" placeholder="Para mejorar tus finanzas puedes..."></textarea>
+            <mat-hint align="end"> {{descripcion.value.length}} / 250</mat-hint>
             <mat-error *ngIf="form.get('descripcion')?.hasError('required')"
               >La descripción del consejo es obligatoria.</mat-error>
         </mat-form-field>

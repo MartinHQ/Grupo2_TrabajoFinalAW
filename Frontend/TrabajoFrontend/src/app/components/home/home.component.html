@@ -62,9 +62,12 @@
 <div class="container" *ngIf="isCliente()">
   <div class="tittle">
     <h1>Hola, {{ usuarioLogeado.nombre }}!</h1>
-    <h2>
-      Tu saldo es de {{ usuarioLogeado.ahorro_acumulado }}, puedes distribuirlos
-      para cumplir tus <a routerLink="/metadeahorro/">metas de ahorro</a>
+    <h2 *ngIf="usuarioLogeado.ahorro_acumulado >= 0">
+      Tu saldo es de {{ usuarioLogeado.ahorro_acumulado }} , puedes distribuirlos
+      para cumplir tus <a routerLink="/metadeahorro">metas de ahorro</a>
+    </h2>
+    <h2 *ngIf="usuarioLogeado.ahorro_acumulado < 0">
+      Tu saldo se encuentra en numeros negativos {{ usuarioLogeado.ahorro_acumulado }}, ten cuidado, debe haber un balance en tus <a routerLink="/transaccion">transacciones</a>
     </h2>
   </div>
 
@@ -143,7 +146,29 @@
         </div>
       </mat-card-content>
     </mat-card>
+
+    <!--Mostrar Ingresos o Egresos de un mes en especifico por categoria-->
+   <div class="card-container">
+    <mat-card class="chart-card" appearance="outlined">
+      <mat-card-header>
+        <mat-card-title>
+          Ingresos o Gastos en cada Mes Por Categoria de Transaccion
+        </mat-card-title>
+      </mat-card-header>
+
+      <mat-card-content>
+        <div class="chart-container">
+          <div class="chart-content">
+            <app-maxmontobycategoria></app-maxmontobycategoria>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>  
+
   </div>
+
+   
 
   <!-- Mostrar boton crear presupuesto si el usuario no tiene presupuestos -->
   <div class="card-container" *ngIf="!haytransacciones">
@@ -172,24 +197,7 @@
       </mat-card-actions>
     </mat-card>
 
-    <!--Mostrar Ingresos o Egresos de un mes en especifico por categoria-->
-    <div class="card-container">
-      <mat-card class="chart-card" appearance="outlined">
-        <mat-card-header>
-          <mat-card-title>
-            Ingresos o Gastos en cada Mes Por Categoria de Transaccion
-          </mat-card-title>
-        </mat-card-header>
-
-        <mat-card-content>
-          <div class="chart-container">
-            <div class="chart-content">
-              <app-maxmontobycategoria></app-maxmontobycategoria>
-            </div>
-          </div>
-        </mat-card-content>
-      </mat-card>
-    </div>
+   
   </div>
 
   <!-- Mostrar consejos -->
