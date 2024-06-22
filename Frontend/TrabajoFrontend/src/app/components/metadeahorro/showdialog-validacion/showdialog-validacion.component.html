@@ -1,12 +1,8 @@
-<mat-card class="detail-card">
-    <mat-card-header class="card-header">
-      <mat-card-title class="card-title">Saldo insuficiente</mat-card-title>
-    </mat-card-header>
-    <mat-card-content class="card-content">
-      <p>Usted no cuenta con saldo suficiente para cumplir esta meta de ahorro.</p>
-    </mat-card-content>
-    <mat-card-actions class="dialog-actions">
-      <button mat-button color="warn" (click)="onNoClick()">Cerrar</button>
-    </mat-card-actions>
-  </mat-card>
-  
+
+<h2>Saldo insuficiente</h2>
+<mat-dialog-content>
+  Usted no cuenta con saldo suficiente para cumplir esta meta de ahorro.
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button class="cancel" mat-dialog-close (click)="onNoClick()">Cerrar</button>
+</mat-dialog-actions>
