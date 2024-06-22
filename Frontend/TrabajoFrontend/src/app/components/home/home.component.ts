@@ -19,6 +19,7 @@ import { MetadeahorroService } from '../../services/metadeahorro.service';
 import {MatChipsModule} from '@angular/material/chips';
 import { MaxmontobycategoriaComponent } from '../reportes/maxmontobycategoria/maxmontobycategoria.component';
 import { Reporte02Component } from '../reportes/reporte02/reporte02.component';
+import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-home',
@@ -54,10 +55,14 @@ export class HomeComponent implements OnInit {
     public route: ActivatedRoute,
     private cS: ConsejoService,
     private tS: TransaccionService,
-    private mS : MetadeahorroService
+    private mS : MetadeahorroService,
+    private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
+
+    console.log('Home',this.usuarioLogeado)
+    this.cdr.detectChanges(); // Forzar la detección de cambios
     this.usuarioLogeado = this.lS.getCurrentUser()!;
 
     this.cS.list().subscribe((data) => {
@@ -72,7 +77,7 @@ export class HomeComponent implements OnInit {
     });
 
     //cambiar el metodo cuando se implemente el servicio listar por usuario...
-    this.mS.listar().subscribe((data) => {
+    this.mS.listarporusuarioactivo(this.usuarioLogeado.usuario_id ).subscribe((data) => {
       this.metas = data;
       this.haymetas = this.metas.length > 0;
       console.log('Metas cargadas:', this.metas);});
@@ -80,6 +85,7 @@ export class HomeComponent implements OnInit {
     this.verificar();
     this.isAdmin();
     this.isCliente();
+    this.SetAhorroAcumulado
 
 
   }
@@ -105,5 +111,13 @@ export class HomeComponent implements OnInit {
   }
   isCliente() {
     return this.role === 'CLIENTE';
+  }
+
+
+  SetAhorroAcumulado(){
+    this.tS.getAhorroAcumulado(this.usuarioLogeado.usuario_id).subscribe((data) => {
+      this.usuarioLogeado.ahorro_acumulado = data;
+      console.log('Ahorro acumulado:', this.usuarioLogeado.ahorro_acumulado);
+    });
   }
 }

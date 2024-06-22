@@ -44,7 +44,7 @@ public class TransaccionController {
     @PreAuthorize("hasAuthority('CLIENTE') or hasAuthority('ADMIN')")
     @GetMapping
     public List<TransaccionDTO> listarTransaccion() {
-        return tS.list().stream().map(y->{
+        return tS.list().stream().map(y -> {
             ModelMapper m = new ModelMapper();
             return m.map(y, TransaccionDTO.class);
         }).collect(Collectors.toList());
@@ -60,10 +60,13 @@ public class TransaccionController {
 
     @PreAuthorize("hasAuthority('CLIENTE')")
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable("id") Integer id) { tS.delete(id); }
+    public void delete(@PathVariable("id") Integer id) {
+        tS.delete(id);
+    }
 
     @GetMapping("/reportesaldos")
-    public List<SaldosPorUsuarioDTO> reporteSaldosporrangoTiempo(@RequestParam("fechainicio") LocalDate fechainicio, @RequestParam("fechafin") LocalDate fechafin) {
+    public List<SaldosPorUsuarioDTO> reporteSaldosporrangoTiempo(@RequestParam("fechainicio") LocalDate fechainicio,
+            @RequestParam("fechafin") LocalDate fechafin) {
         List<String[]> listFila = tS.reporteSaldosporrangoTiempo(fechainicio, fechafin);
         List<SaldosPorUsuarioDTO> dtoList = new ArrayList<>();
         for (String[] columna : listFila) {
@@ -77,19 +80,19 @@ public class TransaccionController {
     }
     @GetMapping("/max-categoria")
     public List<MaxMontoByCategoriaDTO> maxCategoria(@RequestParam LocalDate date1,
-                                             @RequestParam LocalDate date2,
-                                             @RequestParam Integer id_usuario,
-                                                     @RequestParam Boolean es_ingreso) {
-        //devolver la lista maxMontoByCategoria con sus parametros
-        List<String[]> filalista = tS.maxMontoByCategoria(date1,date2,id_usuario, es_ingreso);
-        //Crear la lista dto en donde se usará para mostrar los resultados
+            @RequestParam LocalDate date2,
+            @RequestParam Integer id_usuario,
+            @RequestParam Boolean es_ingreso) {
+        // devolver la lista maxMontoByCategoria con sus parametros
+        List<String[]> filalista = tS.maxMontoByCategoria(date1, date2, id_usuario, es_ingreso);
+        // Crear la lista dto en donde se usará para mostrar los resultados
         List<MaxMontoByCategoriaDTO> dtoLista = new ArrayList<>();
 
-        //un repetidor para generar los datos en cada fila
-        for(String[] columna: filalista) {
+        // un repetidor para generar los datos en cada fila
+        for (String[] columna : filalista) {
             MaxMontoByCategoriaDTO temp = new MaxMontoByCategoriaDTO();
-            temp.setTituloCategoria(columna[0]); //columna[0]: titulo de la categoria
-            temp.setMaxMontoCategoria(Float.parseFloat(columna[1])); //columna[1]: monto max
+            temp.setTituloCategoria(columna[0]); // columna[0]: titulo de la categoria
+            temp.setMaxMontoCategoria(Float.parseFloat(columna[1])); // columna[1]: monto max
             dtoLista.add(temp);
         }
         return dtoLista;
@@ -170,7 +173,6 @@ public class TransaccionController {
         List<promedioingresoegresopormesDTO> dtoList = new ArrayList<>();
         for (String[] columna : listFila) {
             promedioingresoegresopormesDTO dto = new promedioingresoegresopormesDTO();
-
             dto.setMes(columna[0]);
 
             //dto.setPromedio_egresos(Float.parseFloat(columna[1]));
@@ -189,6 +191,11 @@ public class TransaccionController {
             dtoList.add(dto);
         }
         return dtoList;
+    }
+
+    @GetMapping("/ahorroAcumulado/{usuarioId}")
+    public Double getAhorroAcumulado(@PathVariable("usuarioId") int usuarioId) {
+        return tS.getahorroacumulado(usuarioId);
     }
 
 }

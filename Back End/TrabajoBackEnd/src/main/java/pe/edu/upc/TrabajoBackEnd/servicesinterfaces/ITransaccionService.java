@@ -22,4 +22,5 @@ public interface ITransaccionService {
     public List<String[]> contarTranxManualyCta();
     public List<String[]>promedioegresosporcategoria(int mes);
     List<String[]> promedioingresoegresopormes(int usuarioId);
+    public Double getahorroacumulado(int usuarioId);
 }

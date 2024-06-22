@@ -6,6 +6,7 @@ import java.util.List;
 @Repository
 public interface IUsuarioRepository extends JpaRepository<Usuario, Integer> {
     public Usuario findByCorreo(String correo);
+    
 
     
 }

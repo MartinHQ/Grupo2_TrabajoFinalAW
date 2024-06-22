@@ -83,16 +83,31 @@ public interface ITransaccionRepository extends JpaRepository<Transaccion, Integ
     public List<String[]>promedioegresosporcategoria(@Param("mes") int mes);
 
 
-    @Query(value = "SELECT\n" +
-            "TO_CHAR(t.fecha_transaccion, 'FMMonth') as mes,\n" +
-            "AVG(CASE WHEN NOT t.es_ingreso_transaccion THEN t.monto_transaccion ELSE NULL END) AS promedio_egresos,\n" +
-            "AVG(CASE WHEN t.es_ingreso_transaccion THEN t.monto_transaccion ELSE NULL END) AS promedio_ingresos\n" +
-            "FROM\n" +
-            "transaccion t\n" +
-            "WHERE\n" +
-            "usuario_id = :usuarioId\n" +
-            "GROUP BY TO_CHAR(t.fecha_transaccion, 'FMMonth'), EXTRACT(YEAR FROM t.fecha_transaccion), EXTRACT(MONTH FROM t.fecha_transaccion)\n" +
-            "ORDER BY EXTRACT(YEAR FROM t.fecha_transaccion), EXTRACT(MONTH FROM t.fecha_transaccion)", nativeQuery = true)
+    @Query(value = "SELECT\r\n" + //
+                        "     TO_CHAR(t.fecha_transaccion, 'FMMonth') as mes,\r\n" + //
+                        "     COALESCE (AVG(CASE WHEN NOT t.es_ingreso_transaccion THEN t.monto_transaccion END),0) AS promedio_egresos,\r\n" + //
+                        "     COALESCE (AVG(CASE WHEN t.es_ingreso_transaccion THEN t.monto_transaccion END),0) AS promedio_ingresos\r\n" + //
+                        "     FROM\r\n" + //
+                        "     transaccion t\r\n" + //
+                        "     WHERE\r\n" + //
+                        "     usuario_id = :usuarioId\r\n" + //
+                        "     GROUP BY TO_CHAR(t.fecha_transaccion, 'FMMonth'), EXTRACT(YEAR FROM t.fecha_transaccion), EXTRACT(MONTH FROM t.fecha_transaccion)\r\n" + //
+                        "     ORDER BY EXTRACT(YEAR FROM t.fecha_transaccion), EXTRACT(MONTH FROM t.fecha_transaccion)", nativeQuery = true)
     public List<String[]> promedioingresoegresopormes(@Param("usuarioId") int usuarioId);
+
+    @Query(value="SELECT \r\n" + //
+                        "    (SUM(CASE WHEN t.es_ingreso_transaccion THEN t.monto_transaccion ELSE 0 END) - \r\n" + //
+                        "     SUM(CASE WHEN NOT t.es_ingreso_transaccion THEN t.monto_transaccion ELSE 0 END)) - \r\n" + //
+                        "    (SELECT SUM(CASE WHEN m.meta_cumplida THEN m.monto_objetivo ELSE 0 END) \r\n" + //
+                        "     FROM meta_de_ahorro m \r\n" + //
+                        "     WHERE m.usuario_id = t.usuario_id) AS ahorro_acumulado\r\n" + //
+                        "FROM \r\n" + //
+                        "    transaccion t\r\n" + //
+                        "WHERE \r\n" + //
+                        "    t.usuario_id = :usuarioId\r\n" + //
+                        "GROUP BY \r\n" + //
+                        "    t.usuario_id;\r\n" + //
+                        "",nativeQuery =true)
+    public Double getahorroacumulado(@Param("usuarioId") int usuarioId);
 
 }

@@ -28,6 +28,10 @@
           <button mat-button color="accent" (click)="openDetailDialog(element)">
             <mat-icon>visibility</mat-icon>
           </button>
+          <button mat-button color="primary" (click)="marcarComoCumplida(element)">
+            <mat-icon>{{ element.meta_cumplida ? 'check_circle' : 'radio_button_unchecked' }}</mat-icon>
+            {{ element.meta_cumplida ? 'Cumplida' : 'No Cumplida' }}
+          </button>
         </mat-card-actions>
       </mat-card>
     </div>

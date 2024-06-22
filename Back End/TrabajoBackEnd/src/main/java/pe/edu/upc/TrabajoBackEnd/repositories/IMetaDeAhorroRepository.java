@@ -14,7 +14,8 @@ public interface IMetaDeAhorroRepository extends JpaRepository<MetaDeAhorro, Int
                   "WHERE m.usuario_id = :usuario_id", nativeQuery = true)
       public List<String[]> listarcantidadmetascumplidasynocumplidas(@Param("usuario_id") int usuario_id);
 
-    @Query(value="SELECT * FROM meta_de_ahorro \n"+
-          "WHERE usuario_id= :usuario_id",nativeQuery=true)
+    @Query(value="SELECT * FROM meta_de_ahorro\r\n" + //
+                    "    WHERE usuario_id= 1\r\n" + //
+                    "\tOrder by fecha_limite DESC",nativeQuery=true)
     List<MetaDeAhorro> listarporelusuarioactivo(@Param("usuario_id") int usuario_id);
 }
