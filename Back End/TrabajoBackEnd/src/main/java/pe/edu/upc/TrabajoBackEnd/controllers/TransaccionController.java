@@ -164,15 +164,28 @@ public class TransaccionController {
     }
 
     @GetMapping("/ingresosEgresosPorMes/{usuarioId}")
-        public List<promedioingresoegresopormesDTO> promedioingresoegresopormes(@PathVariable("usuarioId") int usuarioId)
+    public List<promedioingresoegresopormesDTO> promedioingresoegresopormes(@PathVariable("usuarioId") int usuarioId)
     {
         List<String[]> listFila = tS.promedioingresoegresopormes(usuarioId);
         List<promedioingresoegresopormesDTO> dtoList = new ArrayList<>();
         for (String[] columna : listFila) {
             promedioingresoegresopormesDTO dto = new promedioingresoegresopormesDTO();
+
             dto.setMes(columna[0]);
-            dto.setPromedio_egresos(Float.parseFloat(columna[1]));
-            dto.setPromedio_ingresos(Float.parseFloat(columna[2]));
+
+            //dto.setPromedio_egresos(Float.parseFloat(columna[1]));
+            if (columna[1] != null) {
+                dto.setPromedio_egresos(Float.parseFloat(columna[1].trim()));
+            } else {
+                dto.setPromedio_egresos(0.0f); // O cualquier valor por defecto apropiado
+            }
+            //dto.setPromedio_ingresos(Float.parseFloat(columna[2]));
+            if (columna[2] != null) {
+                dto.setPromedio_ingresos(Float.parseFloat(columna[2].trim()));
+            } else {
+                dto.setPromedio_ingresos(0.0f); // O cualquier valor por defecto apropiado
+            }
+
             dtoList.add(dto);
         }
         return dtoList;
