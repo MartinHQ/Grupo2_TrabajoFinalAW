@@ -8,6 +8,7 @@ import pe.edu.upc.TrabajoBackEnd.dtos.MaxMontoByCategoriaDTO;
 import pe.edu.upc.TrabajoBackEnd.dtos.TransaccionDTO;
 import pe.edu.upc.TrabajoBackEnd.entities.Transaccion;
 import pe.edu.upc.TrabajoBackEnd.servicesinterfaces.ITransaccionService;
+import pe.edu.upc.TrabajoBackEnd.dtos.CategoriaspopularesDTO;
 
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -196,6 +197,21 @@ public class TransaccionController {
     @GetMapping("/ahorroAcumulado/{usuarioId}")
     public Double getAhorroAcumulado(@PathVariable("usuarioId") int usuarioId) {
         return tS.getahorroacumulado(usuarioId);
+    }
+
+    @GetMapping("/categoriaspopulares")
+    public List<CategoriaspopularesDTO> categoriaspopulares()
+    {
+        List<String[]> listFila = tS.categoriaspopulares();
+        List<CategoriaspopularesDTO> dtoList = new ArrayList<>();
+        for (String[] columna : listFila) {
+            CategoriaspopularesDTO dto = new CategoriaspopularesDTO();
+            dto.setCategoria(columna[0]);
+            dto.setTotal_transacciones(Integer.parseInt(columna[1]));
+            dtoList.add(dto);
+        }
+        return dtoList;
+
     }
 
 }

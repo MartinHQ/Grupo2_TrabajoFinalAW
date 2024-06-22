@@ -23,4 +23,5 @@ public interface ITransaccionService {
     public List<String[]>promedioegresosporcategoria(int mes);
     List<String[]> promedioingresoegresopormes(int usuarioId);
     public Double getahorroacumulado(int usuarioId);
+    List<String[]> categoriaspopulares();
 }
