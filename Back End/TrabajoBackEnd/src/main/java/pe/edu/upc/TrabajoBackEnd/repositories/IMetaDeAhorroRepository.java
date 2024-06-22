@@ -8,14 +8,14 @@ import java.util.List;
 @Repository
 public interface IMetaDeAhorroRepository extends JpaRepository<MetaDeAhorro, Integer> {
    @Query(value = "SELECT 'Metas Cumplidas' AS Estado_Meta, \r\n" +
-          "       SUM(CASE WHEN m.meta_cumplida THEN 1 ELSE 0 END) AS Cantidad\r\n" + 
+          "       COALESCE (SUM(CASE WHEN m.meta_cumplida THEN 1 END),0) AS Cantidad\r\n" + 
           "FROM meta_de_ahorro m\r\n" + 
           "WHERE m.usuario_id =:usuario_id\r\n" + 
           "\r\n" + 
           "UNION ALL\r\n" + 
           "\r\n" + 
           "SELECT 'Metas no Cumplidas' AS Estado_Meta,\r\n" + 
-          "       SUM(CASE WHEN NOT m.meta_cumplida THEN 1 ELSE 0 END) AS Cantidad\r\n" + 
+          "       COALESCE (SUM(CASE WHEN NOT m.meta_cumplida THEN 1 END),0) AS Cantidad\r\n" + 
           "FROM meta_de_ahorro m\r\n" + 
           "WHERE m.usuario_id = usuario_id;", nativeQuery = true)
       public List<String[]> listarcantidadmetascumplidasynocumplidas(@Param("usuario_id") int usuario_id);
