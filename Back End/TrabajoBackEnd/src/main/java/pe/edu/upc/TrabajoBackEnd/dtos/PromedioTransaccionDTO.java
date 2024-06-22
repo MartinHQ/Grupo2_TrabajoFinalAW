@@ -1,15 +1,15 @@
 package pe.edu.upc.TrabajoBackEnd.dtos;
 
 public class PromedioTransaccionDTO {
-    private String nombre;
+    private int mes;
     private double promedio;
 
-    public String getNombre() {
-        return nombre;
+    public int getMes() {
+        return mes;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setMes(int mes) {
+        this.mes = mes;
     }
 
     public double getPromedio() {

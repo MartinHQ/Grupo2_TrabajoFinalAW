@@ -69,7 +69,7 @@ export class ListarMetadeahorroComponent implements OnInit {
 
   openDialog(id: number): void {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
-      data: { entityName: 'Categoría de transacción' },
+      data: { entityName: 'Meta de ahorro' },
     });
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {

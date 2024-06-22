@@ -20,6 +20,7 @@ import {MatChipsModule} from '@angular/material/chips';
 import { MaxmontobycategoriaComponent } from '../reportes/maxmontobycategoria/maxmontobycategoria.component';
 import { Reporte02Component } from '../reportes/reporte02/reporte02.component';
 import { ChangeDetectorRef } from '@angular/core';
+import { ReportePromediotransaccionComponent } from '../reportes/reporte-promediotransaccion/reporte-promediotransaccion.component';
 import { UsuarioService } from '../../services/usuario.service';
 import { CategoriaspopularesComponent } from '../reportes/categoriaspopulares/categoriaspopulares.component';
 import { TopSaldosUsuariosComponent } from '../reportes/top-saldos-usuarios/top-saldos-usuarios.component';
@@ -36,7 +37,7 @@ import { TopSaldosUsuariosComponent } from '../reportes/top-saldos-usuarios/top-
     Reporte01Component,
     MatChipsModule,
     MaxmontobycategoriaComponent,
-    Reporte02Component,
+    Reporte02Component, ReportePromediotransaccionComponent,
     CategoriaspopularesComponent,
     TopSaldosUsuariosComponent
   ],
@@ -124,6 +125,5 @@ export class HomeComponent implements OnInit {
       this.usuarioLogeado.ahorro_acumulado = data;
       this.uS.update(this.usuarioLogeado)
     });
-    
   }
 }

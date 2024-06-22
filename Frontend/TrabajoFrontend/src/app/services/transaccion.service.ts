@@ -6,6 +6,8 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { promedioingresoegresopormesDTO } from '../models/PromedioingresoegresopormesDTO';
 import { MaxMontoByCategoriaDTO } from '../models/maxMontoByCategoriaDTO';
+import { promedioTransaccionDTO } from '../models/promedioTransaccionDTO';
+import { formatDate } from '@angular/common';
 import { CategoriasPopularesDTO } from '../models/CategoriasPopularesDTO';
 import { SaldosPorUsuarioDTO } from '../models/SaldosPorUsuarioDTO';
 
@@ -84,6 +86,20 @@ export class TransaccionService {
     return this.http.get<number>(`${this.url}/ahorroAcumulado/${usuarioId}`);
   }
 
+  getPromedioTransaccion(fechainicio:Date,fechafin:Date):Observable<promedioTransaccionDTO[]>{
+
+    //const formatofecha=(date:Date)=> date.toISOString().split('T')[0];
+     // Convertir las fechas a 'YYYY-MM-DD'
+     const fechaInicioFormatted = fechainicio.toISOString().split('T')[0];
+     const fechaFinFormatted = fechafin.toISOString().split('T')[0];
+
+     // Configurar los parámetros para la solicitud HTTP
+     const params = new HttpParams()
+       .set('date1', fechaInicioFormatted)
+       .set('date2', fechaFinFormatted);
+
+    return this.http.get<promedioTransaccionDTO[]>(`${this.url}/promediotransaccion`,{params});
+  }
   getCategoriasPopulares():Observable<CategoriasPopularesDTO[]>{
     return this.http.get<CategoriasPopularesDTO[]>(`${this.url}/categoriaspopulares`);
   }

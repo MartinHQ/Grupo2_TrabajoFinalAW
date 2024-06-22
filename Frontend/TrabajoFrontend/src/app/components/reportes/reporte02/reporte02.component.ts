@@ -25,8 +25,6 @@ export class Reporte02Component implements OnInit{
   //barChartType: ChartType = 'line';
   //barChartType: ChartType = 'bar';
  //barChartType: ChartType = 'polarArea';
-  hola: number = 0
-  adios: number = 0
   barChartLegend = true;
   barChartData: ChartDataset[] = [];
   barChartLabels: string[] = [];
