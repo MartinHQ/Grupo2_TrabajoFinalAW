@@ -20,6 +20,7 @@ import {MatChipsModule} from '@angular/material/chips';
 import { MaxmontobycategoriaComponent } from '../reportes/maxmontobycategoria/maxmontobycategoria.component';
 import { Reporte02Component } from '../reportes/reporte02/reporte02.component';
 import { ChangeDetectorRef } from '@angular/core';
+import { ReportePromediotransaccionComponent } from '../reportes/reporte-promediotransaccion/reporte-promediotransaccion.component';
 
 @Component({
   selector: 'app-home',
@@ -34,7 +35,7 @@ import { ChangeDetectorRef } from '@angular/core';
     Reporte01Component,
     MatChipsModule,
     MaxmontobycategoriaComponent,
-    Reporte02Component
+    Reporte02Component, ReportePromediotransaccionComponent
   ],
   standalone: true,
   templateUrl: './home.component.html',

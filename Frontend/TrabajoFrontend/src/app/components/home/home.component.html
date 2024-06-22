@@ -6,18 +6,18 @@
     <mat-card class="chart-card" appearance="outlined">
       <mat-card-header>
         <div class="header-contet">
-          <mat-card-title>Titulo del model</mat-card-title>
-          <mat-card-subtitle>Subtitulo (nombre del chart)</mat-card-subtitle>
+          <mat-card-title>Transacciones de usuarios</mat-card-title>
+          <mat-card-subtitle>Promedio de transacciones en un periodo de tiempo </mat-card-subtitle>
         </div>
       </mat-card-header>
 
       <mat-card-content>
         <div class="chart-content">
-          <p>PON TU CHART AQUI Y QUITA LAS ETIQUETAS</p>
+         <app-reporte-promediotransaccion></app-reporte-promediotransaccion>
         </div>
       </mat-card-content>
       <mat-card-actions class="actions">
-        <button mat-button color="primary" routerLink="/metadeahorro">
+        <button mat-button color="primary" routerLink="/promediotransaccion">
           Boton para redirigir
         </button>
       </mat-card-actions>
