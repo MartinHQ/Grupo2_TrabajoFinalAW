@@ -1,10 +1,11 @@
 package pe.edu.upc.TrabajoBackEnd.controllers;
-
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
-
+import pe.edu.upc.TrabajoBackEnd.dtos.SaldosPorUsuarioDTO;
+import pe.edu.upc.TrabajoBackEnd.dtos.MaxMontoByCategoriaDTO;
+import pe.edu.upc.TrabajoBackEnd.dtos.TransaccionDTO;
 import pe.edu.upc.TrabajoBackEnd.entities.Transaccion;
 import pe.edu.upc.TrabajoBackEnd.servicesinterfaces.ITransaccionService;
 
@@ -18,7 +19,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-
 @RestController
 @RequestMapping("/transacciones")
 public class TransaccionController {
@@ -78,7 +78,6 @@ public class TransaccionController {
         }
         return dtoList;
     }
-
     @GetMapping("/max-categoria")
     public List<MaxMontoByCategoriaDTO> maxCategoria(@RequestParam LocalDate date1,
             @RequestParam LocalDate date2,
@@ -98,11 +97,13 @@ public class TransaccionController {
         }
         return dtoLista;
     }
-
+  
     @GetMapping("/promedioIngresos")
     public Double obtenerPromedioIngresos(@RequestParam("usuarioId") int usuarioId,
-            @RequestParam("fechaInicio") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fechaInicio,
-            @RequestParam("fechaFin") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fechaFin) {
+                                          @RequestParam("fechaInicio") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+                                          LocalDate fechaInicio,
+                                          @RequestParam("fechaFin") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+                                          LocalDate fechaFin) {
         return tS.obtenerPromedioIngresosPorUsuarioYRangoFechas(usuarioId, fechaInicio, fechaFin);
     }
 
@@ -119,10 +120,10 @@ public class TransaccionController {
     @PreAuthorize("hasAuthority('CLIENTE')")
     @GetMapping("/promediotransaccion")
     public List<PromedioTransaccionDTO> promedioTransaccion(@RequestParam LocalDate date1,
-            @RequestParam LocalDate date2) {
-        List<String[]> filalista = tS.PromedioTransaccion(date1, date2);
+                                                            @RequestParam LocalDate date2) {
+        List<String[]> filalista = tS.PromedioTransaccion(date1,date2);
         List<PromedioTransaccionDTO> dtoLista = new ArrayList<>();
-        for (String[] columna : filalista) {
+        for(String[] columna: filalista) {
             PromedioTransaccionDTO temp = new PromedioTransaccionDTO();
             temp.setNombre(columna[0]);
             temp.setPromedio(Float.parseFloat(columna[1]));
@@ -133,7 +134,8 @@ public class TransaccionController {
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/cuantasxtipocuenta")
-    public List<contarTranxManualyCtaDTO> cuantastranxmanualcta() {
+    public List<contarTranxManualyCtaDTO> cuantastranxmanualcta()
+    {
         List<String[]> listFila = tS.contarTranxManualyCta();
         List<contarTranxManualyCtaDTO> dtoList = new ArrayList<>();
         for (String[] columna : listFila) {
@@ -149,7 +151,8 @@ public class TransaccionController {
 
     @PreAuthorize("hasAuthority('CLIENTE')")
     @GetMapping("/promedioegresosporcategoria")
-    public List<promedioegresosporcategoriaDTO> promedioegresosporcategoria(@RequestParam Integer mes) {
+    public List<promedioegresosporcategoriaDTO> promedioegresosporcategoria(@RequestParam Integer mes)
+    {
         List<String[]> listFila = tS.promedioegresosporcategoria(mes);
         List<promedioegresosporcategoriaDTO> dtoList = new ArrayList<>();
         for (String[] columna : listFila) {
@@ -164,14 +167,27 @@ public class TransaccionController {
     }
 
     @GetMapping("/ingresosEgresosPorMes/{usuarioId}")
-    public List<promedioingresoegresopormesDTO> promedioingresoegresopormes(@PathVariable("usuarioId") int usuarioId) {
+    public List<promedioingresoegresopormesDTO> promedioingresoegresopormes(@PathVariable("usuarioId") int usuarioId)
+    {
         List<String[]> listFila = tS.promedioingresoegresopormes(usuarioId);
         List<promedioingresoegresopormesDTO> dtoList = new ArrayList<>();
         for (String[] columna : listFila) {
             promedioingresoegresopormesDTO dto = new promedioingresoegresopormesDTO();
             dto.setMes(columna[0]);
-            dto.setPromedio_egresos(Float.parseFloat(columna[1]));
-            dto.setPromedio_ingresos(Float.parseFloat(columna[2]));
+
+            //dto.setPromedio_egresos(Float.parseFloat(columna[1]));
+            if (columna[1] != null) {
+                dto.setPromedio_egresos(Float.parseFloat(columna[1].trim()));
+            } else {
+                dto.setPromedio_egresos(0.0f); // O cualquier valor por defecto apropiado
+            }
+            //dto.setPromedio_ingresos(Float.parseFloat(columna[2]));
+            if (columna[2] != null) {
+                dto.setPromedio_ingresos(Float.parseFloat(columna[2].trim()));
+            } else {
+                dto.setPromedio_ingresos(0.0f); // O cualquier valor por defecto apropiado
+            }
+
             dtoList.add(dto);
         }
         return dtoList;

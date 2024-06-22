@@ -17,6 +17,7 @@ import { Transaccion } from '../../models/Transaccion';
 import { MetaDeAhorro } from '../../models/MetaDeAhorro';
 import { MetadeahorroService } from '../../services/metadeahorro.service';
 import {MatChipsModule} from '@angular/material/chips';
+import { MaxmontobycategoriaComponent } from '../reportes/maxmontobycategoria/maxmontobycategoria.component';
 import { Reporte02Component } from '../reportes/reporte02/reporte02.component';
 import { ChangeDetectorRef } from '@angular/core';
 
@@ -32,12 +33,13 @@ import { ChangeDetectorRef } from '@angular/core';
     MatButtonModule,
     Reporte01Component,
     MatChipsModule,
+    MaxmontobycategoriaComponent,
     Reporte02Component
   ],
   standalone: true,
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
-  
+
 })
 export class HomeComponent implements OnInit {
   usuarioLogeado: Usuario = this.lS.getCurrentUser()!;
@@ -97,7 +99,6 @@ export class HomeComponent implements OnInit {
     this.verificar();
     this.isAdmin();
     this.isCliente();
-    this.SetAhorroAcumulado();
   }
 
   verificar() {

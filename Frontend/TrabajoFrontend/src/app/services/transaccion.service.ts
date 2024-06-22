@@ -2,9 +2,10 @@ import { Injectable } from '@angular/core';
 import { Transaccion } from '../models/Transaccion';
 import { environment } from '../../environments/environment';
 import { Subject } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { promedioingresoegresopormesDTO } from '../models/PromedioingresoegresopormesDTO';
+import { MaxMontoByCategoriaDTO } from '../models/MaxMontoByCategoriaDTO';
 
 const base_url = environment.base;
 
@@ -49,8 +50,32 @@ export class TransaccionService {
     return this.http.get<Transaccion[]>(`${this.url}/usuario/${usuarioId}`);
   }
 
-  getIngresosEgresosPorMes(usuarioId: number): Observable<promedioingresoegresopormesDTO[]> {
-    return this.http.get<promedioingresoegresopormesDTO[]>(`${this.url}/ingresosEgresosPorMes/${usuarioId}`);
+  getIngresosEgresosPorMes(
+    usuarioId: number
+  ): Observable<promedioingresoegresopormesDTO[]> {
+    return this.http.get<promedioingresoegresopormesDTO[]>(
+      `${this.url}/ingresosEgresosPorMes/${usuarioId}`
+    );
+  }
+  getMaxMontoByCategoria(
+    fechaInicio: Date,
+    fechaFin: Date,
+    idUsuario: number,
+    esIngreso: boolean
+  ): Observable<MaxMontoByCategoriaDTO[]> {
+    // Formatear las fechas a 'yyyy-MM-dd'
+    const formatDate = (date: Date) => date.toISOString().split('T')[0];
+
+    let params = new HttpParams()
+      .set('date1', formatDate(fechaInicio))
+      .set('date2', formatDate(fechaFin))
+      .set('id_usuario', idUsuario.toString())
+      .set('es_ingreso', esIngreso.toString());
+
+    return this.http.get<MaxMontoByCategoriaDTO[]>(
+      `${this.url}/max-categoria`,
+      { params }
+    );
   }
 
   getAhorroAcumulado(usuarioId: number): Observable<number> {

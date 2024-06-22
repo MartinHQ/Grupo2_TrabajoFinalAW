@@ -1,0 +1,56 @@
+.title-container {
+  text-align: center;
+
+  margin-bottom: 40px;
+  /* Increase the margin-bottom to move the title lower */
+
+  margin-top: 60px;
+  /* Add a margin-top to further position it down the page */
+}
+
+.title {
+  font-family: "Poppins", sans-serif;
+
+  font-weight: 600;
+
+  font-size: 2em;
+
+  color: #333;
+  text-align: center;
+}
+
+.chart-container {
+  width: 60%;
+  /* Ajusta este valor según sea necesario */
+
+  margin: 0 auto;
+  /* Centra el gráfico horizontalmente */
+
+  padding: 9px;
+  /* Espacio alrededor del gráfico */
+
+  box-sizing: border-box;
+
+  display: flex;
+  justify-content: flex-end;
+}
+
+@media (max-width: 768px) {
+  .chart-container {
+    width: 100%;
+    /* Ajusta el ancho para pantallas más pequeñas */
+
+    padding: 10px;
+    /* Reduce el padding en pantallas más pequeñas */
+  }
+}
+
+.selectors-container {
+  flex: 1;
+  padding: 20px;
+  text-align: left; /* Alinea el texto de los selectores a la izquierda */
+}
+h4, mat-form-field {
+  display: inline-block;
+  margin-right: 10px; /* Añade un poco de espacio entre los elementos */
+}
