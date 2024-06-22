@@ -8,7 +8,7 @@ import { MatCardModule } from '@angular/material/card';
 @Component({
   selector: 'app-showdialog-validacion',
   standalone: true,
-  imports: [],
+  imports: [MatCardModule,MatButtonModule,CommonModule],
   templateUrl: './showdialog-validacion.component.html',
   styleUrl: './showdialog-validacion.component.css'
 })

@@ -1,0 +1,58 @@
+.detail-card {
+    max-width: 500px; /* Aumenté el ancho máximo */
+    margin: auto;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px; /* Añadí bordes redondeados para un look más moderno */
+  }
+  
+  .card-header {
+    text-align: center;
+    background-color: #e04c41;
+    color: white;
+    border-radius: 8px 8px 0 0; /* Bordes redondeados solo en la parte superior */
+    padding: 20px; /* Añadí padding para más espacio */
+  }
+  
+  .card-title {
+    font-size: 1.5em;
+    font-weight: bold;
+  }
+  
+  .card-content {
+     /* Centré el texto para mejorar la legibilidad */
+    margin: 20px 0;
+    padding: 0 20px; /* Añadí padding lateral para más espacio */
+  }
+  
+  .dialog-actions {
+    display: flex;
+    padding: 20px; /* Añadí padding para más espacio */
+  }
+  
+  button {
+    min-width: 120px; /* Aumenté el ancho mínimo del botón */
+  }
+  
+  .mat-mdc-button.mat-primary {
+    background-color: #2925F3 !important;
+    color: #ffffff;
+    border: 1px solid #ddd;
+  }
+  
+  .mat-mdc-button.mat-primary:hover {
+    background-color: #4643f5 !important;
+    color: #ffffff;
+  }
+
+  .mat-mdc-button.mat-warn {
+    background-color: #f32d2def !important;
+    color: #ffffff;
+    border: 1px solid #ddd;
+  }
+  
+  .mat-mdc-button.mat-warn:hover {
+    background-color: #d31313dd !important;
+    color: #ffffff;
+  }
+  

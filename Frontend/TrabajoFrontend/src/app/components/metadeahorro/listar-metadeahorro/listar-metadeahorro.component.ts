@@ -24,6 +24,7 @@ import { MatButton } from '@angular/material/button';
 import { VerDetalleDialogoComponent } from '../ver-detalle-dialogo/ver-detalle-dialogo.component';
 import { TransaccionService } from '../../../services/transaccion.service';
 import { UsuarioService } from '../../../services/usuario.service';
+import { ShowdialogValidacionComponent } from '../showdialog-validacion/showdialog-validacion.component';
 @Component({
   selector: 'app-listar-metadeahorro',
   standalone: true,
@@ -81,9 +82,10 @@ export class ListarMetadeahorroComponent implements OnInit {
     this.dialog.open(VerDetalleDialogoComponent,{data:element});
   }
 
+  openValidacionDialog(){
+    this.dialog.open(ShowdialogValidacionComponent)
+  }
 
-
-  
 
   ngOnInit(): void {
     this.usuariologeado= this.ls.getCurrentUser()!;
@@ -127,7 +129,7 @@ export class ListarMetadeahorroComponent implements OnInit {
         this.actualizarDatos();
         this.SetAhorroAcumulado();
       });
-    } else console.log('No tienes saldo suficiente para marcar esta meta como cumplida');
+    } else this.openValidacionDialog();
     
   }
 
