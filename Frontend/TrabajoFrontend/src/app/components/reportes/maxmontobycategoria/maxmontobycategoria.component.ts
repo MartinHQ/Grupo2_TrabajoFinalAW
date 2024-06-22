@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TransaccionService } from '../../../services/transaccion.service';
 import { LoginService } from '../../../services/login.service';
-import { MaxMontoByCategoriaDTO } from '../../../models/MaxMontoByCategoriaDTO';
+import { MaxMontoByCategoriaDTO } from '../../../models/maxMontoByCategoriaDTO';
 import { NgFor } from '@angular/common';
 import { BaseChartDirective } from 'ng2-charts';
 import { ChartDataset, ChartOptions, ChartType } from 'chart.js';

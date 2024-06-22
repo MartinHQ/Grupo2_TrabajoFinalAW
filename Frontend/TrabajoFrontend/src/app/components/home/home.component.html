@@ -1,6 +1,13 @@
 <router-outlet></router-outlet>
 
 <div class="containe" *ngIf="isAdmin()">
+  <div class="tittle">
+    <h1>Bienvenido Administrador!</h1>
+    <h2>
+      En este dashboard podras ver informacion de tu interes para gestionar la
+      aplicacion
+    </h2>
+  </div>
 
   <div class="card-container">
     <mat-card class="chart-card" appearance="outlined">
@@ -18,34 +25,41 @@
       </mat-card-content>
     </mat-card>
   </div>
+</div>
+<div class="card-container">
+  <mat-card class="chart-card" appearance="outlined">
+    <mat-card-header>
+      <div class="header-contet">
+        <mat-card-title>Categorias de Transaccion</mat-card-title>
+        <mat-card-subtitle
+          >Crea, edita y elimina categorias de transaccion para los
+          clientes</mat-card-subtitle
+        >
+      </div>
+    </mat-card-header>
 
-  <!--Mostrar Ingresos o Egresos de un mes en especifico por categoria-->
-  <div class="card-container">
-    <mat-card class="chart-card" appearance="outlined">
-      <mat-card-header>
-        <mat-card-title>
-          Ingresos o Gastos en cada Mes Por Categoria de Transaccion
-        </mat-card-title>
-      </mat-card-header>
-
-      <mat-card-content>
-        <div class="chart-container">
-          <div class="chart-content">
-            <app-maxmontobycategoria></app-maxmontobycategoria>
-          </div>
-        </div>
-      </mat-card-content>
-    </mat-card>
-  </div>
+    <mat-card-content>
+      <div class="chart-content">
+        <app-categoriaspopulares></app-categoriaspopulares>
+      </div>
+    </mat-card-content>
+    <mat-card-actions class="actions">
+      <button mat-button color="primary" routerLink="/categoriatranx">
+        Ver categorías
+      </button>
+    </mat-card-actions>
+  </mat-card>
 </div>
 
 <div class="container" *ngIf="isCliente()">
-
   <div class="tittle">
     <h1>Hola, {{ usuarioLogeado.nombre }}!</h1>
-    <h2>
-      Tu saldo es de {{ usuarioLogeado.ahorro_acumulado }},
-      puedes distribuirlos para cumplir tus <a routerLink="/metadeahorro/">metas de ahorro</a>
+    <h2 *ngIf="usuarioLogeado.ahorro_acumulado >= 0">
+      Tu saldo es de {{ usuarioLogeado.ahorro_acumulado }} , puedes distribuirlos
+      para cumplir tus <a routerLink="/metadeahorro">metas de ahorro</a>
+    </h2>
+    <h2 *ngIf="usuarioLogeado.ahorro_acumulado < 0">
+      Tu saldo se encuentra en numeros negativos {{ usuarioLogeado.ahorro_acumulado }}, ten cuidado, debe haber un balance en tus <a routerLink="/transaccion">transacciones</a>
     </h2>
   </div>
 
@@ -55,13 +69,15 @@
       <mat-card-header>
         <div class="header-contet">
           <mat-card-title>Mis metas de ahorro</mat-card-title>
-          <mat-card-subtitle>Cantidad de metas cumplidas y no cumplidas</mat-card-subtitle>
+          <mat-card-subtitle
+            >Cantidad de metas cumplidas y no cumplidas</mat-card-subtitle
+          >
         </div>
       </mat-card-header>
 
       <mat-card-content>
         <div class="chart-content">
-         <app-reporte02></app-reporte02>
+          <app-reporte02></app-reporte02>
         </div>
       </mat-card-content>
       <mat-card-actions class="actions">
@@ -78,7 +94,9 @@
       <mat-card-header>
         <div class="header-contet">
           <mat-card-title>Mis metas de ahorro</mat-card-title>
-          <mat-card-subtitle>No tienes metas de ahorro registradas</mat-card-subtitle>
+          <mat-card-subtitle
+            >No tienes metas de ahorro registradas</mat-card-subtitle
+          >
         </div>
       </mat-card-header>
 
@@ -96,12 +114,14 @@
   </div>
 
   <!-- Mostrar transaccion si existe mas de un presupuesto -->
-  <div class="card-container" *ngIf="haytransacciones">
+  < class="card-container" *ngIf="haytransacciones">
     <mat-card class="chart-card" appearance="outlined">
       <mat-card-header>
         <div class="header-content">
           <mat-card-title>Mis Transacciones</mat-card-title>
-          <mat-card-subtitle>Promedio de transacciones mensual</mat-card-subtitle>
+          <mat-card-subtitle
+            >Promedio de transacciones mensual</mat-card-subtitle
+          >
         </div>
       </mat-card-header>
 
@@ -118,37 +138,9 @@
         </div>
       </mat-card-content>
     </mat-card>
-  </div>
 
-
-  <!-- Mostrar boton crear presupuesto si el usuario no tiene presupuestos -->
-  <div class="card-container" *ngIf="!haytransacciones">
-    <mat-card class="first-card" appearance="outlined">
-      <mat-card-header>
-        <div class="header-contet">
-          <mat-card-title>Mis presupuestos</mat-card-title>
-          <mat-card-subtitle>No tienes ninguna transacción registrada</mat-card-subtitle>
-        </div>
-      </mat-card-header>
-
-      <mat-card-content>
-        <div class="text-content">
-          <p>
-            Registra tus ingresos o egresos y crearemos un presupuesto mensual
-            para ti
-          </p>
-        </div>
-      </mat-card-content>
-      <mat-card-actions class="actions">
-        <button mat-button color="primary" routerLink="/transaccion/nuevo">
-          Registra una transacción
-        </button>
-      </mat-card-actions>
-    </mat-card>
-  </div>
-
-  <!--Mostrar Ingresos o Egresos de un mes en especifico por categoria-->
-  <div class="card-container">
+    <!--Mostrar Ingresos o Egresos de un mes en especifico por categoria-->
+   <div class="card-container">
     <mat-card class="chart-card" appearance="outlined">
       <mat-card-header>
         <mat-card-title>
@@ -165,42 +157,112 @@
       </mat-card-content>
     </mat-card>
   </div>
-
- <!-- Mostrar consejos -->
- <div class="card-container">
-  <mat-card class="advice-card" appearance="outlined">
-    <mat-card-header>
-      <div class="header-content">
-        <mat-card-title>Consejos Financieros</mat-card-title>
-        <mat-card-subtitle>Consejos para mejorar tus finanzas</mat-card-subtitle>
-      </div>
-    </mat-card-header>
-    <mat-card-content>
-      <div class="text-content">
-        <div class="advice-container">
-          <mat-card *ngFor="let consejo of consejos.slice(0, 3)" class="inner-advice-card" appearance="outlined">
-            <mat-card-header>
-              <mat-card-title>{{ consejo.titulo }}</mat-card-title>
-            </mat-card-header>
-            <mat-card-content>
-              {{ consejo.descripcion }}
-            </mat-card-content>
-          </mat-card>
+  <div class="card-container" *ngIf="!haytransacciones">
+    <mat-card class="first-card" appearance="outlined">
+      <mat-card-header>
+        <div class="header-contet">
+          <mat-card-title>Mis transacciones</mat-card-title>
+          <mat-card-subtitle
+            >No tienes ninguna transacción registrada</mat-card-subtitle
+          >
         </div>
-      </div>
-    </mat-card-content>
-    <mat-card-actions>
-      <button mat-button color="primary" routerLink="/consejos">Ver más consejos</button>
-    </mat-card-actions>
-  </mat-card>
-</div>
+      </mat-card-header>
+
+      <mat-card-content>
+        <div class="text-content">
+          <p>
+            Registra tus ingresos o egresos en Economiza para tener un mejor
+            control de tus finanzas
+          </p>
+        </div>
+      </mat-card-content>
+      <mat-card-actions class="actions">
+        <button mat-button color="primary" routerLink="/transaccion/nuevo">
+          Registra una transacción
+        </button>
+      </mat-card-actions>
+    </mat-card>
+
+
+  </div>
+
+
+
+  <!-- Mostrar boton crear presupuesto si el usuario no tiene presupuestos -->
+  <div class="card-container" *ngIf="!haytransacciones">
+    <mat-card class="first-card" appearance="outlined">
+      <mat-card-header>
+        <div class="header-contet">
+          <mat-card-title>Mis transacciones</mat-card-title>
+          <mat-card-subtitle
+            >No tienes ninguna transacción registrada</mat-card-subtitle
+          >
+        </div>
+      </mat-card-header>
+
+      <mat-card-content>
+        <div class="text-content">
+          <p>
+            Registra tus ingresos o egresos en Economiza para tener un mejor
+            control de tus finanzas
+          </p>
+        </div>
+      </mat-card-content>
+      <mat-card-actions class="actions">
+        <button mat-button color="primary" routerLink="/transaccion/nuevo">
+          Registra una transacción
+        </button>
+      </mat-card-actions>
+    </mat-card>
+
+
+  </div>
+
+  <!-- Mostrar consejos -->
+  <div class="card-container">
+    <mat-card class="advice-card" appearance="outlined">
+      <mat-card-header>
+        <div class="header-content">
+          <mat-card-title>Consejos Financieros</mat-card-title>
+          <mat-card-subtitle
+            >Consejos para mejorar tus finanzas</mat-card-subtitle
+          >
+        </div>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="text-content">
+          <div class="advice-container">
+            <mat-card
+              *ngFor="let consejo of consejos.slice(0, 3)"
+              class="inner-advice-card"
+              appearance="outlined"
+            >
+              <mat-card-header>
+                <mat-card-title>{{ consejo.titulo }}</mat-card-title>
+              </mat-card-header>
+              <mat-card-content>
+                {{ consejo.descripcion }}
+              </mat-card-content>
+            </mat-card>
+          </div>
+        </div>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button color="primary" routerLink="/consejos">
+          Ver más consejos
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
 
   <div class="card-container">
     <mat-card class="faq-card" appearance="outlined">
       <mat-card-header>
         <div class="header-content">
           <mat-card-title>Preguntas Frecuentes</mat-card-title>
-          <mat-card-subtitle>Encuentra respuestas a tus dudas</mat-card-subtitle>
+          <mat-card-subtitle
+            >Encuentra respuestas a tus dudas</mat-card-subtitle
+          >
         </div>
       </mat-card-header>
       <mat-card-actions>

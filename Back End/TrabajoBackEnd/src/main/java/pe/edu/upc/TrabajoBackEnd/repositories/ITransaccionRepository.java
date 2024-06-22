@@ -14,11 +14,20 @@ public interface ITransaccionRepository extends JpaRepository<Transaccion, Integ
 
 
 
-    @Query(value = "SELECT t.usuario_id, CONCAT(u.nombre, ' ', u.apellido) AS Nombre,\n" +
-            "SUM(CASE WHEN t.es_ingreso_transaccion THEN t.monto_transaccion ELSE -t.monto_transaccion END) AS saldo_total\n" +
-            "FROM transaccion t INNER JOIN usuario u ON t.usuario_id = u.usuario_id \n" +
-            "WHERE t.fecha_transaccion BETWEEN :fechainicio AND :fechafin\n" +
-            "GROUP BY t.usuario_id, u.nombre, u.apellido", nativeQuery = true)
+    @Query(value = "SELECT \n" +
+            "    t.usuario_id, \n" +
+            "    CONCAT(u.nombre, ' ', u.apellido) AS Nombre, \n" +
+            "    SUM(CASE WHEN t.es_ingreso_transaccion THEN t.monto_transaccion ELSE -t.monto_transaccion END) AS saldo_total\n" +
+            "FROM \n" +
+            "    transaccion t \n" +
+            "    INNER JOIN usuario u ON t.usuario_id = u.usuario_id\n" +
+            "WHERE \n" +
+            "    t.fecha_transaccion BETWEEN :fechainicio AND :fechafin\n" +
+            "GROUP BY \n" +
+            "    t.usuario_id, u.nombre, u.apellido\n" +
+            "ORDER BY \n" +
+            "    saldo_total DESC\n" +
+            "LIMIT 10;", nativeQuery = true)
     public List<String[]> reporteSaldosporrangoTiempo(@Param("fechainicio") LocalDate fechainicio,@Param("fechafin") LocalDate fechafin);
 
     @Query(value = "SELECT ct.nombre, MAX(t.monto_transaccion) \n" +
@@ -36,6 +45,7 @@ public interface ITransaccionRepository extends JpaRepository<Transaccion, Integ
             "AND fecha BETWEEN :fechaInicio AND :fechaFin AND es_ingreso = TRUE", nativeQuery = true)
     Double encontrarPromedioIngresosPorUsuarioYRangoFechas(@Param("usuarioId") int usuarioId, @Param("fechaInicio") LocalDate fechaInicio, @Param("fechaFin") LocalDate fechaFin);
 
+    // Listar por usuario, no tocar porque se rompe todo
     @Query(value = "SELECT * FROM Transaccion WHERE usuario_id = :usuarioId ORDER BY fecha_transaccion DESC", nativeQuery = true)
     List<Transaccion> encontrarTodasPorUsuarioIdOrdenadoPorFechaAsc(@Param("usuarioId") int usuarioId);
 
@@ -88,6 +98,7 @@ public interface ITransaccionRepository extends JpaRepository<Transaccion, Integ
     public List<String[]>promedioegresosporcategoria(@Param("mes") int mes);
 
 
+    //Promedio de ingresos y egresos por mes Chart01 : Christian
     @Query(value = "SELECT\r\n" + //
                         "     TO_CHAR(t.fecha_transaccion, 'FMMonth') as mes,\r\n" + //
                         "     COALESCE (AVG(CASE WHEN NOT t.es_ingreso_transaccion THEN t.monto_transaccion END),0) AS promedio_egresos,\r\n" + //
@@ -100,6 +111,7 @@ public interface ITransaccionRepository extends JpaRepository<Transaccion, Integ
                         "     ORDER BY EXTRACT(YEAR FROM t.fecha_transaccion), EXTRACT(MONTH FROM t.fecha_transaccion)", nativeQuery = true)
     public List<String[]> promedioingresoegresopormes(@Param("usuarioId") int usuarioId);
 
+    //Ahorro acumulado para la logica del trabajo 
     @Query(value="SELECT \r\n" + //
                         "    (SUM(CASE WHEN t.es_ingreso_transaccion THEN t.monto_transaccion ELSE 0 END) - \r\n" + //
                         "     SUM(CASE WHEN NOT t.es_ingreso_transaccion THEN t.monto_transaccion ELSE 0 END)) - \r\n" + //
@@ -114,5 +126,21 @@ public interface ITransaccionRepository extends JpaRepository<Transaccion, Integ
                         "    t.usuario_id;\r\n" + //
                         "",nativeQuery =true)
     public Double getahorroacumulado(@Param("usuarioId") int usuarioId);
+
+
+
+    //Reporte para administrador, mostrar las 5 categorias de transaccion mas utilizadas
+    @Query(value = "SELECT \r\n" + //
+                        "    c.nombre AS categoria,\r\n" + //
+                        "    COUNT(*) AS total_transacciones\r\n" + //
+                        "FROM \r\n" + //
+                        "    transaccion t\r\n" + //
+                        "    INNER JOIN categoria_tranx c ON t.categoria_id = c.id_categoriatranx\r\n" + //
+                        "GROUP BY \r\n" + //
+                        "    c.nombre\r\n" + //
+                        "ORDER BY \r\n" + //
+                        "    total_transacciones DESC\r\n" + //
+                        "LIMIT 5;", nativeQuery = true)
+    public List<String[]> categoriaspopulares();
 
 }

@@ -11,7 +11,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Observable } from 'rxjs';
-
+import { LoginService } from '../../../services/login.service';
 import {MatGridListModule} from '@angular/material/grid-list';
 
 @Component({
@@ -33,12 +33,19 @@ import {MatGridListModule} from '@angular/material/grid-list';
   styleUrl: './listar-preguntafrecuente.component.css',
 })
 export class ListarPreguntafrecuenteComponent implements OnInit {
-  constructor(private pfS: PreguntafrecuenteService) {}
+  constructor(private pfS: PreguntafrecuenteService, private lS:LoginService) {}
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   datasource: MatTableDataSource<PreguntaFrecuente> = new MatTableDataSource();
   obs?: Observable<any>; // objeto para listar,filtrar las tarjetas y usar el paginator
   rol: string = ''
+
+
+
+  ngAfterViewInit(): void {
+    this.datasource.paginator = this.paginator;
+    this.verificar()
+  }
 
   ngOnInit(): void {
     this.pfS.listar().subscribe((data) => {
@@ -59,6 +66,11 @@ export class ListarPreguntafrecuenteComponent implements OnInit {
         this.pfS.setListaCambio(data);
       });
     });
+  }
+
+  verificar() {
+    this.rol = this.lS.showRole();
+    return this.lS.verificar();
   }
 
   isAdmin() {

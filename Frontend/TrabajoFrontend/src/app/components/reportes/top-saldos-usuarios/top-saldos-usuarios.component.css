@@ -1,0 +1,40 @@
+.chart-container {
+    width: 900px; /* Ajusta este valor según sea necesario */
+    margin: 0; /* Elimina margen adicional */
+    padding: 0; /* Elimina padding adicional */
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+  }
+  
+  canvas {
+    width: 100% !important; /* Asegura que el canvas ocupe todo el contenedor */
+    height: auto !important; /* Mantén la relación de aspecto */
+  }
+
+  .mat-mdc-button{
+    margin : 10px;
+  }
+  .mat-mdc-button.mat-warn{
+    background-color: #f32d2def !important;
+    color: #ffffff;
+    border: 1px solid #ddd;
+  }
+  
+  .mat-mdc-button.mat-warn:hover{
+    background-color: #d31313dd !important;
+    color: #ffffff;
+  }
+  
+  .mat-mdc-button.mat-primary{
+    background-color: #2925F3 !important;
+    color: #ffffff;
+    border: 1px solid #ddd;
+  }
+  
+  .mat-mdc-button.mat-primary:hover{
+    background-color: #4643f5 !important;
+    color: #ffffff;
+  }
+  
+  

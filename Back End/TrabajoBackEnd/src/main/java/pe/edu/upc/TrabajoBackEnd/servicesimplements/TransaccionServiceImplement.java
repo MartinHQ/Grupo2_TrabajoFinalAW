@@ -1,6 +1,5 @@
 package pe.edu.upc.TrabajoBackEnd.servicesimplements;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 import pe.edu.upc.TrabajoBackEnd.entities.Transaccion;
 import pe.edu.upc.TrabajoBackEnd.repositories.ITransaccionRepository;
@@ -60,4 +59,7 @@ public class TransaccionServiceImplement implements ITransaccionService {
 
     @Override
     public Double getahorroacumulado(int usuarioId) {return tR.getahorroacumulado(usuarioId);}
+
+    @Override
+    public List<String[]> categoriaspopulares() {return tR.categoriaspopulares();}
 }

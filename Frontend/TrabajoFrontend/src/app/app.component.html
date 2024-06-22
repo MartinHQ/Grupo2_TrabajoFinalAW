@@ -22,16 +22,16 @@
     <button mat-button class="sidenav-button" [matMenuTriggerFor]="menuUsuario" *ngIf="isAdmin()">
       <mat-icon>people</mat-icon>Usuarios
     </button>
-    <button mat-button class="sidenav-button" [matMenuTriggerFor]="menuTransaccion">
+    <button mat-button class="sidenav-button" [matMenuTriggerFor]="menuTransaccion" *ngIf="isCliente()">
       <mat-icon>swap_horiz</mat-icon>Transacciones
     </button>
 
     <!-- Si es Cliente -->
-    <button mat-button class="sidenav-button" [matMenuTriggerFor]="menuCuentaBancaria">
+    <button mat-button class="sidenav-button" [matMenuTriggerFor]="menuCuentaBancaria" *ngIf="isCliente()">
       <mat-icon>credit_card</mat-icon>Cuenta Bancaria
     </button>
 
-    <button mat-button class="sidenav-button" [matMenuTriggerFor]="menuMetadeAhorro">
+    <button mat-button class="sidenav-button" [matMenuTriggerFor]="menuMetadeAhorro" *ngIf="isCliente()">
       <mat-icon>savings</mat-icon>Meta de Ahorro
     </button>
 
