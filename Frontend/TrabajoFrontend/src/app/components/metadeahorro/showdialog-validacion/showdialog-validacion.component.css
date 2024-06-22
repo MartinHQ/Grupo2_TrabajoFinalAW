@@ -1,0 +1,43 @@
+/* General padding for the dialog */
+.mat-dialog-container {
+  padding: 24px;
+}
+
+/* Estilo para el título del cuadro de diálogo */
+h2 {
+  font-size: 24px;
+  color: #333;
+  margin: 20px;
+}
+
+/* Estilo para el contenido del cuadro de diálogo */
+mat-dialog-content {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+/* Estilo para las acciones del cuadro de diálogo */
+mat-dialog-actions {
+  display: flex;
+  justify-content: flex-end; /* Ajuste para alinear el botón a la derecha */
+}
+
+/* Estilo para los botones del cuadro de diálogo */
+button {
+  width: auto; /* Ajuste para el ancho automático */
+  height: 50px;
+  border-radius: 5px;
+  font-size: 20px;
+}
+
+.cancel {
+  background-color: #f5f5f5;
+  color: #333;
+  border: 1px solid #ddd;
+  cursor: pointer;
+}
+
+.cancel:hover {
+  background-color: #e0e0e0;
+}
