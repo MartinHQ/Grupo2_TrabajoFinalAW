@@ -20,15 +20,14 @@ export class Reporte02Component implements OnInit{
   };
   //barChartLabels: string[] = [];
 
-  //barChartType: ChartType = 'pie';
+  barChartType: ChartType = 'pie';
   //barChartType: ChartType = 'doughnut';
   //barChartType: ChartType = 'line';
-  barChartType: ChartType = 'bar';
-  //barChartType: ChartType = 'polarArea';
-
+  //barChartType: ChartType = 'bar';
+ //barChartType: ChartType = 'polarArea';
   barChartLegend = true;
   barChartData: ChartDataset[] = [];
-  barChartLabels: string[] = ['Metas de Ahorro'];
+  barChartLabels: string[] = [];
 
   constructor(private maS:MetadeahorroService, private lS: LoginService, private cdr: ChangeDetectorRef) {}
 
@@ -37,20 +36,18 @@ export class Reporte02Component implements OnInit{
   this.maS.getcantidadmetasiynocumplidas(this.usuariologeado.usuario_id).subscribe((data)=>
     
     {console.log(data);
+
+      this.barChartLabels=data.map((item)=>item.estado_meta);
       this.barChartData = [
         {
-          data: data.map((item) => item.meta_cumplida),
-          label: 'metas cumplidas',
-          backgroundColor: ['#2925F3'],
+          data: data.map((item) => item.cantidad),
+          backgroundColor: ['#2925F3','#F32525'],
+
           borderWidth: 1,
         },
-        {
-          data: data.map((item) => item.meta_no_cumplida),
-          label: 'metas no cumplidas',
-          backgroundColor: ['#F32525'],
-          borderWidth: 1,
-        },
+        
       ];
+      this.barChartLabels = ['metas cumplidas','metas no cumplidas']
       this.cdr.detectChanges();//forzar la detencion de cambios
     });
  

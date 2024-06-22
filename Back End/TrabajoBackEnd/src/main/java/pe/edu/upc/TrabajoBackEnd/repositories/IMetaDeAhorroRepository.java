@@ -7,15 +7,21 @@ import pe.edu.upc.TrabajoBackEnd.entities.MetaDeAhorro;
 import java.util.List;
 @Repository
 public interface IMetaDeAhorroRepository extends JpaRepository<MetaDeAhorro, Integer> {
-   @Query(value = "SELECT \r\n" + 
-                  "SUM(CASE WHEN m.meta_cumplida THEN 1 else 0 END) AS metas_cumplidas,\r\n" + 
-                  "SUM(CASE WHEN NOT m.meta_cumplida  THEN 1 else 0 END) AS metas_no_cumplidas\r\n" + 
-                  "FROM meta_de_ahorro m \r\n" + 
-                  "WHERE m.usuario_id = :usuario_id", nativeQuery = true)
+   @Query(value = "SELECT 'Metas Cumplidas' AS Estado_Meta, \r\n" +
+          "       SUM(CASE WHEN m.meta_cumplida THEN 1 ELSE 0 END) AS Cantidad\r\n" + 
+          "FROM meta_de_ahorro m\r\n" + 
+          "WHERE m.usuario_id =:usuario_id\r\n" + 
+          "\r\n" + 
+          "UNION ALL\r\n" + 
+          "\r\n" + 
+          "SELECT 'Metas no Cumplidas' AS Estado_Meta,\r\n" + 
+          "       SUM(CASE WHEN NOT m.meta_cumplida THEN 1 ELSE 0 END) AS Cantidad\r\n" + 
+          "FROM meta_de_ahorro m\r\n" + 
+          "WHERE m.usuario_id = usuario_id;", nativeQuery = true)
       public List<String[]> listarcantidadmetascumplidasynocumplidas(@Param("usuario_id") int usuario_id);
 
     @Query(value="SELECT * FROM meta_de_ahorro\r\n" + //
-                    "    WHERE usuario_id= 1\r\n" + //
+                    "    WHERE usuario_id=:usuario_id\r\n" + //
                     "\tOrder by fecha_limite DESC",nativeQuery=true)
     List<MetaDeAhorro> listarporelusuarioactivo(@Param("usuario_id") int usuario_id);
 }

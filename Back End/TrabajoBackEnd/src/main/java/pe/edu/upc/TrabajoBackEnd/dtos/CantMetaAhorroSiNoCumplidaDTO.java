@@ -1,23 +1,23 @@
 package pe.edu.upc.TrabajoBackEnd.dtos;
 
 public class CantMetaAhorroSiNoCumplidaDTO {
- private int  meta_cumplida;
- private int meta_no_cumplida;
-
-    public int getMeta_cumplida() {
-        return meta_cumplida;
+ private String estado_meta;
+ private int cantidad;
+ 
+    public int getCantidad() {
+        return cantidad;
     }
 
-    public void setMeta_cumplida(int meta_cumplida) {
-        this.meta_cumplida = meta_cumplida;
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
     }
    
-    public int getMeta_no_cumplida(){
-        return meta_no_cumplida;
+
+    public String getEstado_Meta(){
+        return estado_meta;
     }
 
-    public void setMeta_no_cumplida(int meta_no_cumplida){
-        this.meta_no_cumplida=meta_no_cumplida;
+    public void setEstado_Meta(String estado_meta){
+      this.estado_meta=estado_meta;
     }
-
 }

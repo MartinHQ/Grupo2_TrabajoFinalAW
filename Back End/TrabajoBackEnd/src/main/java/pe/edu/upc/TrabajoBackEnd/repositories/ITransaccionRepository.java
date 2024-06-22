@@ -39,11 +39,16 @@ public interface ITransaccionRepository extends JpaRepository<Transaccion, Integ
     @Query(value = "SELECT * FROM Transaccion WHERE usuario_id = :usuarioId ORDER BY fecha_transaccion DESC", nativeQuery = true)
     List<Transaccion> encontrarTodasPorUsuarioIdOrdenadoPorFechaAsc(@Param("usuarioId") int usuarioId);
 
-    @Query (value = "SELECT u.nombre, AVG(t.monto_transaccion) AS Promedio \n" +
-            "FROM transaccion t \n" +
-            "JOIN usuario u ON u.usuario_id = t.usuario_id \n" +
-            "WHERE t.fecha_transaccion BETWEEN :date1 AND :date2 \n" +
-            "GROUP BY u.nombre", nativeQuery = true)
+    @Query (value = "SELECT \r\n" +
+                        "    EXTRACT(MONTH FROM t.fecha_transaccion) AS mes,\r\n" + 
+                        "    AVG(t.monto_transaccion) AS Promedio\r\n" + 
+                        "FROM \r\n" + 
+                        "    transaccion t\r\n" + 
+                        "WHERE \r\n" + 
+                        "    t.fecha_transaccion BETWEEN :date1 AND :date2 \r\n" + //
+                        "GROUP BY \r\n" + 
+                        "     mes\r\n" + 
+                        "ORDER BY mes", nativeQuery = true)
     public List<String[]> PromedioTransaccion(@Param("date1")LocalDate date1, @Param("date2")LocalDate date2);
 
     @Query(value =
