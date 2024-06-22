@@ -35,4 +35,8 @@ export class ConsejoService {
   eliminar(id: number){
     return this.http.delete(`${this.url}/${id}`)
   }
+
+  buscarKeyword(keyword: string){
+    return this.http.get<Consejo[]>(`${this.url}/buscarstring?keyword=${keyword}`)
+  }
 }

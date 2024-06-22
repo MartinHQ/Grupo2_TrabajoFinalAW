@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 import { promedioingresoegresopormesDTO } from '../models/PromedioingresoegresopormesDTO';
 import { MaxMontoByCategoriaDTO } from '../models/maxMontoByCategoriaDTO';
 import { CategoriasPopularesDTO } from '../models/CategoriasPopularesDTO';
+import { SaldosPorUsuarioDTO } from '../models/SaldosPorUsuarioDTO';
 
 const base_url = environment.base;
 
@@ -83,7 +84,18 @@ export class TransaccionService {
     return this.http.get<number>(`${this.url}/ahorroAcumulado/${usuarioId}`);
   }
 
-  getCategoriasPopulares(){
+  getCategoriasPopulares():Observable<CategoriasPopularesDTO[]>{
     return this.http.get<CategoriasPopularesDTO[]>(`${this.url}/categoriaspopulares`);
   }
+
+  //mario query
+  getTopSaldoPorTiempo(fechaInicio: Date, fechaFin: Date): Observable<SaldosPorUsuarioDTO[]> {
+    const formatDate = (date: Date) => date.toISOString().split('T')[0];
+
+    let params = new HttpParams()
+      .set('fechainicio', formatDate(fechaInicio))
+      .set('fechafin', formatDate(fechaFin));
+
+    return this.http.get<SaldosPorUsuarioDTO[]>(`${this.url}/reportesaldos`,{params});
+   }
 }

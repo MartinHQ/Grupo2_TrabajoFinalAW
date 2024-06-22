@@ -14,11 +14,20 @@ public interface ITransaccionRepository extends JpaRepository<Transaccion, Integ
 
 
 
-    @Query(value = "SELECT t.usuario_id, CONCAT(u.nombre, ' ', u.apellido) AS Nombre,\n" +
-            "SUM(CASE WHEN t.es_ingreso_transaccion THEN t.monto_transaccion ELSE -t.monto_transaccion END) AS saldo_total\n" +
-            "FROM transaccion t INNER JOIN usuario u ON t.usuario_id = u.usuario_id \n" +
-            "WHERE t.fecha_transaccion BETWEEN :fechainicio AND :fechafin\n" +
-            "GROUP BY t.usuario_id, u.nombre, u.apellido", nativeQuery = true)
+    @Query(value = "SELECT \n" +
+            "    t.usuario_id, \n" +
+            "    CONCAT(u.nombre, ' ', u.apellido) AS Nombre, \n" +
+            "    SUM(CASE WHEN t.es_ingreso_transaccion THEN t.monto_transaccion ELSE -t.monto_transaccion END) AS saldo_total\n" +
+            "FROM \n" +
+            "    transaccion t \n" +
+            "    INNER JOIN usuario u ON t.usuario_id = u.usuario_id\n" +
+            "WHERE \n" +
+            "    t.fecha_transaccion BETWEEN :fechainicio AND :fechafin\n" +
+            "GROUP BY \n" +
+            "    t.usuario_id, u.nombre, u.apellido\n" +
+            "ORDER BY \n" +
+            "    saldo_total DESC\n" +
+            "LIMIT 10;", nativeQuery = true)
     public List<String[]> reporteSaldosporrangoTiempo(@Param("fechainicio") LocalDate fechainicio,@Param("fechafin") LocalDate fechafin);
 
     @Query(value = "SELECT ct.nombre, MAX(t.monto_transaccion) \n" +
