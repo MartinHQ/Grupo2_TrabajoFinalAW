@@ -22,7 +22,7 @@ import { Reporte02Component } from '../reportes/reporte02/reporte02.component';
 import { ChangeDetectorRef } from '@angular/core';
 import { UsuarioService } from '../../services/usuario.service';
 import { CategoriaspopularesComponent } from '../reportes/categoriaspopulares/categoriaspopulares.component';
-
+import { TopSaldosUsuariosComponent } from '../reportes/top-saldos-usuarios/top-saldos-usuarios.component';
 @Component({
   selector: 'app-home',
   imports: [
@@ -37,7 +37,8 @@ import { CategoriaspopularesComponent } from '../reportes/categoriaspopulares/ca
     MatChipsModule,
     MaxmontobycategoriaComponent,
     Reporte02Component,
-    CategoriaspopularesComponent
+    CategoriaspopularesComponent,
+    TopSaldosUsuariosComponent
   ],
   standalone: true,
   templateUrl: './home.component.html',
