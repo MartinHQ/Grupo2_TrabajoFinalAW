@@ -67,7 +67,7 @@ public class MetaDeAhorroController {
         List<CantMetaAhorroSiNoCumplidaDTO> dtoList = new ArrayList<>();
         for (String[] columna : listFila) {
             CantMetaAhorroSiNoCumplidaDTO dto = new CantMetaAhorroSiNoCumplidaDTO();
-            dto.setEstado_Meta(columna[0]);
+            dto.setEstado_Meta((columna[0]));
             dto.setCantidad(Integer.parseInt(columna[1]));
             dtoList.add(dto);
         }
