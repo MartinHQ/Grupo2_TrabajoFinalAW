@@ -60,8 +60,8 @@ export class MaxmontobycategoriaComponent implements OnInit {
   ngOnInit(): void {
     this.mostrarDatosPorMes(this.selectedMonth, this.selectedTransactionType);
   }
-  onMonthChange(event:any){
-    this.selectedMonth= event.value;
+  onMonthChange(event: any) {
+    this.selectedMonth = event.value;
     this.mostrarDatosPorMes(this.selectedMonth, this.selectedTransactionType);
   }
 
@@ -70,9 +70,9 @@ export class MaxmontobycategoriaComponent implements OnInit {
     this.mostrarDatosPorMes(this.selectedMonth, this.selectedTransactionType);
   }
 
-  mostrarDatosPorMes(mes:number, esIngreso: boolean){
+  mostrarDatosPorMes(mes: number, esIngreso: boolean) {
     const fechaInicio = new Date(new Date().getFullYear(), mes, 1);
-    const fechaFin = new Date(new Date().getFullYear(), mes+1, 0);
+    const fechaFin = new Date(new Date().getFullYear(), mes + 1, 0);
     const idUsuario = this.lS.getCurrentUser().usuario_id;
 
     this.mostrar(fechaInicio, fechaFin, idUsuario, esIngreso);
@@ -92,7 +92,13 @@ export class MaxmontobycategoriaComponent implements OnInit {
             {
               data: data.map((item) => item.maxMontoCategoria),
               label: 'Monto Máximo',
-              backgroundColor: ['#C0504D', '#8064A2', '#4BACC6'],
+              backgroundColor: [
+                'rgba(41, 37, 243, 0.6)', // Azul principal pastel
+                'rgba(41, 127, 243, 0.6)', // Variación de azul pastel
+                'rgba(37, 243, 229, 0.6)', // Variación de azul verdoso pastel
+                'rgba(116, 37, 243, 0.6)', // Variación de púrpura pastel
+                'rgba(41, 37, 153, 0.6)', // Variación de azul oscuro pastel
+              ],
               borderWidth: 1,
             },
           ];

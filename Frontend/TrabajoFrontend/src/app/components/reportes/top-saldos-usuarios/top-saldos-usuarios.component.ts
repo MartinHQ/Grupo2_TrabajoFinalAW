@@ -67,7 +67,13 @@ export class TopSaldosUsuariosComponent implements OnInit {
           {
             data: data.map((item) => item.saldoTotal),
             label: 'Saldo Total',
-            backgroundColor: ['#C0504D', '#8064A2', '#4BACC6'],
+            backgroundColor: [
+              'rgba(41, 37, 243, 0.6)', // Azul principal pastel
+                'rgba(41, 127, 243, 0.6)', // Variación de azul pastel
+                'rgba(37, 243, 229, 0.6)', // Variación de azul verdoso pastel
+                'rgba(116, 37, 243, 0.6)', // Variación de púrpura pastel
+                'rgba(41, 37, 153, 0.6)', // Variación de azul oscuro pastel
+            ],
             borderWidth: 1,
           },
         ];

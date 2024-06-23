@@ -41,14 +41,14 @@ export class Reporte01Component implements OnInit {
         {
           data: data.map((item) => item.promedio_ingresos),
           label: 'promedio_ingresos',
-          backgroundColor: ['rgba(41, 37, 243, 0.6)',],
-          borderWidth: 1,
+          backgroundColor: ['rgba(41, 127, 243, 0.6)',],
+          
         },
         {
           data: data.map((item) => item.promedio_egresos),
           label: 'promedio_egresos',
           backgroundColor: [ 'rgba(116, 37, 243, 0.6)'],
-          borderWidth: 1,
+          
         },
         
       ];
