@@ -2,6 +2,8 @@ package pe.edu.upc.TrabajoBackEnd.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.TrabajoBackEnd.dtos.CantMetaAhorroSiNoCumplidaDTO;
@@ -61,7 +63,7 @@ public class MetaDeAhorroController {
 
     @PreAuthorize("hasAuthority('CLIENTE')")
     @GetMapping("/reportemetassiynocumplidas/{usuarioId}")
-    public List<CantMetaAhorroSiNoCumplidaDTO> listarcantmetassiynocumplidas(@PathVariable("usuarioId") int usuarioId) {
+    public ResponseEntity<List<CantMetaAhorroSiNoCumplidaDTO>> listarcantmetassiynocumplidas(@PathVariable("usuarioId") int usuarioId) {
         
         List<String[]> listFila = mS.listarcantidadmetascumplidasynocumplidas(usuarioId);
         List<CantMetaAhorroSiNoCumplidaDTO> dtoList = new ArrayList<>();
@@ -71,7 +73,7 @@ public class MetaDeAhorroController {
             dto.setCantidad(Integer.parseInt(columna[1]));
             dtoList.add(dto);
         }
-        return dtoList;
+        return new ResponseEntity<>(dtoList, HttpStatus.OK);
     }
 
     @PreAuthorize("hasAuthority('CLIENTE')")

@@ -76,7 +76,7 @@
       </mat-card-actions>
     </mat-card>
   </div>
-  
+
 </div>
 
 
@@ -85,13 +85,13 @@
   <div class="tittle">
     <h1>Hola, {{ usuarioLogeado.nombre }}!</h1>
     <h2 *ngIf="usuarioLogeado.ahorro_acumulado >= 0">
-      Tu saldo es de {{ usuarioLogeado.ahorro_acumulado }} , puedes
+      Tu saldo es de {{ usuarioLogeado.ahorro_acumulado.toFixed(2) }} , puedes
       distribuirlos para cumplir tus
       <a routerLink="/metadeahorro">metas de ahorro</a>
     </h2>
     <h2 *ngIf="usuarioLogeado.ahorro_acumulado < 0">
       Tu saldo se encuentra en numeros negativos
-      {{ usuarioLogeado.ahorro_acumulado }}, ten cuidado, debe haber un balance
+      {{ usuarioLogeado.ahorro_acumulado.toFixed(2) }}, ten cuidado, debe haber un balance
       en tus <a routerLink="/transaccion">transacciones</a>
     </h2>
   </div>
