@@ -17,6 +17,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
+import { LoginService } from '../../../services/login.service';
+
 
 @Component({
   selector: 'app-creaeditar-cuentabancaria',
@@ -41,7 +43,9 @@ export class CreaeditarCuentabancariaComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private formBuilder: FormBuilder,
-    private uS: UsuarioService
+    private uS: UsuarioService,
+    private lS:LoginService
+
   ) {}
 
   form: FormGroup = new FormGroup({});
@@ -49,6 +53,7 @@ export class CreaeditarCuentabancariaComponent implements OnInit {
   edicion: boolean = false;
   id: number = 0;
   listaUsuario: Usuario[] = [];
+  usuariologeado : Usuario = new Usuario();
 
   bancos: { value: string; viewValue: string }[] = [
     { value: 'BBVA', viewValue: 'BBVA' },
@@ -77,7 +82,6 @@ export class CreaeditarCuentabancariaComponent implements OnInit {
         ],
       ],
       tipo: ['', Validators.required],
-      usuarioid: ['', Validators.required],
     });
     //para llenar la lista con los usuarios registrados
     this.uS.list().subscribe((data) => {
@@ -85,12 +89,16 @@ export class CreaeditarCuentabancariaComponent implements OnInit {
     });
   }
   aceptar(): void {
+    this.usuariologeado = this.lS.getCurrentUser();
     if (this.form.valid) {
       this.cuentabancaria.cuentabancaria_id = this.form.value.codigo;
       this.cuentabancaria.nombre_banco = this.form.value.nombre;
       this.cuentabancaria.numero_cuenta = this.form.value.numerocuenta;
       this.cuentabancaria.tipo = this.form.value.tipo;
-      this.cuentabancaria.usuario_id.usuario_id = this.form.value.usuarioid;
+
+      if(this.usuariologeado){
+        this.cuentabancaria.usuario_id = this.usuariologeado;
+      }
 
       if (this.edicion) {
         this.cbS.modificar(this.cuentabancaria).subscribe(() => {
@@ -117,7 +125,6 @@ export class CreaeditarCuentabancariaComponent implements OnInit {
           nombre: new FormControl(data.nombre_banco),
           numerocuenta: new FormControl(data.numero_cuenta),
           tipo: new FormControl(data.tipo ? 'true' : 'false'),
-          usuarioid: new FormControl(data.usuario_id.usuario_id),
         });
       });
     }

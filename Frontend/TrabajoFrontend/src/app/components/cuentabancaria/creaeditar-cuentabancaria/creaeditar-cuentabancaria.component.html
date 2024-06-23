@@ -44,18 +44,7 @@
       <mat-radio-button value="false">Cuenta de Ahorros</mat-radio-button>
     </mat-radio-group>
 
-    <mat-form-field>
-      <mat-label>Usuario:</mat-label>
-      <mat-select formControlName="usuarioid">
-        <mat-option *ngFor="let u of listaUsuario" [value]="u.usuario_id">
-          {{ u.nombre }} {{ u.apellido }}
-        </mat-option>
-      </mat-select>
-      <mat-error *ngIf="form.get('usuarioid')?.hasError('required')">
-        El usuario es obligatorio.
-      </mat-error>
-    </mat-form-field>
-    <br />
+    <br>
 
     <button mat-raised-button color="warn" *ngIf="edicion">Modificar</button>
     <button mat-raised-button color="warn" *ngIf="!edicion">Registrar</button>
