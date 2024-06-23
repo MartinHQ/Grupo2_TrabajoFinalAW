@@ -8,7 +8,7 @@ import { ListarPreguntafrecuenteComponent } from '../preguntafrecuente/listar-pr
 import { RouterOutlet, ActivatedRoute } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import { Reporte01Component } from '../reportes/reporte01/reporte01.component';
+import { Reporte01Component } from '../reportes/promedioingresoegresopormes/reporte01.component';
 import { ConsejoService } from '../../services/consejo.service';
 import { Consejo } from '../../models/Consejo';
 import { NgFor } from '@angular/common';
@@ -20,7 +20,10 @@ import {MatChipsModule} from '@angular/material/chips';
 import { MaxmontobycategoriaComponent } from '../reportes/maxmontobycategoria/maxmontobycategoria.component';
 import { Reporte02Component } from '../reportes/reporte02/reporte02.component';
 import { ChangeDetectorRef } from '@angular/core';
-
+import { ReportePromediotransaccionComponent } from '../reportes/reporte-promediotransaccion/reporte-promediotransaccion.component';
+import { UsuarioService } from '../../services/usuario.service';
+import { CategoriaspopularesComponent } from '../reportes/categoriaspopulares/categoriaspopulares.component';
+import { TopSaldosUsuariosComponent } from '../reportes/top-saldos-usuarios/top-saldos-usuarios.component';
 @Component({
   selector: 'app-home',
   imports: [
@@ -34,7 +37,9 @@ import { ChangeDetectorRef } from '@angular/core';
     Reporte01Component,
     MatChipsModule,
     MaxmontobycategoriaComponent,
-    Reporte02Component
+    Reporte02Component, ReportePromediotransaccionComponent,
+    CategoriaspopularesComponent,
+    TopSaldosUsuariosComponent
   ],
   standalone: true,
   templateUrl: './home.component.html',
@@ -56,7 +61,8 @@ export class HomeComponent implements OnInit {
     private cS: ConsejoService,
     private tS: TransaccionService,
     private mS : MetadeahorroService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private uS: UsuarioService
   ) {}
 
   ngOnInit(): void {
@@ -85,7 +91,7 @@ export class HomeComponent implements OnInit {
     this.verificar();
     this.isAdmin();
     this.isCliente();
-    this.SetAhorroAcumulado
+    this.SetAhorroAcumulado();
 
 
   }
@@ -117,7 +123,7 @@ export class HomeComponent implements OnInit {
   SetAhorroAcumulado(){
     this.tS.getAhorroAcumulado(this.usuarioLogeado.usuario_id).subscribe((data) => {
       this.usuarioLogeado.ahorro_acumulado = data;
-      console.log('Ahorro acumulado:', this.usuarioLogeado.ahorro_acumulado);
+      this.uS.update(this.usuarioLogeado)
     });
   }
 }

@@ -8,6 +8,7 @@ import pe.edu.upc.TrabajoBackEnd.dtos.MaxMontoByCategoriaDTO;
 import pe.edu.upc.TrabajoBackEnd.dtos.TransaccionDTO;
 import pe.edu.upc.TrabajoBackEnd.entities.Transaccion;
 import pe.edu.upc.TrabajoBackEnd.servicesinterfaces.ITransaccionService;
+import pe.edu.upc.TrabajoBackEnd.dtos.CategoriaspopularesDTO;
 
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -117,7 +118,7 @@ public class TransaccionController {
                 .collect(Collectors.toList());
     }
 
-    @PreAuthorize("hasAuthority('CLIENTE')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/promediotransaccion")
     public List<PromedioTransaccionDTO> promedioTransaccion(@RequestParam LocalDate date1,
                                                             @RequestParam LocalDate date2) {
@@ -125,7 +126,7 @@ public class TransaccionController {
         List<PromedioTransaccionDTO> dtoLista = new ArrayList<>();
         for(String[] columna: filalista) {
             PromedioTransaccionDTO temp = new PromedioTransaccionDTO();
-            temp.setNombre(columna[0]);
+            temp.setMes(Integer.parseInt(columna[0]));
             temp.setPromedio(Float.parseFloat(columna[1]));
             dtoLista.add(temp);
         }
@@ -196,6 +197,21 @@ public class TransaccionController {
     @GetMapping("/ahorroAcumulado/{usuarioId}")
     public Double getAhorroAcumulado(@PathVariable("usuarioId") int usuarioId) {
         return tS.getahorroacumulado(usuarioId);
+    }
+
+    @GetMapping("/categoriaspopulares")
+    public List<CategoriaspopularesDTO> categoriaspopulares()
+    {
+        List<String[]> listFila = tS.categoriaspopulares();
+        List<CategoriaspopularesDTO> dtoList = new ArrayList<>();
+        for (String[] columna : listFila) {
+            CategoriaspopularesDTO dto = new CategoriaspopularesDTO();
+            dto.setCategoria(columna[0]);
+            dto.setTotal_transacciones(Integer.parseInt(columna[1]));
+            dtoList.add(dto);
+        }
+        return dtoList;
+
     }
 
 }

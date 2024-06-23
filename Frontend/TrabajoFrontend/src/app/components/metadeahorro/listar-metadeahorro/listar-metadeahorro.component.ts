@@ -22,7 +22,9 @@ import { MatSort, MatSortModule } from '@angular/material/sort';
 import { FormsModule } from '@angular/forms';
 import { MatButton } from '@angular/material/button';
 import { VerDetalleDialogoComponent } from '../ver-detalle-dialogo/ver-detalle-dialogo.component';
-
+import { TransaccionService } from '../../../services/transaccion.service';
+import { UsuarioService } from '../../../services/usuario.service';
+import { ShowdialogValidacionComponent } from '../showdialog-validacion/showdialog-validacion.component';
 @Component({
   selector: 'app-listar-metadeahorro',
   standalone: true,
@@ -60,13 +62,14 @@ export class ListarMetadeahorroComponent implements OnInit {
 
   constructor(private mS: MetadeahorroService, private dialog: MatDialog,
               private snackBar:MatSnackBar, private ls: LoginService,
+              private tS: TransaccionService, private uS: UsuarioService
   ) {}
 
   mensaje: string='';
 
   openDialog(id: number): void {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
-      data: { entityName: 'Categoría de transacción' },
+      data: { entityName: 'Meta de ahorro' },
     });
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
@@ -79,8 +82,14 @@ export class ListarMetadeahorroComponent implements OnInit {
     this.dialog.open(VerDetalleDialogoComponent,{data:element});
   }
 
+  openValidacionDialog(){
+    this.dialog.open(ShowdialogValidacionComponent)
+  }
+
+
   ngOnInit(): void {
     this.usuariologeado= this.ls.getCurrentUser()!;
+    this.SetAhorroAcumulado();
     if(this.usuariologeado && this.usuariologeado.usuario_id){
       this.mS.listarporusuarioactivo(this.usuariologeado.usuario_id).subscribe(data=>{
         this.datasource.data=data;
@@ -109,15 +118,23 @@ export class ListarMetadeahorroComponent implements OnInit {
   }
 
   marcarComoCumplida(element: MetaDeAhorro) {
-     element.meta_cumplida = !element.meta_cumplida; // Alterna el estado de la meta
-    this.mS.modificar(element).subscribe(() => {
-      this.mensaje = `Meta de Ahorro marcada como ${element.meta_cumplida ? 'cumplida' : 'no cumplida'}`;
-      this.snackBar.open(this.mensaje, 'Cerrar', { duration: 2000 });
-      this.actualizarDatos();
-    });
+    this.SetAhorroAcumulado();
+    console.log(element.monto_objetivo , this.usuariologeado.ahorro_acumulado)
+    if(element.meta_cumplida || element.monto_objetivo < this.usuariologeado.ahorro_acumulado){
+      
+      element.meta_cumplida = !element.meta_cumplida; // Alterna el estado de la meta
+      this.mS.modificar(element).subscribe(() => {
+        this.mensaje = `Meta de Ahorro marcada como ${element.meta_cumplida ? 'cumplida' : 'no cumplida'}`;
+        this.snackBar.open(this.mensaje, 'Cerrar', { duration: 2000 });
+        this.actualizarDatos();
+        this.SetAhorroAcumulado();
+      });
+    } else this.openValidacionDialog();
+    
   }
 
   actualizarDatos() {
+    
     this.usuariologeado = this.ls.getCurrentUser()!;
     if (this.usuariologeado && this.usuariologeado.usuario_id) {
       this.mS.listarporusuarioactivo(this.usuariologeado.usuario_id).subscribe(data => {
@@ -127,5 +144,13 @@ export class ListarMetadeahorroComponent implements OnInit {
       });
       
     }
+  }
+
+  SetAhorroAcumulado(){
+    this.tS.getAhorroAcumulado(this.usuariologeado.usuario_id).subscribe((data) => {
+      this.usuariologeado.ahorro_acumulado = data;
+      this.uS.update(this.usuariologeado)
+    });
+    
   }
 }

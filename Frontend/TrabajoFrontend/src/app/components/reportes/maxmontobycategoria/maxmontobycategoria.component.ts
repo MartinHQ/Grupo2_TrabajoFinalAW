@@ -59,6 +59,13 @@ export class MaxmontobycategoriaComponent implements OnInit {
   barChartLegend = false;
   barChartData: ChartDataset[] = [];
 
+  fechaInicio: Date = new Date();
+  fechaFin: Date = new Date();
+  idUsuario: number = 0;
+  //Mostrar consejos relacionados a este reporte
+  datasource: MatTableDataSource<Consejo> = new MatTableDataSource();
+  obs?: Observable<any>;
+
   constructor(
     private tS: TransaccionService,
     private lS: LoginService,
@@ -93,12 +100,7 @@ export class MaxmontobycategoriaComponent implements OnInit {
     }
   }
 
-  fechaInicio: Date = new Date();
-  fechaFin: Date = new Date();
-  idUsuario: number = 0;
-  obs?: Observable<any>;
-
-  mostrarDatosPorMes(mes: number, esIngreso: boolean) {
+  mostrarDatosPorMes(mes:number, esIngreso: boolean){
     this.fechaInicio = new Date(new Date().getFullYear(), mes, 1);
     this.fechaFin = new Date(new Date().getFullYear(), mes + 1, 0);
     this.idUsuario = this.lS.getCurrentUser().usuario_id;
@@ -120,7 +122,13 @@ export class MaxmontobycategoriaComponent implements OnInit {
             {
               data: data.map((item) => item.maxMontoCategoria),
               label: 'Monto Máximo',
-              backgroundColor: ['#C0504D', '#8064A2', '#4BACC6'],
+              backgroundColor: [
+                'rgba(41, 37, 243, 0.6)', // Azul principal pastel
+                'rgba(41, 127, 243, 0.6)', // Variación de azul pastel
+                'rgba(37, 243, 229, 0.6)', // Variación de azul verdoso pastel
+                'rgba(116, 37, 243, 0.6)', // Variación de púrpura pastel
+                'rgba(41, 37, 153, 0.6)', // Variación de azul oscuro pastel
+              ],
               borderWidth: 1,
             },
           ];
@@ -132,6 +140,5 @@ export class MaxmontobycategoriaComponent implements OnInit {
       );
   }
 
-  //Mostrar consejos relacionados a este reporte
-  datasource: MatTableDataSource<Consejo> = new MatTableDataSource();
+
 }

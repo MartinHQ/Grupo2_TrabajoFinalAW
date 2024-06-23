@@ -10,9 +10,9 @@ import { ChangeDetectorRef } from '@angular/core';
   standalone: true,
   imports: [BaseChartDirective],
   templateUrl: './reporte02.component.html',
-  styleUrl: './reporte02.component.css'
+  styleUrl: './reporte02.component.css',
 })
-export class Reporte02Component implements OnInit{
+export class Reporte02Component implements OnInit {
   usuariologeado: Usuario = new Usuario();
 
   barChartOptions: ChartOptions = {
@@ -20,40 +20,42 @@ export class Reporte02Component implements OnInit{
   };
   //barChartLabels: string[] = [];
 
-  //barChartType: ChartType = 'pie';
+  barChartType: ChartType = 'pie';
   //barChartType: ChartType = 'doughnut';
   //barChartType: ChartType = 'line';
-  barChartType: ChartType = 'bar';
+  //barChartType: ChartType = 'bar';
   //barChartType: ChartType = 'polarArea';
-
   barChartLegend = true;
   barChartData: ChartDataset[] = [];
-  barChartLabels: string[] = ['Metas de Ahorro'];
+  barChartLabels: string[] = [];
 
-  constructor(private maS:MetadeahorroService, private lS: LoginService, private cdr: ChangeDetectorRef) {}
+  constructor(
+    private maS: MetadeahorroService,
+    private lS: LoginService,
+    private cdr: ChangeDetectorRef
+  ) {}
 
- ngOnInit(): void {
-  this.usuariologeado = this.lS.getCurrentUser()!;
-  this.maS.getcantidadmetasiynocumplidas(this.usuariologeado.usuario_id).subscribe((data)=>
-    
-    {console.log(data);
-      this.barChartData = [
-        {
-          data: data.map((item) => item.meta_cumplida),
-          label: 'metas cumplidas',
-          backgroundColor: ['#2925F3'],
-          borderWidth: 1,
-        },
-        {
-          data: data.map((item) => item.meta_no_cumplida),
-          label: 'metas no cumplidas',
-          backgroundColor: ['#F32525'],
-          borderWidth: 1,
-        },
-      ];
-      this.cdr.detectChanges();//forzar la detencion de cambios
-    });
- 
- }
+  ngOnInit(): void {
+    this.usuariologeado = this.lS.getCurrentUser()!;
+    this.maS
+      .getcantidadmetasiynocumplidas(this.usuariologeado.usuario_id)
+      .subscribe((data) => {
+        console.log(data);
 
+        this.barChartLabels = data.map((item) => item.estado_meta);
+        this.barChartData = [
+          {
+            data: data.map((item) => item.cantidad),
+            backgroundColor: [
+              'rgba(37, 243, 229, 0.6)', // Variación de azul verdoso pastel
+              'rgba(41, 37, 243, 0.6)', // Azul principal pastel
+            ],
+
+            borderWidth: 1,
+          },
+        ];
+        this.barChartLabels = ['metas cumplidas', 'metas no cumplidas'];
+        this.cdr.detectChanges(); //forzar la detencion de cambios
+      });
+  }
 }
