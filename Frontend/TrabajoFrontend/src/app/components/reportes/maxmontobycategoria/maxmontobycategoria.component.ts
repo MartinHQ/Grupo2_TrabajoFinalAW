@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TransaccionService } from '../../../services/transaccion.service';
 import { LoginService } from '../../../services/login.service';
-import { MaxMontoByCategoriaDTO } from '../../../models/maxMontoByCategoriaDTO';
 import { NgFor } from '@angular/common';
 import { BaseChartDirective } from 'ng2-charts';
 import { ChartDataset, ChartOptions, ChartType } from 'chart.js';
@@ -10,7 +9,13 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatTableDataSource } from '@angular/material/table';
+import { Consejo } from '../../../models/Consejo';
+import { MatCardModule } from '@angular/material/card';
+import { CommonModule } from '@angular/common';
+import { ConsejoService } from '../../../services/consejo.service';
+import { Observable } from 'rxjs';
 @Component({
   selector: 'app-maxmontobycategoria',
   standalone: true,
@@ -21,6 +26,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatSelectModule,
     MatFormFieldModule,
     ReactiveFormsModule,
+    MatGridListModule,
+    MatCardModule,
+    CommonModule,
   ],
   templateUrl: './maxmontobycategoria.component.html',
   styleUrl: './maxmontobycategoria.component.css',
@@ -51,10 +59,18 @@ export class MaxmontobycategoriaComponent implements OnInit {
   barChartLegend = false;
   barChartData: ChartDataset[] = [];
 
+  fechaInicio: Date = new Date();
+  fechaFin: Date = new Date();
+  idUsuario: number = 0;
+  //Mostrar consejos relacionados a este reporte
+  datasource: MatTableDataSource<Consejo> = new MatTableDataSource();
+  obs?: Observable<any>;
+
   constructor(
     private tS: TransaccionService,
     private lS: LoginService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private cS: ConsejoService
   ) {}
 
   ngOnInit(): void {
@@ -63,19 +79,33 @@ export class MaxmontobycategoriaComponent implements OnInit {
   onMonthChange(event: any) {
     this.selectedMonth = event.value;
     this.mostrarDatosPorMes(this.selectedMonth, this.selectedTransactionType);
+    if (this.selectedTransactionType == false) {
+      this.cS.listConsejosByCategoria(this.fechaInicio, this.fechaFin, this.idUsuario).subscribe((data) => {
+        this.datasource = new MatTableDataSource(data);
+        console.log(data);
+        this.obs= this.datasource.connect();
+      });
+    }
   }
 
   onTransactionTypeChange(event: any): void {
     this.selectedTransactionType = event.value;
     this.mostrarDatosPorMes(this.selectedMonth, this.selectedTransactionType);
+    if (this.selectedTransactionType == false) {
+      this.cS.listConsejosByCategoria(this.fechaInicio, this.fechaFin, this.idUsuario).subscribe((data) => {
+        this.datasource = new MatTableDataSource(data);
+        console.log(data);
+        this.obs= this.datasource.connect();
+      });
+    }
   }
 
-  mostrarDatosPorMes(mes: number, esIngreso: boolean) {
-    const fechaInicio = new Date(new Date().getFullYear(), mes, 1);
-    const fechaFin = new Date(new Date().getFullYear(), mes + 1, 0);
-    const idUsuario = this.lS.getCurrentUser().usuario_id;
+  mostrarDatosPorMes(mes:number, esIngreso: boolean){
+    this.fechaInicio = new Date(new Date().getFullYear(), mes, 1);
+    this.fechaFin = new Date(new Date().getFullYear(), mes + 1, 0);
+    this.idUsuario = this.lS.getCurrentUser().usuario_id;
 
-    this.mostrar(fechaInicio, fechaFin, idUsuario, esIngreso);
+    this.mostrar(this.fechaInicio, this.fechaFin, this.idUsuario, esIngreso);
   }
   mostrar(
     fechaInicio: Date,
@@ -109,4 +139,6 @@ export class MaxmontobycategoriaComponent implements OnInit {
         }
       );
   }
+
+
 }
