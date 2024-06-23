@@ -38,7 +38,7 @@ export class ListarTipometaComponent implements OnInit, AfterViewInit {
 
   openDialog(id: number): void {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
-      data: { entityName: 'Categoría de transacción' },
+      data: { entityName: 'Tipo de meta' },
     });
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {

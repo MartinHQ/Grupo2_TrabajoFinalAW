@@ -31,6 +31,31 @@ mat-card-actions{
   justify-content: flex-end;
 }
 
+.search-container {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  margin-bottom: 20px;
+  margin-left: 140px;
+}
+
+.search-input {
+  padding: 8px;
+  margin-right: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  width: 300px;
+  font-size: 16px;
+}
+
+.search-button, .reset-button {
+  margin-left: 10px;
+  padding: 8px 16px;
+  font-size: 16px;
+  border-radius: 4px;
+}
+
+
 .mat-mdc-button.mat-warn {
   background-color: #f32d2def !important;
   color: #ffffff;
@@ -51,4 +76,15 @@ mat-card-actions{
 .mat-mdc-button.mat-primary:hover {
   background-color: #4643f5 !important;
   color: #ffffff;
+}
+
+.mat-mdc-button.mat-accent{
+  background-color: #dbdbdd !important;
+  color: #242424;
+  border: 1px solid #ddd;
+}
+
+.mat-mdc-button.mat-accent:hover{
+  background-color: #b5b5b5 !important;
+  color: #242424;
 }

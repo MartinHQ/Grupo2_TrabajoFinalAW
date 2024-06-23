@@ -10,10 +10,10 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from '../../confirm-dialog/confirm-dialog.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
-import { CommonModule} from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { Observable } from 'rxjs';
 import { LoginService } from '../../../services/login.service';
-import { Usuario } from '../../../models/Usuario';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-listar-consejo',
@@ -28,14 +28,15 @@ import { Usuario } from '../../../models/Usuario';
     MatDialogModule,
     MatGridListModule,
     MatCardModule,
-    CommonModule
+    CommonModule,
+    FormsModule
   ],
   templateUrl: './listar-consejo.component.html',
   styleUrl: './listar-consejo.component.css',
 })
 export class ListarConsejoComponent implements OnInit, AfterViewInit {
-  rol: string = ''
-
+  rol: string = '';
+  keyword: string = ''; // Añadir propiedad para la palabra clave
   dataSource: MatTableDataSource<Consejo> = new MatTableDataSource();
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   obs?: Observable<any>;
@@ -61,24 +62,33 @@ export class ListarConsejoComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    this.CS.list().subscribe((data) => {
-      this.dataSource = new MatTableDataSource(data);
-      this.dataSource.paginator = this.paginator;
-      this.obs = this.dataSource.connect();
-    });
+    this.loadConsejos();
+  }
 
-    this.CS.getList().subscribe((data) => {
+  loadConsejos(): void {
+    this.CS.list().subscribe((data) => {
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.paginator = this.paginator;
       this.obs = this.dataSource.connect();
     });
   }
 
+  buscarConsejos(): void {
+    this.CS.buscarKeyword(this.keyword).subscribe((data) => {
+      this.dataSource = new MatTableDataSource(data);
+      this.dataSource.paginator = this.paginator;
+      this.obs = this.dataSource.connect();
+    });
+  }
+
+  restablecerLista(): void {
+    this.keyword = '';
+    this.loadConsejos();
+  }
+
   eliminar(id: number) {
     this.CS.eliminar(id).subscribe(() => {
-      this.CS.list().subscribe((data) => {
-        this.CS.setList(data);
-      });
+      this.loadConsejos();
     });
   }
 
