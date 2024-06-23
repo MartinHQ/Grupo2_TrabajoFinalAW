@@ -1,4 +1,4 @@
 export const environment = {
-  production: false,
-  base: 'http://localhost:8084'
+  production: true,
+  base: 'https://grupo2trabajofinalaw-production.up.railway.app'
 }

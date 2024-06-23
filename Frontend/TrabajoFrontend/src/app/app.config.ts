@@ -25,7 +25,7 @@ export const appConfig: ApplicationConfig = {
       JwtModule.forRoot({
         config: {
           tokenGetter: tokenGetter,
-          allowedDomains: ["localhost:8084"],
+          allowedDomains: ["grupo2trabajofinalaw-production.up.railway.app"],
           disallowedRoutes: [`${base_url}/login/forget`],
         },
       }),
